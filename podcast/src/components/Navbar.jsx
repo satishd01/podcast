@@ -16,8 +16,10 @@ const Navbar = () => {
 
   return (
     <nav className="grid grid-cols-12 text-white select-none">
-      <div className="md:col-span-2 col-span-3 md:bg-[#222222] bg-[#151515] flex px-8 py-3 text-lg items-center cursor-pointer">
-        <p onClick={handleIsUserViewOpen}>LOGO</p>
+      <div className="md:col-span-2 col-span-3 md:bg-[#222222] bg-[#151515] flex px-8 py-3 text-2xl items-center cursor-pointer">
+        <p onClick={handleIsUserViewOpen} className="font-semibold ">
+          Logo
+        </p>
       </div>
 
       {/* Hamburger for Mobile */}

@@ -1,6 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import Navbar from "../../components/Navbar";
+import UserSlider from "./features/userSlider/userSlider";
 
 const Home = () => {
   const isUserViewOpen = useSelector((state) => state.slider.isSliderOpen);
@@ -17,9 +18,7 @@ const Home = () => {
               ? "z-40  left-0 md:w-full w-6/12 md:mt-0 col-span-12 h-[100vh] transform transition-all duration-500 ease-in-out opacity-100"
               : "  left-[-100%] opacity-0 md:relative col-span-0 transition-all duration-500 ease-in-out"
           } md:block md:relative md:z-0`}>
-          <div className="p-4">
-            <p>Sidebar Content</p>
-          </div>
+          <UserSlider />
         </div>
 
         <div
