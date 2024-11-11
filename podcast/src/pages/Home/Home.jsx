@@ -2,6 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import Navbar from "../../components/Navbar";
 import UserSlider from "./features/userSlider/userSlider";
+import Footer from "../../components/Footer";
 
 const Home = () => {
   const isUserViewOpen = useSelector((state) => state.slider.isSliderOpen);
@@ -24,8 +25,9 @@ const Home = () => {
         <div
           className={`${
             isUserViewOpen ? "md:col-span-10" : "md:col-span-12"
-          } col-span-12 text-white bg-black relative  h-[100vh]`}>
+          } col-span-12 text-white bg-black relative  h-auto px-10 py-10`}>
           <p>data</p>
+          <Footer />
         </div>
       </div>
     </>
