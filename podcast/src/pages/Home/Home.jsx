@@ -7,17 +7,19 @@ const Home = () => {
   return (
     <>
       <Navbar />
-      <div className="grid grid-cols-12 h-[100vh]">
+      <div className="grid grid-cols-12">
         <div
-          className={`col-span-2 text-gray-50 bg-[#222222] ${
-            isUserViewOpen ? "fixed inset-0 z-40 w-6/12" : "hidden col-span-0"
+          className={`md:col-span-2 text-gray-50 bg-[#222222] ${
+            isUserViewOpen
+              ? "z-40 absolute w-full md:mt-0 col-span-12 h-[100vh]"
+              : "hidden col-span-0"
           } md:block md:relative md:z-0`}>
           <div className="p-4">
             <p>Sidebar Content</p>
           </div>
         </div>
 
-        <div className={`md:col-span-10 col-span-12 bg-black relative`}>
+        <div className="md:col-span-10 col-span-12 bg-black relative  h-[100vh]">
           {!isUserViewOpen && (
             <button
               onClick={() => setIsUserViewOpen(true)}
