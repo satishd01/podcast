@@ -8,7 +8,7 @@ const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <nav className="grid grid-cols-12  text-white">
+    <nav className="grid grid-cols-12  text-white select-none">
       <div className="md:col-span-2 col-span-3 md:bg-[#222222] bg-[#151515] flex px-8 py-3 text-lg items-center cursor-pointer">
         LOGO
       </div>
