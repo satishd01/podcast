@@ -15,8 +15,8 @@ const Home = () => {
             isUserViewOpen ? "md:col-span-2" : "md:hidden"
           } absolute text-gray-50 bg-[#222222] ${
             isUserViewOpen
-              ? "z-40  left-0 md:w-full w-6/12 md:mt-0 col-span-12 h-[100vh] transform transition-all duration-500 ease-in-out opacity-100"
-              : "  left-[-100%] opacity-0 md:relative col-span-0 transition-all duration-500 ease-in-out"
+              ? "z-40  left-0 md:w-full w-6/12 md:mt-0 col-span-12 h-auto transform  "
+              : "  md:relative col-span-0 "
           } md:block md:relative md:z-0`}>
           <UserSlider />
         </div>
