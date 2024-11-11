@@ -14,7 +14,7 @@ const UserSlider = () => {
       </div>
       <UserFeaturesNav />
       <div className=" md:mt-20 mt-10  text-center flex justify-center items-center">
-        <div className="flex items-center gap-2 border border-white px-4 py-1 rounded-md cursor-pointer">
+        <div className="flex items-center gap-2 border border-white px-4 py-1 rounded-md cursor-pointer hover:bg-gray-200 hover:text-black">
           <IoLogOut className="text-xl" />
           <p>Logout</p>
         </div>
