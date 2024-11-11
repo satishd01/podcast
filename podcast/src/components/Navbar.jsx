@@ -44,7 +44,7 @@ const Navbar = () => {
           {["All", "Podcasts", "Stories", "Audio Book"].map((item) => (
             <p
               key={item}
-              className="text-center border border-white py-1 w-full rounded-md text-sm bg-black cursor-pointer">
+              className="text-center border border-white py-1 w-full rounded-md text-sm bg-black hover:bg-gray-200 hover:text-black cursor-pointer">
               {item}
             </p>
           ))}
