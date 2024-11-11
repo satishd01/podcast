@@ -1,3 +1,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.menu-item {
+  @apply text-center border border-white py-1 w-full rounded-md text-sm bg-black;
+}
+
+.search-bar {
+  @apply bg-black py-2 w-6/12 px-4 rounded-3xl;
+}
