@@ -23,7 +23,7 @@ const Player = () => {
         <img
           alt={data.name}
           src={data.imageUrl}
-          className="rounded-md w-12 h-12 sm:w-16 sm:h-16"
+          className="rounded-md w-12 h-12 md:w-16 md:h-16"
         />
         <div className="text-sm">
           <p>
