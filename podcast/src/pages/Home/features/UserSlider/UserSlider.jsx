@@ -10,7 +10,7 @@ const UserSlider = () => {
       <SmallUserCard />
       <div className="mx-5 px-3 bg-[#1F1F1F] shadow-lg rounded-md py-1 flex justify-between items-center hover:bg-gray-200 hover:rounded-lg hover:text-black cursor-pointer">
         <AiFillPlusSquare className="text-xl" />
-        <p className="text-sm">Add Your Content</p>
+        <p className="md:text-sm text-xs whitespace-nowrap">Add Your Content</p>
       </div>
       <UserFeaturesNav />
       <div className=" md:mt-20 mt-10  text-center flex justify-center items-center">

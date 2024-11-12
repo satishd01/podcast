@@ -51,7 +51,7 @@ const Player = () => {
           <ProgressBar duration={200} />
         </div>
       </div>
-      <div className="flex items-center gap-5 text-lg">
+      <div className="flex items-center justify-center gap-5 text-lg">
         <p className="text-[1rem]">1x</p>
         <TbPlaylist className="text-white" />
         <FaHeart className="text-white text-lg" />
