@@ -1,8 +1,8 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import Navbar from "../../components/Navbar";
+import Navbar from "../../components/Navbar/Navbar";
 import UserSlider from "./features/userSlider/userSlider";
-import Footer from "../../components/Footer";
+import Footer from "../../components/Footer/Footer";
 
 const Home = () => {
   const isUserViewOpen = useSelector((state) => state.slider.isSliderOpen);

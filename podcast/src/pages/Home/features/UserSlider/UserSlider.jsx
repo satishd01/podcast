@@ -1,7 +1,7 @@
 import React from "react";
-import SmallUserCard from "../../../../components/smallUserCard";
+import SmallUserCard from "../../../../components/UserSlider/SmallUserCard";
 import { AiFillPlusSquare } from "react-icons/ai";
-import UserFeaturesNav from "../../../../components/UserFeaturesNav";
+import UserFeaturesNav from "../../../../components/UserSlider/UserFeaturesNav";
 import { IoLogOut } from "react-icons/io5";
 
 const UserSlider = () => {
