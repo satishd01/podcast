@@ -1,7 +1,7 @@
 import React from "react";
-import TopCreators from "../../../../components/podcasts/TopCreators/TopCreators";
-import LatestShows from "../../../../components/podcasts/LatestShows/LatestShows";
-import PodcastList from "../../../../components/podcasts/podcastList/PodcastList";
+import TopCreators from "../../../../components/Podcasts/TopCreators/TopCreators";
+import LatestShows from "../../../../components/Podcasts/LatestShows/LatestShows";
+import PodcastList from "../../../../components/Podcasts/PodcastList/PodcastList";
 
 const PodcastsContent = () => {
   return (
