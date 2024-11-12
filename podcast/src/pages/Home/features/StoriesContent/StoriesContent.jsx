@@ -1,7 +1,7 @@
 import React from "react";
 
 const StoriesContent = () => {
-  return <div></div>;
+  return <div>stories</div>;
 };
 
 export default StoriesContent;

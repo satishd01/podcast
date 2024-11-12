@@ -3,15 +3,22 @@ import { CiSearch } from "react-icons/ci";
 import { IoIosNotifications } from "react-icons/io";
 import { HiMenu } from "react-icons/hi";
 import { RxCross2 } from "react-icons/rx";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { toggleSlider } from "../../app/slices/sliderSlice";
+import { toggleActiveTab } from "../../app/slices/activeTabSlice";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const dispatch = useDispatch();
 
+  const activeTab = useSelector((state) => state.activeTab.activeTab);
+
   const handleIsUserViewOpen = () => {
     dispatch(toggleSlider());
+  };
+
+  const handleToggleActiveTab = (tab) => {
+    dispatch(toggleActiveTab(tab));
   };
 
   return (
@@ -44,7 +51,12 @@ const Navbar = () => {
           {["All", "Podcasts", "Stories", "Audio Book"].map((item) => (
             <p
               key={item}
-              className="text-center border border-white py-1 w-full rounded-md text-sm bg-black hover:bg-gray-200 hover:text-black cursor-pointer">
+              onClick={() => handleToggleActiveTab(item)}
+              className={`text-center border border-white py-1 w-full rounded-md text-sm cursor-pointer ${
+                item === activeTab
+                  ? "bg-gray-200 text-black"
+                  : " bg-black hover:bg-gray-200 hover:text-black"
+              }`}>
               {item}
             </p>
           ))}

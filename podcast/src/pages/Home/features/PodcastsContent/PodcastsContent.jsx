@@ -1,7 +1,7 @@
 import React from "react";
 
 const PodcastsContent = () => {
-  return <div></div>;
+  return <div>podcasts</div>;
 };
 
 export default PodcastsContent;

@@ -1,7 +1,7 @@
 import React from "react";
 
 const AllContent = () => {
-  return <div></div>;
+  return <div>all</div>;
 };
 
 export default AllContent;
