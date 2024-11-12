@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import Navbar from "../../components/Navbar/Navbar";
-import UserSlider from "./features/userSlider/userSlider";
+import UserSlider from "./features/UserSlider/UserSlider";
 import Footer from "../../components/Footer/Footer";
 import PodcastsContent from "./features/PodcastsContent/PodcastsContent";
 import StoriesContent from "./features/StoriesContent/StoriesContent";
