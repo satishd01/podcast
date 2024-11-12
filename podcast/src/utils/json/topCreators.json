@@ -1,0 +1,58 @@
+[
+  {
+    "id": 1,
+    "name": "Creator One",
+    "title": "Top Creator",
+    "type": "single",
+    "imageUrl": "https://placehold.co/200"
+  },
+  {
+    "id": 2,
+    "name": "Team Creators",
+    "title": "Podcast Team",
+    "type": "team",
+    "imageUrl": "https://placehold.co/200"
+  },
+  {
+    "id": 3,
+    "name": "Creator Three",
+    "title": "Best Speaker",
+    "type": "single",
+    "imageUrl": "https://placehold.co/200"
+  },
+  {
+    "id": 4,
+    "name": "Collaborative Creators",
+    "title": "Storytelling Team",
+    "type": "team",
+    "imageUrl": "https://placehold.co/200"
+  },
+  {
+    "id": 5,
+    "name": "Creator Five",
+    "title": "Creative Genius",
+    "type": "single",
+    "imageUrl": "https://placehold.co/200"
+  },
+  {
+    "id": 6,
+    "name": "Podcast Duo",
+    "title": "Comedy Duo",
+    "type": "team",
+    "imageUrl": "https://placehold.co/200"
+  },
+  {
+    "id": 7,
+    "name": "Creator Seven",
+    "title": "Inspiring Speaker",
+    "type": "single",
+    "imageUrl": "https://placehold.co/200"
+  },
+  {
+    "id": 8,
+    "name": "The Storytellers",
+    "title": "Fiction Writers Team",
+    "type": "team",
+    "imageUrl": "https://placehold.co/200"
+  }
+]

@@ -1,7 +1,12 @@
 import React from "react";
+import TopCreators from "../../../../components/podcasts/TopCreators/TopCreators";
 
 const PodcastsContent = () => {
-  return <div>podcasts</div>;
+  return (
+    <>
+      <TopCreators />
+    </>
+  );
 };
 
 export default PodcastsContent;

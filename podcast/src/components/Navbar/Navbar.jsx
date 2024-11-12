@@ -46,7 +46,7 @@ const Navbar = () => {
       <div
         className={`md:col-span-10 col-span-12 bg-[#100E0E] ${
           isMenuOpen ? "block" : "hidden"
-        } md:grid md:grid-cols-12 flex-col justify-between items-center gap-16 px-14 py-2`}>
+        } md:grid md:grid-cols-12 flex-col justify-between items-center gap-16 px-10 py-2`}>
         <div className="flex md:col-span-8 md:flex-row flex-col w-full gap-4 justify-between items-center">
           {["All", "Podcasts", "Stories", "Audio Book"].map((item) => (
             <p
