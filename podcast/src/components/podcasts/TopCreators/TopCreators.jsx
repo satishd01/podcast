@@ -5,7 +5,7 @@ import CreatorCard from "./CreatorCard";
 const TopCreators = () => {
   return (
     <>
-      <div className="flex items-center justify-between">
+      <div className="flex items-center justify-between md:pr-0 pr-4">
         <p className="md:text-2xl text-xl">Top Creators</p>
         <p className="text-sm text-gray-400">See all</p>
       </div>
