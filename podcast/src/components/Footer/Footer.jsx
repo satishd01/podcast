@@ -40,6 +40,10 @@ const Footer = () => {
           </button>
         </div>
       </div>
+      <div className="md:mx-[70px] mt-5">
+        <hr className="bg-gray-200 h-[1px] " />
+        <p className="mt-5">&copy;2024 all rights reserved</p>
+      </div>
     </>
   );
 };
