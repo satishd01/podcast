@@ -47,7 +47,7 @@ const Player = () => {
           <RiForward15Fill className="text-xl" />
           <TbRepeat className="text-xl" />
         </div>
-        <div className="w-full md:px-0 px-10">
+        <div className="w-full md:px-0 ">
           <ProgressBar duration={200} />
         </div>
       </div>
