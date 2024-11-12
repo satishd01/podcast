@@ -7,6 +7,7 @@ import PodcastsContent from "./features/PodcastsContent/PodcastsContent";
 import StoriesContent from "./features/StoriesContent/StoriesContent";
 import AllContent from "./features/AllContent/AllContent";
 import AudioBooksContent from "./features/AudioBooksContent/AudioBooksContent";
+import Player from "../../components/Player/Player";
 
 const Home = () => {
   const isUserViewOpen = useSelector((state) => state.slider.isSliderOpen);
@@ -48,6 +49,7 @@ const Home = () => {
           <Footer />
         </div>
       </div>
+      <Player />
     </>
   );
 };
