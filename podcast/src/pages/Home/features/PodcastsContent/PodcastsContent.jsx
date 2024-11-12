@@ -9,6 +9,12 @@ const PodcastsContent = () => {
       <TopCreators />
       <LatestShows />
       <PodcastList />
+      <div className="md:mt-44 mt-10">
+        <TopCreators isTwoRows={true} />
+      </div>
+      <div className="md:mb-72 mb-10">
+        <LatestShows />
+      </div>
     </>
   );
 };

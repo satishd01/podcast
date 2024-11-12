@@ -54,5 +54,61 @@
     "title": "Fiction Writers Team",
     "type": "team",
     "imageUrl": "https://placehold.co/200"
+  },
+  {
+    "id": 9,
+    "name": "Creator Nine",
+    "title": "Innovative Thinker",
+    "type": "single",
+    "imageUrl": "https://placehold.co/200"
+  },
+  {
+    "id": 10,
+    "name": "Creative Collective",
+    "title": "Art & Design Team",
+    "type": "team",
+    "imageUrl": "https://placehold.co/200"
+  },
+  {
+    "id": 11,
+    "name": "Creator Eleven",
+    "title": "Master Storyteller",
+    "type": "single",
+    "imageUrl": "https://placehold.co/200"
+  },
+  {
+    "id": 12,
+    "name": "The Innovators",
+    "title": "Tech Visionaries Team",
+    "type": "team",
+    "imageUrl": "https://placehold.co/200"
+  },
+  {
+    "id": 13,
+    "name": "Creator Thirteen",
+    "title": "Future Leader",
+    "type": "single",
+    "imageUrl": "https://placehold.co/200"
+  },
+  {
+    "id": 14,
+    "name": "Dynamic Duo",
+    "title": "Music & Culture Duo",
+    "type": "team",
+    "imageUrl": "https://placehold.co/200"
+  },
+  {
+    "id": 15,
+    "name": "Creator Fifteen",
+    "title": "Visionary Thinker",
+    "type": "single",
+    "imageUrl": "https://placehold.co/200"
+  },
+  {
+    "id": 16,
+    "name": "The Collaborators",
+    "title": "Social Media Creators Team",
+    "type": "team",
+    "imageUrl": "https://placehold.co/200"
   }
 ]

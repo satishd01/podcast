@@ -19,7 +19,7 @@ const Player = () => {
 
   return (
     <div className="bg-black py-4 sticky bottom-0 flex flex-col sm:flex-row justify-between text-white px-4">
-      <div className="flex items-center gap-3 mb-4 sm:mb-0">
+      <div className="flex items-center gap-3 mb-4 sm:mb-0 ">
         <img
           alt={data.name}
           src={data.imageUrl}
