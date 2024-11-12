@@ -1,18 +1,17 @@
 import React from "react";
-import { MdHome } from "react-icons/md";
-import { IoMdDownload } from "react-icons/io";
 import { BsCollectionPlayFill } from "react-icons/bs";
+import { FaFileAudio, FaHistory } from "react-icons/fa";
 import { FaMicrophone } from "react-icons/fa6";
-import { FaFileAudio } from "react-icons/fa";
 import { GiBookCover } from "react-icons/gi";
-import { FaHistory } from "react-icons/fa";
-import { Link, useLocation } from "react-router-dom";
+import { IoMdDownload } from "react-icons/io";
+import { MdHome } from "react-icons/md";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const UserFeaturesNav = () => {
   const location = useLocation();
   const currentPath = location.pathname;
+  const navigate = useNavigate();
 
-  // Function to apply active classes based on the current path
   const getNavItemClass = (path) => {
     return currentPath === path
       ? "bg-gray-200 text-black rounded-md mb-1"
@@ -24,65 +23,58 @@ const UserFeaturesNav = () => {
       <div
         className={`py-3 flex items-center gap-3 px-3 hover:rounded-lg cursor-pointer ${getNavItemClass(
           "/"
-        )}`}>
+        )}`}
+        onClick={() => navigate("/")}>
         <MdHome className="text-xl" />
-        <p>
-          <Link to="/">Home</Link>
-        </p>
+        <p>Home</p>
       </div>
       <div
         className={`py-3 flex items-center gap-3 px-3 hover:rounded-lg cursor-pointer ${getNavItemClass(
           "/download"
-        )}`}>
+        )}`}
+        onClick={() => navigate("/download")}>
         <IoMdDownload className="text-xl" />
-        <p>
-          <Link to="/download">Download</Link>
-        </p>
+        <p>Download</p>
       </div>
       <div
         className={`py-3 flex items-center gap-3 px-3 hover:rounded-lg cursor-pointer ${getNavItemClass(
           "/library"
-        )}`}>
+        )}`}
+        onClick={() => navigate("/library")}>
         <BsCollectionPlayFill className="text-base" />
-        <p>
-          <Link to="/library">Library</Link>
-        </p>
+        <p>Library</p>
       </div>
       <div
         className={`py-3 flex items-center gap-3 px-3 hover:rounded-lg cursor-pointer ${getNavItemClass(
           "/podcast"
-        )}`}>
+        )}`}
+        onClick={() => navigate("/podcast")}>
         <FaMicrophone className="text-lg" />
-        <p>
-          <Link to="/podcast">Podcast</Link>
-        </p>
+        <p>Podcast</p>
       </div>
       <div
         className={`py-3 flex items-center gap-3 px-3 hover:rounded-lg cursor-pointer ${getNavItemClass(
           "/audio-book"
-        )}`}>
+        )}`}
+        onClick={() => navigate("/audio-book")}>
         <FaFileAudio className="text-lg" />
-        <p>
-          <Link to="/audio-book">Audio Book</Link>
-        </p>
+        <p>Audio Book</p>
       </div>
       <div
         className={`py-3 flex items-center gap-3 px-3 hover:rounded-lg cursor-pointer ${getNavItemClass(
           "/stories"
-        )}`}>
+        )}`}
+        onClick={() => navigate("/stories")}>
         <GiBookCover className="text-lg" />
-        <p>
-          <Link to="/stories">Stories</Link>
-        </p>
+        <p>Stories</p>
       </div>
       <div
         className={`py-3 flex items-center gap-3 px-3 hover:rounded-lg cursor-pointer ${getNavItemClass(
           "/history"
-        )}`}>
+        )}`}
+        onClick={() => navigate("/listening-history")}>
         <FaHistory className="text-lg" />
-        <p>
-          <Link to="/history">Listening History</Link>
-        </p>
+        <p>Listening History</p>
       </div>
     </div>
   );
