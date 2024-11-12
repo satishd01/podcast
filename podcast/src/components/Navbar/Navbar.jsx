@@ -1,15 +1,17 @@
 import React, { useState } from "react";
 import { CiSearch } from "react-icons/ci";
-import { IoIosNotifications } from "react-icons/io";
 import { HiMenu } from "react-icons/hi";
+import { IoIosNotifications } from "react-icons/io";
 import { RxCross2 } from "react-icons/rx";
 import { useDispatch, useSelector } from "react-redux";
-import { toggleSlider } from "../../app/slices/sliderSlice";
+import { useNavigate } from "react-router-dom";
 import { toggleActiveTab } from "../../app/slices/activeTabSlice";
+import { toggleSlider } from "../../app/slices/sliderSlice";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const activeTab = useSelector((state) => state.activeTab.activeTab);
 
@@ -63,7 +65,9 @@ const Navbar = () => {
         </div>
 
         <div className="md:col-span-4 flex items-center gap-10 justify-between w-full">
-          <div className="bg-black py-2 w-full md:mt-0 mt-3 px-4 rounded-3xl flex justify-between items-center cursor-pointer">
+          <div
+            className="bg-black py-2 w-full md:mt-0 mt-3 px-4 rounded-3xl flex justify-between items-center cursor-pointer"
+            onClick={() => navigate("/search")}>
             <p>Search</p>
             <CiSearch className="text-xl " />
           </div>

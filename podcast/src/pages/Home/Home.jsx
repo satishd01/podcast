@@ -27,7 +27,7 @@ const Home = () => {
   };
 
   return (
-    <>
+    <div>
       <Navbar />
       <div className="grid grid-cols-12">
         <div
@@ -50,7 +50,7 @@ const Home = () => {
         </div>
       </div>
       <Player />
-    </>
+    </div>
   );
 };
 
