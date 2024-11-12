@@ -4,7 +4,7 @@ import { IoIosNotifications } from "react-icons/io";
 import { HiMenu } from "react-icons/hi";
 import { RxCross2 } from "react-icons/rx";
 import { useDispatch } from "react-redux";
-import { toggleSlider } from "../app/slices/sliderSlice";
+import { toggleSlider } from "../../app/slices/sliderSlice";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
