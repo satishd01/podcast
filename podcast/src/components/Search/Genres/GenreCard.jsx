@@ -2,7 +2,7 @@ import React from "react";
 
 const GenreCard = ({ genre }) => {
   return (
-    <div className="relative rounded-lg overflow-hidden shadow-lg hover:shadow-xl transform hover:scale-105 transition duration-300 ease-in-out w-full ">
+    <div className="relative rounded-lg  shadow-lg hover:shadow-xl transform hover:scale-90 transition duration-300 ease-in-out w-full ">
       <img
         alt={genre.name}
         src={genre.imageUrl}

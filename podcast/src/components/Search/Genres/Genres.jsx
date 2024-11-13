@@ -5,10 +5,16 @@ import GenreCard from "./GenreCard";
 const Genres = () => {
   return (
     <>
-      <p className="text-white text-2xl px-5 mb-4">Genres</p>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 px-5">
+      <p className="text-white text-2xl md:px-5  mb-4">Genres</p>
+      <div className="flex md:grid md:grid-cols-3 gap-6 md:px-5 overflow-x-auto md:overflow-visible">
         {genres &&
-          genres.map((genre) => <GenreCard genre={genre} key={genre._id} />)}
+          genres.map((genre) => (
+            <div
+              key={genre._id}
+              className="min-w-[300px] flex-shrink-0 md:min-w-0">
+              <GenreCard genre={genre} />
+            </div>
+          ))}
       </div>
     </>
   );

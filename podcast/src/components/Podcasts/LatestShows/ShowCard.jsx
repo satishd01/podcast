@@ -5,7 +5,7 @@ import { IoPlay } from "react-icons/io5";
 const ShowCard = ({ show }) => {
   return (
     <>
-      <div className="relative shadow-lg hover:shadow-xl transform hover:scale-90">
+      <div className="relative shadow-lg hover:shadow-xl transform hover:scale-90 transition duration-300 ease-in-out">
         <FaHeart className="absolute right-3 top-3 text-[#FF0000]" />
         <img
           alt={show.creatorName}

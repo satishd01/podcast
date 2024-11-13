@@ -11,7 +11,7 @@ const CreatorCard = ({ creator }) => {
         <img
           alt={creator?.name}
           src={creator?.imageUrl}
-          className="md:w-40 md:h-40 h-32 w-32 rounded-md object-cover shadow-lg hover:shadow-xl transform hover:scale-90"
+          className="md:w-40 md:h-40 h-32 w-32 rounded-md object-cover shadow-lg hover:shadow-xl transform hover:scale-90 transition duration-300 ease-in-out"
         />
         <p className="md:mt-2 mt-1 md:text-lg font-semibold text-sm">
           {`${
