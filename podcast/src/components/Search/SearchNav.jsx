@@ -1,11 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { CiSearch } from "react-icons/ci";
 import { HiMenu } from "react-icons/hi";
 import { IoIosNotifications } from "react-icons/io";
 import { RxCross2 } from "react-icons/rx";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { toggleActiveTab } from "../../app/slices/activeTabSlice";
 import { toggleSlider } from "../../app/slices/sliderSlice";
 
 const SearchNav = () => {
@@ -13,12 +12,22 @@ const SearchNav = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const activeTab = useSelector((state) => state.activeTab.activeTab);
   const slider = useSelector((state) => state.slider.isSliderOpen);
 
   const handleIsUserViewOpen = () => {
     dispatch(toggleSlider(slider ? false : true));
   };
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (isMenuOpen) {
+        dispatch(setIsMenuOpen(false));
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [isMenuOpen, dispatch]);
 
   return (
     <nav className="grid grid-cols-12 text-white select-none">

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { CiSearch } from "react-icons/ci";
 import { HiMenu } from "react-icons/hi";
 import { IoIosNotifications } from "react-icons/io";
@@ -23,6 +23,17 @@ const Navbar = () => {
   const handleToggleActiveTab = (tab) => {
     dispatch(toggleActiveTab(tab));
   };
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (isMenuOpen) {
+        dispatch(setIsMenuOpen(false));
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [isMenuOpen, dispatch]);
 
   return (
     <nav className="grid grid-cols-12 text-white select-none">
