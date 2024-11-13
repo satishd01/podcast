@@ -1,14 +1,47 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import Footer from "../../components/Footer/Footer";
 import Player from "../../components/Player/Player";
 import UserSlider from "../Home/features/UserSlider/UserSlider";
+import SearchNav from "../../components/Search/SearchNav";
+import { toggleSlider } from "../../app/slices/sliderSlice";
 
 const Search = () => {
   const isUserViewOpen = useSelector((state) => state.slider.isSliderOpen);
 
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const handleResize = () => {
+      const isMobile = window.innerWidth < 640;
+      if (isMobile) {
+        dispatch(toggleSlider(false));
+      } else {
+        dispatch(toggleSlider(true));
+      }
+    };
+
+    handleResize();
+    window.addEventListener("resize", handleResize);
+
+    return () => window.removeEventListener("resize", handleResize);
+  }, [dispatch]);
+
+  useEffect(() => {
+    const isMobile = window.innerWidth < 640;
+    if (isMobile && isUserViewOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, [isUserViewOpen]);
+
   return (
     <>
+      <SearchNav />
       <div className="grid grid-cols-12">
         <div
           className={`${
