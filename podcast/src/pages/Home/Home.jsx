@@ -41,21 +41,20 @@ const Home = () => {
 
     handleResize();
     window.addEventListener("resize", handleResize);
-
     return () => window.removeEventListener("resize", handleResize);
   }, [dispatch]);
 
   useEffect(() => {
-    const isMobile = window.innerWidth < 640;
-    if (isMobile && isUserViewOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "auto";
-    }
-    return () => {
-      document.body.style.overflow = "auto";
+    const handleScroll = () => {
+      const isMobile = window.innerWidth < 640;
+      if (isUserViewOpen && isMobile) {
+        dispatch(toggleSlider(false));
+      }
     };
-  }, [isUserViewOpen]);
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [isUserViewOpen, dispatch]);
 
   return (
     <div>
