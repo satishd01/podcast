@@ -14,9 +14,10 @@ const Navbar = () => {
   const navigate = useNavigate();
 
   const activeTab = useSelector((state) => state.activeTab.activeTab);
+  const slider = useSelector((state) => state.slider.isSliderOpen);
 
   const handleIsUserViewOpen = () => {
-    dispatch(toggleSlider());
+    dispatch(toggleSlider(slider ? false : true));
   };
 
   const handleToggleActiveTab = (tab) => {

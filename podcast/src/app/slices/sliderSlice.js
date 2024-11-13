@@ -9,7 +9,7 @@ const sliderSlice = createSlice({
     toggleSlider: (state, action) => {
       return {
         ...state,
-        isSliderOpen: !state.isSliderOpen,
+        isSliderOpen: action.payload,
       };
     },
   },
