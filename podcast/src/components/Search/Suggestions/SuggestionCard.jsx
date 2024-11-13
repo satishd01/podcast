@@ -24,7 +24,7 @@ const SuggestionCard = ({ podcast }) => {
           </div>
         </div>
       </div>
-      <div className="flex gap-5 items-center text-white text-xl">
+      <div className="flex gap-2 md:gap-5 items-center text-white text-xl">
         <IoMdShare />
         <IoArrowDownCircleSharp />
         <AiFillPlusCircle />
