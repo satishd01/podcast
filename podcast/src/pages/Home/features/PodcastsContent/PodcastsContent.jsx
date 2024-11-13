@@ -10,7 +10,7 @@ const PodcastsContent = () => {
       <LatestShows />
       <PodcastList />
       <div className="md:mt-44 mt-10">
-        <TopCreators isTwoRows={true} />
+        <TopCreators text={"Top Creators"} isTwoRows={true} />
       </div>
       <div className="md:mb-72 mb-10">
         <LatestShows />

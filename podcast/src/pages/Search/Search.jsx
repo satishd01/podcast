@@ -6,6 +6,7 @@ import Player from "../../components/Player/Player";
 import SearchNav from "../../components/Search/SearchNav/SearchNav";
 import UserSlider from "../Home/features/UserSlider/UserSlider";
 import Genres from "../../components/Search/Genres/Genres";
+import TopCreators from "./../../components/Podcasts/TopCreators/TopCreators";
 
 const Search = () => {
   const isUserViewOpen = useSelector((state) => state.slider.isSliderOpen);
@@ -61,6 +62,13 @@ const Search = () => {
           } col-span-12 text-white bg-black relative  h-auto px-4 md:px-7 py-3`}>
           <div className="mb-10">{}</div>
           <Genres />
+          <div className="md:mt-10 mt-4 md:px-5 md:mb-44 mb-10">
+            <TopCreators
+              isTwoRows={true}
+              text={"Recommended Podcasts"}
+              noSeeAll={true}
+            />
+          </div>
           <OtherFooter />
         </div>
       </div>
