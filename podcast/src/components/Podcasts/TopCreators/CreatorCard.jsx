@@ -20,7 +20,7 @@ const CreatorCard = ({ creator }) => {
               : creator.title
           }`}
         </p>
-        <p className="md:text-sm text-gray-300 text-xs">
+        <p className="md:text-sm text-gray-300 text-xs pb-3">
           {`${creator.type} . ${
             creator.name.length > creatorNameLength
               ? `${creator.name.slice(0, creatorNameLength)}...`
