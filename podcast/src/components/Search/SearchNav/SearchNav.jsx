@@ -5,7 +5,7 @@ import { IoIosNotifications } from "react-icons/io";
 import { RxCross2 } from "react-icons/rx";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { toggleSlider } from "../../app/slices/sliderSlice";
+import { toggleSlider } from "../../../app/slices/sliderSlice";
 
 const SearchNav = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);

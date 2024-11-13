@@ -1,11 +1,10 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import Footer from "../../components/Footer/Footer";
-import Player from "../../components/Player/Player";
-import UserSlider from "../Home/features/UserSlider/UserSlider";
-import SearchNav from "../../components/Search/SearchNav";
 import { toggleSlider } from "../../app/slices/sliderSlice";
 import OtherFooter from "../../components/OtherFooter/OtherFooter";
+import Player from "../../components/Player/Player";
+import SearchNav from "../../components/Search/SearchNav/SearchNav";
+import UserSlider from "../Home/features/UserSlider/UserSlider";
 
 const Search = () => {
   const isUserViewOpen = useSelector((state) => state.slider.isSliderOpen);
