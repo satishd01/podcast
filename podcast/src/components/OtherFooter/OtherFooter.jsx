@@ -4,14 +4,14 @@ import ellipse from "../../images/Ellipse.png";
 const OtherFooter = () => {
   return (
     <>
-      <div className="mx-1 md:mx-16 pt-8 grid grid-cols-12 md:grid-cols-12 gap-y-4 text-center md:text-left">
+      <div className="mx-1 md:mx-5 pt-8 grid grid-cols-12 md:grid-cols-12 gap-y-4 text-center md:text-left">
         <div className="col-span-6 md:col-span-2 flex flex-col space-y-2">
           <p className="text-lg font-semibold">Navigation</p>
           <p>Home</p>
           <p>Articles</p>
           <p>Blogs</p>
         </div>
-        <div className="col-span-6 md:col-span-2 flex flex-col space-y-2 flex justify-center items-center">
+        <div className="col-span-6 md:col-span-2  flex-col space-y-2 flex justify-center items-center">
           <p className="text-lg font-semibold">Our Social</p>
           <p>Instagram</p>
           <p>Spotify</p>
