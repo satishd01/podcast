@@ -6,7 +6,7 @@ import PodcastList from "../../../../components/Podcasts/PodcastList/PodcastList
 const PodcastsContent = () => {
   return (
     <>
-      <TopCreators />
+      <TopCreators text={"Top Creators"} />
       <LatestShows />
       <PodcastList />
       <div className="md:mt-44 mt-10">

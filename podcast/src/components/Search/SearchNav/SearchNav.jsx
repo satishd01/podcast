@@ -6,9 +6,11 @@ import { RxCross2 } from "react-icons/rx";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { toggleSlider } from "../../../app/slices/sliderSlice";
+import { setSearchedText } from "../../../app/slices/SearchSlice";
 
 const SearchNav = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [text, setText] = useState("");
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -28,6 +30,10 @@ const SearchNav = () => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, [isMenuOpen, dispatch]);
+
+  useEffect(() => {
+    dispatch(setSearchedText(text));
+  }, [text, dispatch]);
 
   return (
     <nav className="grid grid-cols-12 text-white select-none">
@@ -62,6 +68,8 @@ const SearchNav = () => {
             <input
               type="text"
               placeholder="Search"
+              value={text}
+              onChange={(e) => setText(e.target.value)}
               className="text-white px-3 bg-transparent outline-none w-full"
             />
             <CiSearch className="text-xl " />

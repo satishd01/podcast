@@ -1,91 +1,121 @@
 [
   {
     "_id": "1",
+
     "name": "The Daily Grind",
+    "season": "1",
     "time": "30:45",
     "imageUrl": "https://placehold.co/50"
   },
   {
     "_id": "2",
+
     "name": "Tech Trends",
+    "season": "1",
     "time": "25:30",
     "imageUrl": "https://placehold.co/50"
   },
   {
     "_id": "3",
+
     "name": "Mindful Moments",
+    "season": "1",
     "time": "40:15",
     "imageUrl": "https://placehold.co/50"
   },
   {
     "_id": "4",
+
     "name": "History Uncovered",
+    "season": "1",
     "time": "50:05",
     "imageUrl": "https://placehold.co/50"
   },
   {
     "_id": "5",
+
     "name": "Science Weekly",
+    "season": "1",
     "time": "35:20",
     "imageUrl": "https://placehold.co/50"
   },
   {
     "_id": "6",
+
     "name": "The Storyteller",
+    "season": "1",
     "time": "45:10",
     "imageUrl": "https://placehold.co/50"
   },
   {
     "_id": "7",
+
     "name": "Book Club Discussions",
+    "season": "1",
     "time": "38:00",
     "imageUrl": "https://placehold.co/50"
   },
   {
     "_id": "8",
+
     "name": "Health Talks",
+    "season": "1",
     "time": "29:30",
     "imageUrl": "https://placehold.co/50"
   },
   {
     "_id": "9",
+
     "name": "Travel Diaries",
+    "season": "1",
     "time": "32:25",
     "imageUrl": "https://placehold.co/50"
   },
   {
     "_id": "10",
+
     "name": "Business Insights",
+    "season": "1",
     "time": "41:15",
     "imageUrl": "https://placehold.co/50"
   },
   {
     "_id": "11",
+
     "name": "Music Vibes",
+    "season": "1",
     "time": "27:50",
     "imageUrl": "https://placehold.co/50"
   },
   {
     "_id": "12",
+
     "name": "Sports Recap",
+    "season": "1",
     "time": "36:40",
     "imageUrl": "https://placehold.co/50"
   },
   {
     "_id": "13",
+
     "name": "Cultural Conversations",
+    "season": "1",
     "time": "48:10",
     "imageUrl": "https://placehold.co/50"
   },
   {
     "_id": "14",
+
     "name": "News and Views",
+    "season": "1",
     "time": "26:30",
     "imageUrl": "https://placehold.co/50"
   },
   {
     "_id": "15",
+
     "name": "Comedy Hour",
+    "season": "1",
     "time": "33:50",
     "imageUrl": "https://placehold.co/50"
   }
