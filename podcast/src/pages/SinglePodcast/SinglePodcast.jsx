@@ -1,23 +1,22 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
-import podcasts from "../../utils/json/podcasts.json";
-import Player from "../../components/Player/Player";
-import OtherFooter from "../../components/OtherFooter/OtherFooter";
-import UserSlider from "../Home/features/UserSlider/UserSlider";
-import Navbar from "../../components/Navbar/Navbar";
-import { toggleSlider } from "../../app/slices/sliderSlice";
 import { useDispatch, useSelector } from "react-redux";
-import { IoMdShare } from "react-icons/io";
-import { IoArrowDownCircleSharp } from "react-icons/io5";
-import { AiFillPlusCircle } from "react-icons/ai";
-import { FaBell } from "react-icons/fa";
-import SuggestionCard from "../../components/Search/Suggestions/SuggestionCard";
-import TopCreators from "../../components/Podcasts/TopCreators/TopCreators";
-import LatestShows from "../../components/Podcasts/LatestShows/LatestShows";
+import { toggleSlider } from "../../app/slices/sliderSlice";
 import Footer from "../../components/Footer/Footer";
+import Navbar from "../../components/Navbar/Navbar";
+import Player from "../../components/Player/Player";
+import LatestShows from "../../components/Podcasts/LatestShows/LatestShows";
+import TopCreators from "../../components/Podcasts/TopCreators/TopCreators";
+import SuggestionCard from "../../components/Search/Suggestions/SuggestionCard";
+import PodcastImage from "../../components/SinglePodcast/PodcastImage/PodcastImage";
+import PodcastInfo from "../../components/SinglePodcast/PodcastInfo/PodcastInfo";
+import podcasts from "../../utils/json/podcasts.json";
+import UserSlider from "../Home/features/UserSlider/UserSlider";
+import PodcastData from "../../components/SinglePodcast/PodcastData/PodcastData";
 
 const SinglePodcast = () => {
+  const [mobileView, setMobileView] = useState(false);
   const params = useParams();
 
   const podcast = podcasts.find((pod) => pod._id === params.podId);
@@ -30,8 +29,10 @@ const SinglePodcast = () => {
       const isMobile = window.innerWidth < 640;
       if (isMobile) {
         dispatch(toggleSlider(false));
+        setMobileView(true);
       } else {
         dispatch(toggleSlider(true));
+        setMobileView(false);
       }
     };
 
@@ -71,56 +72,15 @@ const SinglePodcast = () => {
           className={`${
             isUserViewOpen ? "md:col-span-10" : "md:col-span-12"
           } col-span-12 text-white bg-black relative h-auto px-4 md:px-5 py-10`}>
-          {" "}
           <div className="grid grid-cols-12 md:px-5 gap-10">
-            <div className="col-span-5">
-              <img
-                alt={podcast.name}
-                src={podcast.imageUrl}
-                className="md:w-[400px] w-[200px] rounded-xl"
-              />
-            </div>
+            <PodcastImage podcast={podcast} />
             <div className="col-span-7">
-              <p className="md:text-3xl text-xl font-semibold">
-                {podcast.studio}
-              </p>
-              <p className="md:text-2xl text-xl md:mt-4 mt-2 font-light">
-                {podcast.name}
-              </p>
-              <p className="md:text-lg text-sm font-light">{`Total ${podcast.episodes} episodes`}</p>
+              <PodcastInfo podcast={podcast} />
 
-              <p className="md:text-sm text-sm md:mt-8 mt-4 font-light">
-                {podcast.description}
-              </p>
-              <div className="flex gap-4 md:gap-5 items-center text-white text-xl md:mt-5 mt-4">
-                <button className="px-4 py-1 rounded-lg text-sm md:text-[15px] bg-white text-black font-semibold">
-                  Follow
-                </button>
-                <FaBell className="text-lg" />
-                <IoMdShare />
-                <IoArrowDownCircleSharp />
-                <AiFillPlusCircle />
-              </div>
-
-              <div className="flex gap-3 md:gap-16 items-center text-white md:text-base text-sm  md:mt-5 mt-3">
-                <p>| Episodes |</p>
-                <p>Reviews</p>
-                <p>More like this</p>
-              </div>
-
-              <div className="my-5">
-                <p className="text-xl mb-4">Podcast</p>
-
-                <div className="overflow-x-auto md:overflow-x-hidden">
-                  <div className="flex md:block md:space-x-0 space-x-20 w-full">
-                    {podcasts.slice(0, 4).map((pod) => (
-                      <SuggestionCard key={pod._id} podcast={pod} />
-                    ))}
-                  </div>
-                </div>
-              </div>
+              {!mobileView && <PodcastData podcasts={podcasts} />}
             </div>
           </div>
+          {mobileView && <PodcastData podcasts={podcasts} />}
           <div>
             <TopCreators text={"Recommended Podcast"} isTwoRows={true} />
           </div>
