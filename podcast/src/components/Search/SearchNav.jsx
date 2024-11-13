@@ -50,7 +50,11 @@ const SearchNav = () => {
           <div
             className="bg-black py-2 w-full md:mt-0 mt-3 px-4 rounded-3xl flex justify-between items-center cursor-pointer"
             onClick={() => navigate("/search")}>
-            <p>Search</p>
+            <input
+              type="text"
+              placeholder="Search"
+              className="text-white px-3 bg-transparent outline-none w-full"
+            />
             <CiSearch className="text-xl " />
           </div>
 
