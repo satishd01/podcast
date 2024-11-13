@@ -5,6 +5,7 @@ import Player from "../../components/Player/Player";
 import UserSlider from "../Home/features/UserSlider/UserSlider";
 import SearchNav from "../../components/Search/SearchNav";
 import { toggleSlider } from "../../app/slices/sliderSlice";
+import OtherFooter from "../../components/OtherFooter/OtherFooter";
 
 const Search = () => {
   const isUserViewOpen = useSelector((state) => state.slider.isSliderOpen);
@@ -59,7 +60,7 @@ const Search = () => {
             isUserViewOpen ? "md:col-span-10" : "md:col-span-12"
           } col-span-12 text-white bg-black relative  h-auto px-4 md:px-10 py-10`}>
           <div className="mb-10">{}</div>
-          <Footer />
+          <OtherFooter />
         </div>
       </div>
       <Player />
