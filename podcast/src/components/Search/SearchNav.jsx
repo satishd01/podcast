@@ -46,7 +46,7 @@ const SearchNav = () => {
         className={`relative ${
           isMenuOpen ? "block md:hidden" : "hidden md:flex"
         } md:col-span-10 col-span-12 bg-[#100E0E]  flex justify-center items-center gap-16 px-10 py-2`}>
-        <div className="md:col-span-4 flex items-center gap-10 justify-between w-6/12">
+        <div className="md:col-span-4 flex items-center gap-10 justify-between md:w-6/12 w-9/12">
           <div
             className="bg-black py-2 w-full md:mt-0 mt-3 px-4 rounded-3xl flex justify-between items-center cursor-pointer"
             onClick={() => navigate("/search")}>
