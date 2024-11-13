@@ -4,11 +4,11 @@ import { IoPlay } from "react-icons/io5";
 
 const PodcastCard = ({ podcast }) => {
   return (
-    <div className="flex items-center gap-3">
+    <div className="flex items-center gap-3 shadow-lg hover:shadow-xl transform hover:scale-90 cursor-pointer">
       <img
         alt={podcast.name}
         src={podcast.imageUrl}
-        className="rounded-md w-12 h-12 md:w-16 md:h-16"
+        className="rounded-md w-12 h-12 md:w-16 md:h-16  "
       />
       <div className="text-sm ">
         <p className="whitespace-nowrap">{podcast.name}</p>

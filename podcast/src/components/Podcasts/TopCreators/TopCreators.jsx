@@ -25,7 +25,7 @@ const TopCreators = ({ isTwoRows }) => {
       {isTwoRows && (
         <div className="my-5 overflow-x-auto flex space-x-4 w-full scrollbar-thin scrollbar-thumb-gray-400">
           {secondRowCreators.map((creator) => (
-            <div key={creator.id} className="flex-shrink-0">
+            <div key={creator.id} className="flex-shrink-0 ">
               <CreatorCard creator={creator} />
             </div>
           ))}
