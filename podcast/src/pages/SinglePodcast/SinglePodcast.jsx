@@ -8,15 +8,13 @@ import Navbar from "../../components/Navbar/Navbar";
 import Player from "../../components/Player/Player";
 import LatestShows from "../../components/Podcasts/LatestShows/LatestShows";
 import TopCreators from "../../components/Podcasts/TopCreators/TopCreators";
-import SuggestionCard from "../../components/Search/Suggestions/SuggestionCard";
+import PodcastData from "../../components/SinglePodcast/PodcastData/PodcastData";
 import PodcastImage from "../../components/SinglePodcast/PodcastImage/PodcastImage";
 import PodcastInfo from "../../components/SinglePodcast/PodcastInfo/PodcastInfo";
 import podcasts from "../../utils/json/podcasts.json";
 import UserSlider from "../Home/features/UserSlider/UserSlider";
-import PodcastData from "../../components/SinglePodcast/PodcastData/PodcastData";
 
 const SinglePodcast = () => {
-  const [mobileView, setMobileView] = useState(false);
   const params = useParams();
 
   const podcast = podcasts.find((pod) => pod._id === params.podId);
@@ -29,10 +27,8 @@ const SinglePodcast = () => {
       const isMobile = window.innerWidth < 640;
       if (isMobile) {
         dispatch(toggleSlider(false));
-        setMobileView(true);
       } else {
         dispatch(toggleSlider(true));
-        setMobileView(false);
       }
     };
 
@@ -72,15 +68,14 @@ const SinglePodcast = () => {
           className={`${
             isUserViewOpen ? "md:col-span-10" : "md:col-span-12"
           } col-span-12 text-white bg-black relative h-auto px-4 md:px-5 py-10`}>
-          <div className="grid grid-cols-12 md:px-5 gap-10">
+          <div className="grid grid-cols-12 md:px-5 md:gap-10 gap-3">
             <PodcastImage podcast={podcast} />
-            <div className="col-span-7">
+            <div className="col-span-12 md:col-span-7">
               <PodcastInfo podcast={podcast} />
 
-              {!mobileView && <PodcastData podcasts={podcasts} />}
+              <PodcastData podcasts={podcasts} />
             </div>
           </div>
-          {mobileView && <PodcastData podcasts={podcasts} />}
           <div>
             <TopCreators text={"Recommended Podcast"} isTwoRows={true} />
           </div>
