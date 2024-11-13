@@ -1,7 +1,8 @@
 import React, { lazy, Suspense } from "react";
 
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import Loading from "./components/Loading/Loading";
+import GenresPage from "./pages/GenresPage/GenresPage";
 
 const Home = lazy(() => import("./pages/Home/Home"));
 const Search = lazy(() => import("./pages/Search/Search"));
@@ -13,6 +14,7 @@ const App = () => {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/search" element={<Search />} />
+          <Route path="/genres" element={<GenresPage />} />
         </Routes>
       </Suspense>
     </div>
