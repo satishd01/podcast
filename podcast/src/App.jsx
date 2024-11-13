@@ -8,12 +8,14 @@ const Search = lazy(() => import("./pages/Search/Search"));
 
 const App = () => {
   return (
-    <Suspense fallback={<Loading />}>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/search" element={<Search />} />
-      </Routes>
-    </Suspense>
+    <div className="scrollbar-hidden">
+      <Suspense fallback={<Loading />}>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/search" element={<Search />} />
+        </Routes>
+      </Suspense>
+    </div>
   );
 };
 

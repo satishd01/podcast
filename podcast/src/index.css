@@ -9,3 +9,16 @@
 .search-bar {
   @apply bg-black py-2 w-6/12 px-4 rounded-3xl;
 }
+
+::-webkit-scrollbar {
+  width: 0;
+  background: transparent;
+  height: 2px;
+}
+/* Optional: show position indicator in red */
+::-webkit-scrollbar-thumb {
+  background: gray;
+  height: 2px;
+  padding: 2rem;
+  cursor: pointer;
+}

@@ -14,7 +14,7 @@ const TopCreators = ({ isTwoRows, text, noSeeAll }) => {
         <p className="text-sm text-gray-400">{noSeeAll ? "" : "See all"}</p>
       </div>
 
-      <div className="my-5 overflow-x-auto flex space-x-4 w-full scrollbar-thin scrollbar-thumb-gray-400">
+      <div className="my-5 overflow-x-auto flex space-x-4 w-full scrollbar-thin scrollbar-thumb-gray-400 scrollbar-hidden">
         {firstRowCreators.map((creator) => (
           <div key={creator.id} className="flex-shrink-0">
             <CreatorCard creator={creator} />
@@ -23,7 +23,7 @@ const TopCreators = ({ isTwoRows, text, noSeeAll }) => {
       </div>
 
       {isTwoRows && (
-        <div className="my-5 overflow-x-auto flex space-x-4 w-full scrollbar-thin scrollbar-thumb-gray-400">
+        <div className="my-5 overflow-x-auto flex space-x-4 w-full scrollbar-thumb-gray-400 scrollbar-hidden">
           {secondRowCreators.map((creator) => (
             <div key={creator.id} className="flex-shrink-0 ">
               <CreatorCard creator={creator} />

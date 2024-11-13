@@ -12,7 +12,7 @@ const LatestShows = () => {
       <div className="my-5 overflow-x-auto flex space-x-4 w-full scrollbar-thin scrollbar-thumb-gray-400">
         {shows &&
           shows.map((show) => (
-            <div key={show.id} className="flex-shrink-0">
+            <div key={show.id} className="flex-shrink-0 pb-3">
               <ShowCard show={show} />
             </div>
           ))}
