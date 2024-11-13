@@ -11,7 +11,7 @@ const Genres = () => {
           genres.map((genre) => (
             <div
               key={genre._id}
-              className="min-w-[300px] flex-shrink-0 md:min-w-0">
+              className="min-w-[300px] flex-shrink-0 md:min-w-0 pb-3">
               <GenreCard genre={genre} />
             </div>
           ))}

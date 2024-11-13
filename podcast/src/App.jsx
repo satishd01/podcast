@@ -8,7 +8,7 @@ const Search = lazy(() => import("./pages/Search/Search"));
 
 const App = () => {
   return (
-    <div className="scrollbar-hidden">
+    <div className=" select-none">
       <Suspense fallback={<Loading />}>
         <Routes>
           <Route path="/" element={<Home />} />
