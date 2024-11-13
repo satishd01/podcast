@@ -6,6 +6,7 @@ import Loading from "./components/Loading/Loading";
 const Home = lazy(() => import("./pages/Home/Home"));
 const Search = lazy(() => import("./pages/Search/Search"));
 const GenresPage = lazy(() => import("./pages/GenresPage/GenresPage"));
+const SinglePodcast = lazy(() => import("./pages/SinglePodcast/SinglePodcast"));
 
 const App = () => {
   return (
@@ -15,6 +16,7 @@ const App = () => {
           <Route path="/" element={<Home />} />
           <Route path="/search" element={<Search />} />
           <Route path="/genres" element={<GenresPage />} />
+          <Route path="/podcast/:podId" element={<SinglePodcast />} />
         </Routes>
       </Suspense>
     </div>

@@ -1,37 +1,37 @@
 import React from "react";
 import { GoClockFill } from "react-icons/go";
 import { IoPlay } from "react-icons/io5";
-
 import { IoMdShare } from "react-icons/io";
 import { IoArrowDownCircleSharp } from "react-icons/io5";
 import { AiFillPlusCircle } from "react-icons/ai";
 
 const SuggestionCard = ({ podcast }) => {
   return (
-    <div className="flex items-center gap-3 justify-between mb-6">
-      <div className="flex gap-3 items-center">
+    <div className="flex items-center gap-4 justify-between  rounded-lg mb-4">
+      <div className="flex items-center gap-2">
         <img
           alt={podcast.name}
           src={podcast.imageUrl}
-          className="rounded-lg w-12 h-12 md:w-16 md:h-16"
+          className="rounded-lg w-12 h-12 sm:w-16 sm:h-16"
         />
-        <div className="text-sm">
-          <p>{podcast.name}</p>
-          <p>{`Season ${podcast.season}`}</p>
-          <div className="flex items-center gap-2">
-            <GoClockFill className="text-white" />
-            <p className="text-xs"> {`${podcast.time} Minutes of listening`}</p>
+        <div className="text-xs sm:text-sm text-white">
+          <p className="font-semibold whitespace-nowrap">{podcast.name}</p>
+          <p className="text-gray-300 whitespace-nowrap">{`Season ${podcast.season}`}</p>
+          <div className="flex items-center gap-1 text-gray-400">
+            <GoClockFill />
+            <p className="whitespace-nowrap">{`${podcast.time} min`}</p>
           </div>
         </div>
       </div>
-      <div className="flex gap-2 md:gap-5 items-center text-white text-xl">
+
+      <div className="flex gap-1 sm:gap-3 items-center text-white text-lg sm:text-xl">
         <IoMdShare />
         <IoArrowDownCircleSharp />
         <AiFillPlusCircle />
       </div>
 
-      <div className="md:p-2 p-2 rounded-full flex items-center justify-center bg-white">
-        <IoPlay className="text-[#FF0000] " />
+      <div className="p-2 rounded-full flex items-center justify-center bg-white">
+        <IoPlay className="text-[#FF0000]" />
       </div>
     </div>
   );
