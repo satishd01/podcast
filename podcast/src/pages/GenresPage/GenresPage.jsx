@@ -77,7 +77,7 @@ const GenresPage = () => {
           <OtherFooter />
         </div>
       </div>
-      <Player />
+    
     </div>
   );
 };

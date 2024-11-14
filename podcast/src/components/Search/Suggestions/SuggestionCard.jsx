@@ -4,8 +4,15 @@ import { IoPlay } from "react-icons/io5";
 import { IoMdShare } from "react-icons/io";
 import { IoArrowDownCircleSharp } from "react-icons/io5";
 import { AiFillPlusCircle } from "react-icons/ai";
+import { useDispatch } from "react-redux";
+import { setActivePlayer } from "../../../app/slices/activePlayerSlice";
 
 const SuggestionCard = ({ podcast }) => {
+  const dispatch = useDispatch();
+
+  const handlePlayer = () => {
+    dispatch(setActivePlayer(podcast));
+  };
   return (
     <div className="flex items-center gap-4 justify-between  rounded-lg mb-4">
       <div className="flex items-center gap-2">
@@ -30,7 +37,9 @@ const SuggestionCard = ({ podcast }) => {
         <AiFillPlusCircle />
       </div>
 
-      <div className="p-2 rounded-full flex items-center justify-center bg-white">
+      <div
+        className="p-2 rounded-full flex items-center justify-center bg-white cursor-pointer"
+        onClick={handlePlayer}>
         <IoPlay className="text-[#FF0000]" />
       </div>
     </div>

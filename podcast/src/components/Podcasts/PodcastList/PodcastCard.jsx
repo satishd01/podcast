@@ -1,15 +1,23 @@
 import React from "react";
 import { GoClockFill } from "react-icons/go";
 import { IoPlay } from "react-icons/io5";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { setActivePlayer } from "../../../app/slices/activePlayerSlice";
 
 const PodcastCard = ({ podcast }) => {
   const navigate = useNavigate();
 
+  const dispatch = useDispatch();
+
+  const handlePlayer = () => {
+    dispatch(setActivePlayer(podcast));
+  };
+
   return (
     <div className="flex items-center md:gap-3   gap-2 shadow-lg hover:shadow-xl transform hover:scale-95 transition duration-300 ease-in-out  rounded-lg">
       <div
-        className="flex items-center md:gap-3 gap-2 "
+        className="flex items-center md:gap-3 gap-2 cursor-pointer"
         onClick={() => navigate(`/podcast/${podcast._id}`)}>
         <img
           alt={podcast.name}
@@ -27,8 +35,10 @@ const PodcastCard = ({ podcast }) => {
           </div>
         </div>
       </div>
-      <div className="ml-auto md:p-3 p-2 rounded-full flex items-center justify-center bg-white transition duration-200">
-        <IoPlay className="text-[#FF0000] text-lg" />
+      <div
+        className="ml-auto md:p-3 p-2 rounded-full flex items-center justify-center bg-white transition duration-200 cursor-pointer"
+        onClick={handlePlayer}>
+        <IoPlay className="text-[#FF0000] text-lg " />
       </div>
     </div>
   );

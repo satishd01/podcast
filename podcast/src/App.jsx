@@ -1,7 +1,9 @@
-import React, { lazy, Suspense } from "react";
-
+import React, { lazy, Suspense, useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import Loading from "./components/Loading/Loading";
+import Player from "./components/Player/Player";
+import { setActivePlayer } from "./app/slices/activePlayerSlice";
 
 const Home = lazy(() => import("./pages/Home/Home"));
 const Search = lazy(() => import("./pages/Search/Search"));
@@ -18,8 +20,24 @@ const AudioBooksContent = lazy(() =>
 );
 
 const App = () => {
+  const dispatch = useDispatch();
+  const activePlayer = useSelector((state) => state.activePlayer.activePlayer);
+
+  useEffect(() => {
+    const podcast = localStorage.getItem("ActivePlayer");
+    if (podcast) {
+      dispatch(setActivePlayer(JSON.parse(podcast)));
+    }
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (activePlayer?.name) {
+      localStorage.setItem("ActivePlayer", JSON.stringify(activePlayer));
+    }
+  }, [activePlayer]);
+
   return (
-    <div className=" select-none">
+    <div className="select-none">
       <Suspense fallback={<Loading />}>
         <Routes>
           <Route path="/" element={<Home />} />
@@ -31,6 +49,7 @@ const App = () => {
           <Route path="/podcast/:podId" element={<SinglePodcast />} />
         </Routes>
       </Suspense>
+      {activePlayer?.name && <Player />}
     </div>
   );
 };

@@ -86,7 +86,7 @@ const SinglePodcast = () => {
           <Footer />
         </div>
       </div>
-      <Player />
+  
     </div>
   );
 };

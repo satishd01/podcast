@@ -64,7 +64,7 @@ const StoriesContent = () => {
           <Footer />
         </div>
       </div>
-      <Player />
+    
     </div>
   );
 };

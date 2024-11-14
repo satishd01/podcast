@@ -72,7 +72,6 @@ const PodcastsContent = () => {
           <Footer />
         </div>
       </div>
-      <Player />
     </div>
   );
 };

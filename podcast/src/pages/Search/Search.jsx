@@ -78,7 +78,6 @@ const Search = () => {
           <OtherFooter />
         </div>
       </div>
-      <Player />
     </>
   );
 };

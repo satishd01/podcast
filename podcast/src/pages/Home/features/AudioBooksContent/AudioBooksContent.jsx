@@ -64,7 +64,7 @@ const AudioBooksContent = () => {
           <Footer />
         </div>
       </div>
-      <Player />
+
     </div>
   );
 };
