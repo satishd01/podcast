@@ -46,7 +46,7 @@ const UserFeaturesNav = () => {
       </div>
       <div
         className={`py-3 flex items-center gap-3 px-3 hover:rounded-lg cursor-pointer ${getNavItemClass(
-          "/podcast"
+          "/podcasts"
         )}`}
         onClick={() => navigate("/podcast")}>
         <FaMicrophone className="text-lg" />

@@ -4,36 +4,45 @@ import { HiMenu } from "react-icons/hi";
 import { IoIosNotifications } from "react-icons/io";
 import { RxCross2 } from "react-icons/rx";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { toggleActiveTab } from "../../app/slices/activeTabSlice";
 import { toggleSlider } from "../../app/slices/sliderSlice";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [activeTab, setActiveTab] = useState("All");
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
-  const activeTab = useSelector((state) => state.activeTab.activeTab);
+  const location = useLocation();
   const slider = useSelector((state) => state.slider.isSliderOpen);
 
   const handleIsUserViewOpen = () => {
-    dispatch(toggleSlider(slider ? false : true));
+    dispatch(toggleSlider(!slider));
   };
 
   const handleToggleActiveTab = (tab) => {
-    dispatch(toggleActiveTab(tab));
+    setActiveTab(tab);
+    navigate(tab === "All" ? "/" : `/${tab.toLowerCase().replace(" ", "-")}`);
   };
 
+  // Update activeTab based on URL path whenever location changes
+  useEffect(() => {
+    const path = location.pathname.replace("/", "").toLowerCase();
+    const tab =
+      path === "" ? "All" : path.charAt(0).toUpperCase() + path.slice(1);
+    setActiveTab(tab);
+  }, [location]);
+
+  // Close menu on scroll
   useEffect(() => {
     const handleScroll = () => {
       if (isMenuOpen) {
-        dispatch(setIsMenuOpen(false));
+        setIsMenuOpen(false);
       }
     };
-
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [isMenuOpen, dispatch]);
+  }, [isMenuOpen]);
 
   return (
     <nav className="grid grid-cols-12 text-white select-none">

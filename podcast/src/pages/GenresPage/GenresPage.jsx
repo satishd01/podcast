@@ -9,7 +9,7 @@ import UserSlider from "../Home/features/UserSlider/UserSlider";
 import genres from "../../utils/json/genres.json";
 import GenreCard from "../../components/Search/Genres/GenreCard";
 
-const Genres = () => {
+const GenresPage = () => {
   const isUserViewOpen = useSelector((state) => state.slider.isSliderOpen);
 
   const dispatch = useDispatch();
@@ -82,4 +82,4 @@ const Genres = () => {
   );
 };
 
-export default Genres;
+export default GenresPage;

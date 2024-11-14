@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const activeTabSlice = createSlice({
   name: "activeTab",
   initialState: {
-    activeTab: "Podcasts",
+    activeTab: "All",
   },
   reducers: {
     toggleActiveTab: (state, action) => {
