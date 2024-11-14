@@ -8,14 +8,14 @@ const ProgressBar = ({ duration }) => {
       if (currentTime < duration) {
         setCurrentTime((prevTime) => prevTime + 1);
       } else {
-        clearInterval(interval); // Stop the progress bar when song ends
+        clearInterval(interval);
       }
     }, 1000);
 
     return () => clearInterval(interval);
   }, [currentTime, duration]);
 
-  const progress = (currentTime / duration) * 100; // Calculate progress percentage
+  const progress = (currentTime / duration) * 100;
 
   return (
     <div

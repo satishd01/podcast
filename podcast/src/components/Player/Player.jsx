@@ -18,6 +18,10 @@ const Player = () => {
   const dispatch = useDispatch();
   const activePlayer = useSelector((state) => state.activePlayer.activePlayer);
 
+  const timeString = activePlayer?.time;
+  const [minutes, seconds] = timeString.split(":").map(Number);
+  const totalSeconds = minutes * 60 + seconds;
+
   useEffect(() => {
     const handleResize = () => {
       const isMobile = window.innerWidth < 640;
@@ -68,7 +72,7 @@ const Player = () => {
             <TbRepeat className="text-xl" />
           </div>
           <div className="w-full md:px-0 ">
-            <ProgressBar duration={200} />
+            <ProgressBar duration={totalSeconds} />
           </div>
         </div>
         <div className="flex items-center justify-center gap-5 text-lg">
