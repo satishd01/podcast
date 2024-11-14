@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import { FaHeart } from "react-icons/fa";
 import { GoClockFill } from "react-icons/go";
@@ -11,31 +11,17 @@ import { playerTitleLength } from "../../utils/constants.";
 import ProgressBar from "./ProgressBar";
 import { useDispatch, useSelector } from "react-redux";
 import PlayerOptions from "./PlayerOptions/PlayerOptions";
+import PlayNext from "./PlayNext/PlayNext";
 
 const Player = () => {
   const [isPlayerOptionOpen, setIsPlayerOptionOpen] = useState(false);
+  const [isPlayNextOpen, setIsPlayNextOpen] = useState(false);
 
-  const dispatch = useDispatch();
   const activePlayer = useSelector((state) => state.activePlayer.activePlayer);
 
   const timeString = activePlayer?.time;
   const [minutes, seconds] = timeString.split(":").map(Number);
   const totalSeconds = minutes * 60 + seconds;
-
-  useEffect(() => {
-    const handleResize = () => {
-      const isMobile = window.innerWidth < 640;
-      if (isMobile) {
-        setIsPlayerOptionOpen(false);
-      } else {
-        setIsPlayerOptionOpen(false);
-      }
-    };
-
-    handleResize();
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, [dispatch]);
 
   return (
     activePlayer?.name && (
@@ -77,17 +63,21 @@ const Player = () => {
         </div>
         <div className="flex items-center justify-center gap-5 text-lg">
           <p className="text-[1rem]">1x</p>
-          <TbPlaylist className="text-white" />
+          <TbPlaylist
+            className="text-white cursor-pointer"
+            onClick={() => setIsPlayNextOpen((prev) => !prev)}
+          />
           <FaHeart className="text-white text-lg" />
           <div className="flex items-center gap-2">
             <MdThumbsUpDown className="text-white" />
             <p className="text-sm">Reviews</p>
           </div>
           <BsThreeDotsVertical
-            className="text-white text-xl"
+            className="text-white text-xl cursor-pointer"
             onClick={() => setIsPlayerOptionOpen((prev) => !prev)}
           />
         </div>
+        {isPlayNextOpen && <PlayNext />}
         {isPlayerOptionOpen && <PlayerOptions />}
       </div>
     )
