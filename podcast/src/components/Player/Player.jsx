@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import { FaHeart } from "react-icons/fa";
 import { GoClockFill } from "react-icons/go";
@@ -9,13 +9,33 @@ import { RiForward15Fill, RiReplay15Fill } from "react-icons/ri";
 import { TbPlaylist, TbRepeat } from "react-icons/tb";
 import { playerTitleLength } from "../../utils/constants.";
 import ProgressBar from "./ProgressBar";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import PlayerOptions from "./PlayerOptions/PlayerOptions";
 
 const Player = () => {
+  const [isPlayerOptionOpen, setIsPlayerOptionOpen] = useState(false);
+
+  const dispatch = useDispatch();
   const activePlayer = useSelector((state) => state.activePlayer.activePlayer);
+
+  useEffect(() => {
+    const handleResize = () => {
+      const isMobile = window.innerWidth < 640;
+      if (isMobile) {
+        setIsPlayerOptionOpen(false);
+      } else {
+        setIsPlayerOptionOpen(false);
+      }
+    };
+
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, [dispatch]);
+
   return (
     activePlayer?.name && (
-      <div className="bg-black py-4 sticky bottom-0 flex flex-col sm:flex-row justify-between text-white px-4">
+      <div className=" bg-black py-4 sticky bottom-0 flex flex-col sm:flex-row justify-between text-white px-4">
         <div className="flex items-center gap-3 mb-4 sm:mb-0 ">
           <img
             alt={activePlayer.name}
@@ -59,8 +79,12 @@ const Player = () => {
             <MdThumbsUpDown className="text-white" />
             <p className="text-sm">Reviews</p>
           </div>
-          <BsThreeDotsVertical className="text-white text-xl" />
+          <BsThreeDotsVertical
+            className="text-white text-xl"
+            onClick={() => setIsPlayerOptionOpen((prev) => !prev)}
+          />
         </div>
+        {isPlayerOptionOpen && <PlayerOptions />}
       </div>
     )
   );
