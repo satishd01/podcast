@@ -1,11 +1,14 @@
 import React from "react";
 import creators from "../../../utils/json/topCreators.json";
 import CreatorCard from "./CreatorCard";
+import { useNavigate } from "react-router-dom";
 
 const TopCreators = ({ isTwoRows, text, noSeeAll }) => {
+  const navigate = useNavigate();
+
   const rowCount = isTwoRows ? Math.ceil(creators.length / 2) : creators.length;
-  const firstRowCreators = creators.slice(0, rowCount);
-  const secondRowCreators = creators.slice(rowCount);
+  const firstRowCreators = creators?.slice(0, rowCount);
+  const secondRowCreators = creators?.slice(rowCount);
 
   return (
     <>
@@ -16,7 +19,10 @@ const TopCreators = ({ isTwoRows, text, noSeeAll }) => {
 
       <div className="my-5 overflow-x-auto flex space-x-4 w-full scrollbar-thin scrollbar-thumb-gray-400 scrollbar-hidden">
         {firstRowCreators.map((creator) => (
-          <div key={creator.id} className="flex-shrink-0">
+          <div
+            key={creator.id}
+            className="flex-shrink-0 cursor-pointer"
+            onClick={() => navigate(`/creator/${creator.id}`)}>
             <CreatorCard creator={creator} />
           </div>
         ))}
@@ -25,7 +31,10 @@ const TopCreators = ({ isTwoRows, text, noSeeAll }) => {
       {isTwoRows && (
         <div className="my-5 overflow-x-auto flex space-x-4 w-full scrollbar-thumb-gray-400 scrollbar-hidden">
           {secondRowCreators.map((creator) => (
-            <div key={creator.id} className="flex-shrink-0 ">
+            <div
+              key={creator.id}
+              className="flex-shrink-0 cursor-pointer"
+              onClick={() => navigate(`/creator/${creator.id}`)}>
               <CreatorCard creator={creator} />
             </div>
           ))}

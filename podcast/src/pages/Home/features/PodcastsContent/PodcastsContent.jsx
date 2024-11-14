@@ -61,13 +61,13 @@ const PodcastsContent = () => {
             isUserViewOpen ? "md:col-span-10" : "md:col-span-12"
           } col-span-12 text-white bg-black relative h-auto px-4 md:px-10 py-10`}>
           <TopCreators text={"Top Creators"} />
-          <LatestShows />
+          <LatestShows text={"Latest Shows"} />
           <PodcastList />
           <div className="md:mt-44 mt-10">
             <TopCreators text={"Top Creators"} isTwoRows={true} />
           </div>
           <div className="md:mb-72 mb-10">
-            <LatestShows />
+            <LatestShows text={"Latest Shows"} />
           </div>
           <Footer />
         </div>

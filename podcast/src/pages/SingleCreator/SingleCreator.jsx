@@ -1,23 +1,23 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 
 import { useDispatch, useSelector } from "react-redux";
 import { toggleSlider } from "../../app/slices/sliderSlice";
 import Footer from "../../components/Footer/Footer";
 import Navbar from "../../components/Navbar/Navbar";
-import Player from "../../components/Player/Player";
 import LatestShows from "../../components/Podcasts/LatestShows/LatestShows";
 import TopCreators from "../../components/Podcasts/TopCreators/TopCreators";
-import PodcastData from "../../components/SinglePodcast/PodcastData/PodcastData";
-import PodcastImage from "../../components/SinglePodcast/PodcastImage/PodcastImage";
-import PodcastInfo from "../../components/SinglePodcast/PodcastInfo/PodcastInfo";
+import CreatorImage from "../../components/SingleCreator/CreatorImage/CreatorImage";
+import CreatorInfo from "../../components/SingleCreator/CreatorInfo/CreatorInfo";
+import creators from "../../utils/json/topCreators.json";
 import podcasts from "../../utils/json/podcasts.json";
 import UserSlider from "../Home/features/UserSlider/UserSlider";
+import CreatorData from "./../../components/SingleCreator/CreatorData/CreatorData";
 
-const SinglePodcast = () => {
+const SingleCreator = () => {
   const params = useParams();
 
-  const podcast = podcasts.find((pod) => pod._id === params.podId);
+  const creator = creators.find((creat) => creat.id == params.creatorId);
   const isUserViewOpen = useSelector((state) => state.slider.isSliderOpen);
 
   const dispatch = useDispatch();
@@ -67,21 +67,20 @@ const SinglePodcast = () => {
         <div
           className={`${
             isUserViewOpen ? "md:col-span-10" : "md:col-span-12"
-          } col-span-12 text-white bg-black relative h-auto px-4 md:px-5 py-10`}>
-          <div className="grid grid-cols-12 md:px-5 md:gap-10 gap-3">
-            <PodcastImage podcast={podcast} />
+          } col-span-12 text-white bg-black relative h-auto px-4 md:px-10 py-10`}>
+          <div className="grid grid-cols-12  md:gap-10 gap-3">
+            <CreatorImage creator={creator} />
             <div className="col-span-12 md:col-span-7">
-              <PodcastInfo podcast={podcast} />
+              <CreatorInfo creator={creator} />
 
-              <PodcastData podcasts={podcasts} />
+              <CreatorData podcasts={podcasts} />
             </div>
           </div>
           <div>
-            <TopCreators text={"Recommended Podcast"} isTwoRows={true} />
+            <LatestShows text={"Recommended Creators"} isTwoRows={true} />
           </div>
           <div>
-            <LatestShows text={"Latest Shows"} />
-            <LatestShows text={"Latest Shows"} />
+            <TopCreators text={"Recommended Podcast"} isTwoRows={true} />
           </div>
           <Footer />
         </div>
@@ -90,4 +89,4 @@ const SinglePodcast = () => {
   );
 };
 
-export default SinglePodcast;
+export default SingleCreator;

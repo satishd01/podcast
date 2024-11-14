@@ -15,9 +15,9 @@ const CreatorCard = ({ creator }) => {
         />
         <p className="md:mt-2 mt-1 md:text-lg font-semibold text-sm">
           {`${
-            creator.title.length > creatorTitleLength
-              ? `${creator.title.slice(0, creatorTitleLength)}...`
-              : creator.title
+            creator.show.length > creatorTitleLength
+              ? `${creator.show.slice(0, creatorTitleLength)}...`
+              : creator.show
           }`}
         </p>
         <p className="md:text-sm text-gray-300 text-xs pb-3">

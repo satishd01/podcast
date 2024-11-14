@@ -3,10 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { toggleSlider } from "../../../../app/slices/sliderSlice";
 import Footer from "../../../../components/Footer/Footer";
 import Navbar from "../../../../components/Navbar/Navbar";
-import LatestShows from "../../../../components/Podcasts/LatestShows/LatestShows";
-import PodcastList from "../../../../components/Podcasts/PodcastList/PodcastList";
-import TopCreators from "../../../../components/Podcasts/TopCreators/TopCreators";
-import Player from "../../../../components/Player/Player";
 import UserSlider from "../../../Home/features/UserSlider/UserSlider";
 
 const AudioBooksContent = () => {
@@ -64,7 +60,6 @@ const AudioBooksContent = () => {
           <Footer />
         </div>
       </div>
-
     </div>
   );
 };
