@@ -12,7 +12,7 @@ import { RiScissorsCutLine } from "react-icons/ri";
 
 const PlayerOptions = () => {
   return (
-    <div className="bg-[#222222] py-5 absolute flex flex-col gap-2 right-8 md:top-[-18rem] top-[-15rem] text-white text-base rounded-lg p-4 md:w-56 w-48">
+    <div className="bg-[#222222] py-5 absolute flex flex-col gap-2 md:right-8 right-2 md:top-[-18rem] top-[-9rem] text-white text-base rounded-lg p-4 md:w-56 w-48">
       <div className="flex gap-3  md:gap-5 items-center">
         <FaHeart />
         <p>Like</p>
