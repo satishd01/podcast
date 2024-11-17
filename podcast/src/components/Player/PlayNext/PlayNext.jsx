@@ -1,9 +1,16 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { TbCircleXFilled } from "react-icons/tb";
 import { HiMenuAlt4 } from "react-icons/hi";
 import { DragDropContext, Droppable, Draggable } from "@hello-pangea/dnd";
 
 const PlayNext = () => {
+  useEffect(() => {
+    document.body.style.overflow = "hidden";
+
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, []);
   const initialData = [
     {
       id: "1",
@@ -42,15 +49,12 @@ const PlayNext = () => {
   const handleOnDragEnd = (result) => {
     const { destination, source } = result;
 
-    // If dropped outside the droppable area, do nothing
     if (!destination) return;
 
-    // Reorder the items
     const items = Array.from(data);
     const [movedItem] = items.splice(source.index, 1);
     items.splice(destination.index, 0, movedItem);
 
-    // Update state
     setData(items);
   };
 
@@ -60,24 +64,24 @@ const PlayNext = () => {
         <div className="md:col-span-2"></div>
         <div className="md:col-span-10 col-span-12 bg-[#222222] rounded-lg px-5 py-4 min-h-[310px] max-h-[310px] overflow-y-auto">
           <p className="text-xl mb-5">Playing Next</p>
-
           <DragDropContext onDragEnd={handleOnDragEnd}>
             <Droppable droppableId="play-next">
               {(provided) => (
                 <div
                   {...provided.droppableProps}
                   ref={provided.innerRef}
-                  className="flex flex-col"
-                >
+                  className="flex flex-col">
                   {data.map((play, index) => (
-                    <Draggable key={play.id} draggableId={play.id} index={index}>
+                    <Draggable
+                      key={play.id}
+                      draggableId={play.id}
+                      index={index}>
                       {(provided) => (
                         <div
                           className="flex items-center justify-between text-white mb-2"
                           ref={provided.innerRef}
                           {...provided.draggableProps}
-                          {...provided.dragHandleProps}
-                        >
+                          {...provided.dragHandleProps}>
                           <div className="flex items-center gap-3 w-full">
                             <TbCircleXFilled className="text-xl" />
                             <img
