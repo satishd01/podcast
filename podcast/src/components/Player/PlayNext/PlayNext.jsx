@@ -15,32 +15,32 @@ const PlayNext = () => {
   const initialData = [
     {
       id: "1",
-      name: "jcksbjckbjs",
-      episode: "1",
+      name: "Podcast Episode 1",
+      episodeNumber: "1",
       imageUrl: "https://placehold.co/50",
     },
     {
       id: "2",
-      name: "jcksbjckbjs;dbs",
-      episode: "1",
+      name: "Podcast Episode 2",
+      episodeNumber: "2",
       imageUrl: "https://placehold.co/50",
     },
     {
       id: "3",
-      name: "another name",
-      episode: "2",
+      name: "Another Podcast Episode",
+      episodeNumber: "3",
       imageUrl: "https://placehold.co/50",
     },
     {
       id: "4",
-      name: "some other name",
-      episode: "3",
+      name: "Different Podcast Episode",
+      episodeNumber: "4",
       imageUrl: "https://placehold.co/50",
     },
     {
       id: "5",
-      name: "different name",
-      episode: "4",
+      name: "More Podcasts to Listen",
+      episodeNumber: "5",
       imageUrl: "https://placehold.co/50",
     },
   ];
@@ -59,6 +59,10 @@ const PlayNext = () => {
     setData(items);
   };
 
+  const removeFromPlayNextHandler = (id) => {
+    setData((prev) => prev.filter((pod) => pod.id !== id));
+  };
+
   return (
     <div className="absolute w-full md:top-[-20rem] top-[-13rem] z-50 py-4">
       <div className="grid grid-cols-12 items-center pr-8 md:pr-12">
@@ -72,31 +76,40 @@ const PlayNext = () => {
                   {...provided.droppableProps}
                   ref={provided.innerRef}
                   className="flex flex-col">
-                  {data.map((play, index) => (
-                    <Draggable
-                      key={play.id}
-                      draggableId={play.id}
-                      index={index}>
-                      {(provided) => (
-                        <div
-                          className="flex items-center justify-between text-white mb-2"
-                          ref={provided.innerRef}
-                          {...provided.draggableProps}
-                          {...provided.dragHandleProps}>
-                          <div className="flex items-center gap-3 w-full">
-                            <TbCircleXFilled className="text-xl" />
-                            <img
-                              alt={play.name}
-                              src={play.imageUrl}
-                              className="rounded-md w-12 h-12 md:w-16 md:h-16"
-                            />
-                            <p className="truncate w-32 md:w-48">{`${play.name} episode ${play.episode}`}</p>
+                  {data.length > 0 ? (
+                    data.map((play, index) => (
+                      <Draggable
+                        key={play.id}
+                        draggableId={play.id}
+                        index={index}>
+                        {(provided) => (
+                          <div
+                            className="flex items-center justify-between text-white mb-2"
+                            ref={provided.innerRef}
+                            {...provided.draggableProps}
+                            {...provided.dragHandleProps}>
+                            <div className="flex items-center gap-3 w-full">
+                              <TbCircleXFilled
+                                className="text-xl"
+                                onClick={() =>
+                                  removeFromPlayNextHandler(play.id)
+                                }
+                              />
+                              <img
+                                alt={play.name}
+                                src={play.imageUrl}
+                                className="rounded-md w-12 h-12 md:w-16 md:h-16"
+                              />
+                              <p className="truncate w-32 md:w-48">{`${play.name} episode ${play.episode}`}</p>
+                            </div>
+                            <HiMenuAlt4 className="text-xl" />
                           </div>
-                          <HiMenuAlt4 className="text-xl" />
-                        </div>
-                      )}
-                    </Draggable>
-                  ))}
+                        )}
+                      </Draggable>
+                    ))
+                  ) : (
+                    <p className="text-sm mb-5">Nothing added to play next</p>
+                  )}
                   {provided.placeholder}
                 </div>
               )}
