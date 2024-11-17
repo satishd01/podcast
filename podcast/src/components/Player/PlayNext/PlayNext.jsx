@@ -5,10 +5,11 @@ import { DragDropContext, Droppable, Draggable } from "@hello-pangea/dnd";
 
 const PlayNext = () => {
   useEffect(() => {
-    document.body.style.overflow = "hidden";
+    document.body.style.position = "fixed";
+    document.body.style.width = "100%";
 
     return () => {
-      document.body.style.overflow = "auto";
+      document.body.style.position = "static";
     };
   }, []);
   const initialData = [
@@ -59,7 +60,7 @@ const PlayNext = () => {
   };
 
   return (
-    <div className="absolute w-full md:top-[-20rem] top-[-13rem] py-4">
+    <div className="absolute w-full md:top-[-20rem] top-[-13rem] z-50 py-4">
       <div className="grid grid-cols-12 items-center pr-8 md:pr-12">
         <div className="md:col-span-2"></div>
         <div className="md:col-span-10 col-span-12 bg-[#222222] rounded-lg px-5 py-4 min-h-[310px] max-h-[310px] overflow-y-auto">
