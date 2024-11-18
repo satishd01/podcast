@@ -2,13 +2,11 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleSlider } from "../../app/slices/sliderSlice";
 import Navbar from "../../components/Navbar/Navbar";
-import OtherFooter from "../../components/OtherFooter/OtherFooter";
 import UserSlider from "../Home/features/UserSlider/UserSlider";
 
-import GenreCard from "../../components/Search/Genres/GenreCard";
-import genres from "../../utils/json/genres.json";
+import Footer from "./../../components/Footer/Footer";
 
-const GenresPage = () => {
+const Subscription = () => {
   const isUserViewOpen = useSelector((state) => state.slider.isSliderOpen);
 
   const dispatch = useDispatch();
@@ -59,25 +57,21 @@ const GenresPage = () => {
           className={`${
             isUserViewOpen ? "md:col-span-10" : "md:col-span-12"
           } col-span-12 text-white bg-black relative h-auto px-4 md:px-10 py-10`}>
-          {" "}
-          <div className="flex items-center justify-between  md:pr-5 ">
-            <p className="text-white text-2xl   mb-4">Genres</p>
+          <div className=" flex flex-col justify-center items-center ">
+            <div className="flex items-end gap-3">
+              <p className="text-4xl font-semibold">Get 7 Days Free trial</p>
+              <p className="text-xl"> ( For new users ) </p>
+            </div>
+            <p className="text-xl mt-3">
+              {" "}
+              ( Discount for students 10% and 20% off on yearly plans ){" "}
+            </p>
           </div>
-          <div className="flex md:grid md:grid-cols-3 gap-6  overflow-x-auto md:overflow-visible">
-            {genres &&
-              genres.map((genre) => (
-                <div
-                  key={genre._id}
-                  className="min-w-[300px] flex-shrink-0 md:min-w-0 pb-3">
-                  <GenreCard genre={genre} />
-                </div>
-              ))}
-          </div>
-          <OtherFooter />
+          <Footer />
         </div>
       </div>
     </div>
   );
 };
 
-export default GenresPage;
+export default Subscription;

@@ -1,7 +1,10 @@
 import React from "react";
 import image from "../../images/footerImage.png";
+import { useNavigate } from "react-router-dom";
 
 const Footer = () => {
+  const navigate = useNavigate();
+
   return (
     <>
       <div>
@@ -26,7 +29,9 @@ const Footer = () => {
           <p>Support</p>
         </div>
 
-        <div className="col-span-4 md:col-span-2  flex flex-col items-center space-y-2">
+        <div
+          className="col-span-4 md:col-span-2  flex flex-col items-center space-y-2 cursor-pointer"
+          onClick={() => navigate("/subscription")}>
           <p className="text-lg font-semibold">Subscription</p>
           <p>Basic</p>
           <p>Premium</p>
