@@ -72,7 +72,7 @@ const Library = () => {
             <div className="md:col-span-1">
               <LibraryDetails />
             </div>
-            <div className="md:col-span-1">
+            <div className="md:col-span-1 md:mt-0  mt-4 w-full">
               {podcasts.slice(0, 4).map((pod) => (
                 <div key={pod._id}>
                   <SuggestionCard podcast={pod} />

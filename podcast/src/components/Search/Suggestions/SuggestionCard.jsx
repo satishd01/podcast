@@ -31,15 +31,15 @@ const SuggestionCard = ({ podcast }) => {
         </div>
       </div>
 
-      <div className="col-span-3 flex gap-1 sm:gap-3 items-center text-white text-lg sm:text-xl">
+      <div className="col-span-3 flex gap-1 sm:gap-3 items-center justify-end text-white text-lg sm:text-xl">
         <IoMdShare />
         <IoArrowDownCircleSharp />
         <AiFillPlusCircle />
       </div>
 
-      <div>
+      <div className="flex justify-end col-span-3">
         <div
-          className="col-span-3 inline-block p-2 rounded-full  items-center justify-center bg-white cursor-pointer"
+          className=" inline-block p-2 rounded-full  items-center justify-center bg-white cursor-pointer"
           onClick={handlePlayer}>
           <IoPlay className="text-[#FF0000]" />
         </div>
