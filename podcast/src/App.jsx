@@ -11,6 +11,7 @@ const GenresPage = lazy(() => import("./pages/GenresPage/GenresPage"));
 const SinglePodcast = lazy(() => import("./pages/SinglePodcast/SinglePodcast"));
 const SingleCreator = lazy(() => import("./pages/SingleCreator/SingleCreator"));
 const Subscription = lazy(() => import("./pages/Subscription/Subscription"));
+const Library = lazy(() => import("./pages/Library/Library"));
 const PodcastsContent = lazy(() =>
   import("./pages/Home/features/PodcastsContent/PodcastsContent")
 );
@@ -48,6 +49,7 @@ const App = () => {
           <Route path="/podcasts" element={<PodcastsContent />} />
           <Route path="/stories" element={<StoriesContent />} />
           <Route path="/audio-book" element={<AudioBooksContent />} />
+          <Route path="/library" element={<Library />} />
           <Route path="/subscription" element={<Subscription />} />
           <Route path="/podcast/:podId" element={<SinglePodcast />} />
           <Route path="/creator/:creatorId" element={<SingleCreator />} />

@@ -14,8 +14,8 @@ const SuggestionCard = ({ podcast }) => {
     dispatch(setActivePlayer(podcast));
   };
   return (
-    <div className="flex items-center gap-4 justify-between  rounded-lg mb-4">
-      <div className="flex items-center gap-2">
+    <div className="grid grid-cols-12 gap-4 items-center  rounded-lg mb-4">
+      <div className="flex items-center gap-2 col-span-6">
         <img
           alt={podcast.name}
           src={podcast.imageUrl}
@@ -31,16 +31,18 @@ const SuggestionCard = ({ podcast }) => {
         </div>
       </div>
 
-      <div className="flex gap-1 sm:gap-3 items-center text-white text-lg sm:text-xl">
+      <div className="col-span-3 flex gap-1 sm:gap-3 items-center text-white text-lg sm:text-xl">
         <IoMdShare />
         <IoArrowDownCircleSharp />
         <AiFillPlusCircle />
       </div>
 
-      <div
-        className="p-2 rounded-full flex items-center justify-center bg-white cursor-pointer"
-        onClick={handlePlayer}>
-        <IoPlay className="text-[#FF0000]" />
+      <div>
+        <div
+          className="col-span-3 inline-block p-2 rounded-full  items-center justify-center bg-white cursor-pointer"
+          onClick={handlePlayer}>
+          <IoPlay className="text-[#FF0000]" />
+        </div>
       </div>
     </div>
   );
