@@ -8,6 +8,7 @@ import Footer from "./../../components/Footer/Footer";
 import SubscriptionPlans from "../../components/Subscription/SubscriptionPlans/SubscriptionPlans";
 
 import subsBg from "../../images/subsBG.png";
+import PlanComparisonTable from "../../components/Subscription/PlanComparisonTable/PlanComparisonTable";
 
 const Subscription = () => {
   const isUserViewOpen = useSelector((state) => state.slider.isSliderOpen);
@@ -83,6 +84,7 @@ const Subscription = () => {
               <SubscriptionPlans />
             </div>
           </div>
+          <PlanComparisonTable />
 
           <Footer />
         </div>
