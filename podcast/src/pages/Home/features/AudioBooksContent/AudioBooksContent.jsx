@@ -43,7 +43,7 @@ const AudioBooksContent = () => {
     <div>
       <Navbar />
       <div className="grid grid-cols-12">
-        <SliderDiv isUserViewOpen={isUserViewOpen} />
+        <SliderDiv />
 
         <div
           className={`${

@@ -17,7 +17,7 @@ const SmallUserCard = ({
         <p className="text-sm font-medium">{name}</p>
         <p className="text-xs text-gray-500">{email}</p>
       </div>
-      <MdOutlineKeyboardArrowRight className="text-xl text-gray-500 " />
+      <MdOutlineKeyboardArrowRight className="text-xl text-gray-500 hidden md:block" />
     </div>
   );
 };

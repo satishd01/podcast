@@ -50,7 +50,7 @@ const Library = () => {
     <div>
       <SearchNav isNoNavigation={true} />
       <div className="grid grid-cols-12">
-        <SliderDiv isUserViewOpen={isUserViewOpen} />
+        <SliderDiv />
 
         <div
           className={`${
