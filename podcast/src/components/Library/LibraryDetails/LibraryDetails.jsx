@@ -13,6 +13,9 @@ const LibraryDetails = () => {
   const navigate = useNavigate();
   const searchedText = useSelector((state) => state.search.searchedText);
 
+  const handleNavigation = (item) => {
+    navigate(`/${item.title.toLowerCase().replace(" ", "-")}`);
+  };
   return (
     <>
       {searchedText ? (
@@ -25,9 +28,7 @@ const LibraryDetails = () => {
               .map((item) => (
                 <div
                   key={item.id}
-                  onClick={() =>
-                    navigate(`${item.title.toLowerCase().replace(" ", "-")}`)
-                  }
+                  onClick={() => handleNavigation(item.title)}
                   className="grid grid-cols-12 gap-4  items-center mt-4 w-full cursor-pointer">
                   <div className="flex items-center gap-3 col-span-6">
                     <div className="border border-white p-4 rounded-md">

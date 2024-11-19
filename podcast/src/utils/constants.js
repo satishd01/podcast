@@ -26,3 +26,16 @@ export const libraryItems = [
     duration: "60 mins",
   },
 ];
+
+export const playlist = [
+  {
+    id: 1,
+    name: "Motivation",
+    episodes: 10,
+  },
+  {
+    id: 2,
+    name: "Health",
+    episodes: 10,
+  },
+];
