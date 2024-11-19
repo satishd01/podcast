@@ -21,7 +21,7 @@ export const libraryItems = [
   },
   {
     id: 3,
-    title: "My Playlists",
+    title: "My Playlist",
     icon: GiBookCover,
     duration: "60 mins",
   },
