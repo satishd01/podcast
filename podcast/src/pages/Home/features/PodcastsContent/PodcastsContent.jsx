@@ -32,7 +32,8 @@ const PodcastsContent = () => {
   useEffect(() => {
     const handleScroll = () => {
       const isMobile = window.innerWidth < 640;
-      if (isUserViewOpen && isMobile) {
+      const scrollThreshold = 200;
+      if (isUserViewOpen && isMobile && window.scrollY > scrollThreshold) {
         dispatch(toggleSlider(false));
       }
     };
