@@ -56,8 +56,10 @@ const LikedPodcastTable = ({ podcasts, toggleSort }) => {
                     className="rounded-md w-12 h-12 md:w-16 md:h-16"
                   />
                   <div>
-                    <p className="text-sm md:text-base">{pod.name}</p>
-                    <div className="flex gap-2 md:gap-3 items-center text-xs md:text-sm font-light">
+                    <p className="text-xs whitespace-nowrap md:text-base">
+                      {pod.name}
+                    </p>
+                    <div className="flex gap-2 md:gap-3 items-center text-[8px] whitespace-nowrap md:text-sm font-light">
                       <FaUser />
                       <p>{pod.studio}</p>
                     </div>
