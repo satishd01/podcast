@@ -2,7 +2,7 @@ import React from "react";
 import {
   creatorNameLength,
   creatorTitleLength,
-} from "../../../utils/constants.";
+} from "../../../utils/constants";
 
 const CreatorCard = ({ creator }) => {
   return (

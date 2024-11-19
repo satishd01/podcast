@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import { FaHeart } from "react-icons/fa";
 import { GoClockFill } from "react-icons/go";
@@ -7,11 +7,11 @@ import { IoPlay } from "react-icons/io5";
 import { MdThumbsUpDown } from "react-icons/md";
 import { RiForward15Fill, RiReplay15Fill } from "react-icons/ri";
 import { TbPlaylist, TbRepeat } from "react-icons/tb";
-import { playerTitleLength } from "../../utils/constants.";
-import ProgressBar from "./ProgressBar";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
+import { playerTitleLength } from "../../utils/constants";
 import PlayerOptions from "./PlayerOptions/PlayerOptions";
 import PlayNext from "./PlayNext/PlayNext";
+import ProgressBar from "./ProgressBar";
 
 const Player = () => {
   const [isPlayerOptionOpen, setIsPlayerOptionOpen] = useState(false);

@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 import { toggleSlider } from "../../../app/slices/sliderSlice";
 import { setSearchedText } from "../../../app/slices/searchSlice";
 
-const SearchNav = () => {
+const SearchNav = ({ isNoNavigation }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [text, setText] = useState("");
   const dispatch = useDispatch();
@@ -34,6 +34,12 @@ const SearchNav = () => {
   useEffect(() => {
     dispatch(setSearchedText(text));
   }, [text, dispatch]);
+
+  const handleNavigation = () => {
+    if (!isNoNavigation) {
+      navigate("/search");
+    }
+  };
 
   return (
     <nav className="grid grid-cols-12 text-white select-none">
@@ -64,7 +70,7 @@ const SearchNav = () => {
         <div className="md:col-span-4 flex items-center gap-10 justify-between md:w-6/12 w-11/12">
           <div
             className="bg-black py-2 w-full md:mt-0 mt-3 px-4 rounded-3xl flex justify-between items-center cursor-pointer"
-            onClick={() => navigate("/search")}>
+            onClick={handleNavigation}>
             <input
               type="text"
               placeholder="Search"
