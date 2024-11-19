@@ -13,9 +13,9 @@ const LikedList = () => {
   return (
     <div className="bg-[#101010] py-4 md:mx-2 mt-5 md:px-8 px-4">
       <div className="flex items-center justify-between">
-        <ul className="flex items-center gap-4  md:text-sm text-xs">
+        <ul className="flex items-center md:gap-4 gap-2 md:text-sm text-[8px]">
           <li className="rounded-lg border border-white px-2 py-1">Podcasts</li>
-          <li className="rounded-lg border border-white px-2 py-1">
+          <li className="rounded-lg border border-white px-2 py-1 whitespace-nowrap">
             Audio Books
           </li>
           <li className="rounded-lg border border-white px-2 py-1">Stories</li>
@@ -28,7 +28,7 @@ const LikedList = () => {
           ) : (
             <BsSortDown className="text-lg" />
           )}
-          <p>Sort by</p>
+          <p className="md:text-base text-[8px] whitespace-nowrap">Sort by</p>
         </div>
       </div>
       <div className="inline-block mt-5">
