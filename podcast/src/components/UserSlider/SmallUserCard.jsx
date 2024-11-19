@@ -7,9 +7,7 @@ const SmallUserCard = ({
   imageUrl = "https://placehold.co/50",
 }) => {
   return (
-    <div
-      aria-label="User profile slider"
-      className="w-full py-4 px-3 flex items-center justify-between rounded-md  shadow-md">
+    <div className="w-full py-4 px-3 flex items-center justify-between rounded-md  shadow-md">
       <img
         alt={`${name}'s profile`}
         src={imageUrl}
@@ -19,7 +17,7 @@ const SmallUserCard = ({
         <p className="text-sm font-medium">{name}</p>
         <p className="text-xs text-gray-500">{email}</p>
       </div>
-      <MdOutlineKeyboardArrowRight className="text-xl text-gray-500 hidden md:block" />
+      <MdOutlineKeyboardArrowRight className="text-xl text-gray-500 " />
     </div>
   );
 };
