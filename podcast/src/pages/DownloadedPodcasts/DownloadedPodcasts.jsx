@@ -1,12 +1,11 @@
 import React, { useEffect } from "react";
-import { FaHeart } from "react-icons/fa";
+import { IoDownload } from "react-icons/io5";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleSlider } from "../../app/slices/sliderSlice";
-import UserSlider from "../Home/features/UserSlider/UserSlider";
-import { IoDownload } from "react-icons/io5";
 
-import Navbar from "./../../components/Navbar/Navbar";
 import SliderDiv from "../../components/SliderDiv/SliderDiv";
+import Navbar from "./../../components/Navbar/Navbar";
+import DownloadedList from "../../components/DownloadedPodcasts/DownloadedList";
 
 const DownloadedPodcasts = () => {
   const dispatch = useDispatch();
@@ -61,7 +60,7 @@ const DownloadedPodcasts = () => {
             </div>
           </div>
 
-          {/* <LikedList /> */}
+          <DownloadedList />
         </div>
       </div>
     </div>
