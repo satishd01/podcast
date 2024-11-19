@@ -5,7 +5,7 @@ import { toggleSlider } from "../../app/slices/sliderSlice";
 
 import SliderDiv from "../../components/SliderDiv/SliderDiv";
 import Navbar from "./../../components/Navbar/Navbar";
-import DownloadedList from "../../components/DownloadedPodcasts/DownloadedList";
+import DownloadedList from "../../components/DownloadedPodcasts/DownloadedList/DownloadedList";
 
 const DownloadedPodcasts = () => {
   const dispatch = useDispatch();

@@ -8,8 +8,12 @@ const Breadcrumbs = () => {
   let breadcrumbPath = "";
 
   return (
-    <div className="text-gray-50 text-sm sm:text-lg">
-      {pathnames.length > 0 && <Link to="/">Home</Link>}
+    <div className="text-gray-50 text-sm ">
+      {pathnames.length > 0 && (
+        <Link className="text-[#666666]" to="/">
+          Home
+        </Link>
+      )}
       {pathnames.map((path, index) => {
         breadcrumbPath += `/${path}`;
         const isLast = index === pathnames.length - 1;
@@ -21,13 +25,13 @@ const Breadcrumbs = () => {
 
         return isLast ? (
           <span key={breadcrumbPath}>
-            {" "}
-            / <span className="font-semibold">{displayPath}</span>
+            <span className="text-[#666666]">{" > "}</span>
+            <span className="font-semibold text-[18px]">{displayPath}</span>
           </span>
         ) : (
-          <span key={breadcrumbPath}>
-            {" "}
-            / <Link to={breadcrumbPath}>{displayPath}</Link>
+          <span key={breadcrumbPath} className="text-[#666666]">
+            <span className="text-[#666666]">{" > "}</span>
+            <Link to={breadcrumbPath}>{displayPath}</Link>
           </span>
         );
       })}

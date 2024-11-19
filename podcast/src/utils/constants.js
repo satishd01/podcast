@@ -21,13 +21,13 @@ export const libraryItems = [
   },
   {
     id: 3,
-    title: "My Playlist",
+    title: "Your Playlist",
     icon: GiBookCover,
     duration: "60 mins",
   },
 ];
 
-export const playlist = [
+export const playlistData = [
   {
     id: 1,
     name: "Motivation",

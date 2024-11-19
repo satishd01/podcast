@@ -10,7 +10,7 @@ const PlaylistPodcasts = () => {
       {podcasts &&
         podcasts.slice(0, 5).map((pod) => (
           <div
-            key={pod.key}
+            key={pod.id}
             className="grid grid-cols-12 items-center gap-8 mb-3">
             <div className="col-span-2">
               <img

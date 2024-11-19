@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 
 import { BsSortDown, BsSortUpAlt } from "react-icons/bs";
 
-import podcasts from "../../utils/json/podcasts.json";
-import DownloadedCard from "./DownloadedCard/DownloadedCard";
+import podcasts from "../../../utils/json/podcasts.json";
+import DownloadedCard from "../DownloadedCard/DownloadedCard";
 
 const DownloadedList = () => {
   const [toggleSort, setToggleSort] = useState(true);
