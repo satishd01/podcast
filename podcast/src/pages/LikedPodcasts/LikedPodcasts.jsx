@@ -6,6 +6,7 @@ import { FaHeart } from "react-icons/fa";
 
 import Navbar from "./../../components/Navbar/Navbar";
 import LikedList from "./../../components/LikedPodcasts/LikedList/LikedList";
+import SliderDiv from "../../components/SliderDiv/SliderDiv";
 
 const LikedPodcasts = () => {
   const dispatch = useDispatch();
@@ -43,16 +44,7 @@ const LikedPodcasts = () => {
     <div>
       <Navbar />
       <div className="grid grid-cols-12">
-        <div
-          className={`${
-            isUserViewOpen ? "md:col-span-2" : "md:hidden"
-          } absolute text-gray-50 bg-black ${
-            isUserViewOpen
-              ? "z-40 left-0 md:w-full w-6/12 md:mt-0 col-span-12 h-auto transform"
-              : "md:relative col-span-0"
-          } md:block md:relative md:z-0`}>
-          <UserSlider />
-        </div>
+        <SliderDiv isUserViewOpen={isUserViewOpen} />
 
         <div
           className={`${

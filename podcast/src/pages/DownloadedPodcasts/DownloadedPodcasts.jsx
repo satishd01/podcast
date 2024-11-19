@@ -6,6 +6,7 @@ import UserSlider from "../Home/features/UserSlider/UserSlider";
 import { IoDownload } from "react-icons/io5";
 
 import Navbar from "./../../components/Navbar/Navbar";
+import SliderDiv from "../../components/SliderDiv/SliderDiv";
 
 const DownloadedPodcasts = () => {
   const dispatch = useDispatch();
@@ -29,12 +30,12 @@ const DownloadedPodcasts = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-        const isMobile = window.innerWidth < 640;
-        const scrollThreshold = 200;
-        if (isUserViewOpen && isMobile && window.scrollY > scrollThreshold) {
-          dispatch(toggleSlider(false));
-        }
-      };
+      const isMobile = window.innerWidth < 640;
+      const scrollThreshold = 200;
+      if (isUserViewOpen && isMobile && window.scrollY > scrollThreshold) {
+        dispatch(toggleSlider(false));
+      }
+    };
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
@@ -44,16 +45,7 @@ const DownloadedPodcasts = () => {
     <div>
       <Navbar />
       <div className="grid grid-cols-12">
-        <div
-          className={`${
-            isUserViewOpen ? "md:col-span-2" : "md:hidden"
-          } absolute text-gray-50 bg-black ${
-            isUserViewOpen
-              ? "z-40 left-0 md:w-full w-6/12 md:mt-0 col-span-12 h-auto transform"
-              : "md:relative col-span-0"
-          } md:block md:relative md:z-0`}>
-          <UserSlider />
-        </div>
+        <SliderDiv isUserViewOpen={isUserViewOpen} />
 
         <div
           className={`${
