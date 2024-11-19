@@ -7,8 +7,10 @@ import { libraryItems } from "../../../utils/constants";
 
 import { MdKeyboardArrowRight } from "react-icons/md";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const LibraryDetails = () => {
+  const navigate = useNavigate();
   const searchedText = useSelector((state) => state.search.searchedText);
 
   return (
@@ -23,7 +25,10 @@ const LibraryDetails = () => {
               .map((item) => (
                 <div
                   key={item.id}
-                  className="grid grid-cols-12 gap-4  items-center mt-4 w-full">
+                  onClick={() =>
+                    navigate(`${item.title.toLowerCase().replace(" ", "-")}`)
+                  }
+                  className="grid grid-cols-12 gap-4  items-center mt-4 w-full cursor-pointer">
                   <div className="flex items-center gap-3 col-span-6">
                     <div className="border border-white p-4 rounded-md">
                       <item.icon className="text-red-600 text-xl" />
@@ -65,7 +70,10 @@ const LibraryDetails = () => {
             libraryItems.map((item) => (
               <div
                 key={item.id}
-                className="grid grid-cols-12 gap-4  items-center mt-4 w-full">
+                onClick={() =>
+                  navigate(`/${item.title.toLowerCase().replace(" ", "-")}`)
+                }
+                className="grid grid-cols-12 gap-4  items-center mt-4 w-full cursor-pointer">
                 <div className="flex items-center gap-3 col-span-6">
                   <div className="border border-white p-4 rounded-md">
                     <item.icon className="text-red-600 text-xl" />
