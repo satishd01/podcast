@@ -79,10 +79,14 @@ const LibraryDetails = () => {
                     <item.icon className="text-red-600 text-xl" />
                   </div>
                   <div>
-                    <p>{item.title}</p>
-                    <div className="flex items-center gap-2 ">
+                    <p className="md:text-base whitespace-nowrap text-xs">
+                      {item.title}
+                    </p>
+                    <div className="flex items-center gap-2 whitespace-nowrap">
                       <GoClockFill className="text-red-600" />
-                      <p className="text-xs">{item.duration} mins</p>
+                      <p className="md:text-xs text-[7px] whitespace-nowrap">
+                        {item.duration} mins
+                      </p>
                     </div>
                   </div>
                 </div>
