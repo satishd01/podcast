@@ -19,24 +19,24 @@ const PlaylistBody = () => {
           ) : (
             <BsSortDown className="text-lg" />
           )}
-          <p className="md:text-base text-[8px] whitespace-nowrap">Sort by</p>
+          <p className="md:text-base text-[10px] whitespace-nowrap">Sort by</p>
         </div>
       </div>
       <div className="flex items-center justify-between mb-5">
-        <ul className="flex items-center md:gap-4 gap-2 md:text-sm text-[8px]">
+        <ul className="flex items-center md:gap-4 gap-2 md:text-sm text-[10px]">
           <li className="rounded-lg border border-white px-2 py-1">Podcasts</li>
           <li className="rounded-lg border border-white px-2 py-1 whitespace-nowrap">
             Audio Books
           </li>
           <li className="rounded-lg border border-white px-2 py-1">Stories</li>
         </ul>
-        <div className="flex gap-3 text-sm items-center bg-white text-black  px-3 py-1 rounded-md">
+        <div className="flex gap-3 text-[10px] md:text-sm items-center bg-white text-black  px-3 py-1 rounded-md">
           <FaPlus className="text-sm" />
           <p>Create playlist</p>
         </div>
       </div>
 
-      <div className="grid grid-cols-12 gap-16">
+      <div className="grid grid-cols-12 md:gap-16">
         <div className="col-span-12 md:col-span-5">
           <Playlists />
         </div>
