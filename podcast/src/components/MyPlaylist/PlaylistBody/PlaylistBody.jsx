@@ -3,6 +3,7 @@ import { BsSortDown, BsSortUpAlt } from "react-icons/bs";
 import { FaPlus } from "react-icons/fa";
 import Playlists from "../Playlists/Playlists";
 import PlaylistPodcasts from "../PlaylistPodcasts/PlaylistPodcasts";
+import AddPlaylist from "../AddPlaylist/AddPlaylist";
 
 const PlaylistBody = () => {
   const [toggleSort, setToggleSort] = useState(true);
@@ -10,12 +11,12 @@ const PlaylistBody = () => {
   const [name, setName] = useState("");
 
   const openCreatePlaylist = () => {
-    setIsCreatePlaylistOpen(true);
+    setIsCreatePlaylistOpen((prev) => !prev);
   };
 
   return (
-    <>
-      <div className="flex items-center justify-between gap-5 mb-4">
+    <div className="relative">
+      <div className="flex items-center justify-between gap-5 mb-4 ">
         <p className="text-lg sm:text-xl font-semibold">Your Playlist</p>
         <div
           className="flex items-center gap-2 text-xs sm:text-sm cursor-pointer"
@@ -54,32 +55,14 @@ const PlaylistBody = () => {
           <PlaylistPodcasts />
         </div>
       </div>
-
       {isCreatePlaylistOpen && (
-        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
-          <div className="bg-[#222222] w-[90%] sm:w-[50%] max-w-md py-5 px-4 rounded-lg">
-            <p className="text-center font-semibold">Enter Playlist Name</p>
-            <input
-              type="text"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              placeholder="Enter here.."
-              className="bg-[#151515] outline-none mt-3 px-3 py-2 rounded-md w-full"
-            />
-            <div className="flex justify-end gap-4 mt-4">
-              <button
-                onClick={() => setIsCreatePlaylistOpen(false)}
-                className="px-4 py-2 rounded-md bg-gray-600 text-white">
-                Close
-              </button>
-              <button className="px-4 py-2 rounded-md bg-red-500 text-white">
-                Done
-              </button>
-            </div>
-          </div>
-        </div>
+        <AddPlaylist
+          name={name}
+          setName={setName}
+          setIsCreatePlaylistOpen={setIsCreatePlaylistOpen}
+        />
       )}
-    </>
+    </div>
   );
 };
 
