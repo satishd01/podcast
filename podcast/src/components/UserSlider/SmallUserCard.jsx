@@ -1,13 +1,17 @@
 import React from "react";
 import { MdOutlineKeyboardArrowRight } from "react-icons/md";
+import { useNavigate } from "react-router-dom";
+import { user } from "./../../utils/constants";
 
-const SmallUserCard = ({
-  name = "Rohan Patil",
-  email = "rohan@gmail.com",
-  imageUrl = "https://placehold.co/50",
-}) => {
+const SmallUserCard = () => {
+  const { name, email, imageUrl } = user;
+
+  const navigate = useNavigate();
+
   return (
-    <div className="w-full py-4 px-3 flex items-center justify-between rounded-md  shadow-md">
+    <div
+      className="w-full py-4 px-3 flex items-center justify-between rounded-md  shadow-md"
+      onClick={() => navigate("/profile")}>
       <img
         alt={`${name}'s profile`}
         src={imageUrl}

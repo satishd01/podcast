@@ -12,6 +12,7 @@ const SinglePodcast = lazy(() => import("./pages/SinglePodcast/SinglePodcast"));
 const SingleCreator = lazy(() => import("./pages/SingleCreator/SingleCreator"));
 const Subscription = lazy(() => import("./pages/Subscription/Subscription"));
 const Library = lazy(() => import("./pages/Library/Library"));
+const Profile = lazy(() => import("./pages/Profile/Profile"));
 const LikedPodcasts = lazy(() =>
   import("./pages/LikedPodcasts/LikedPodcasts.jsx")
 );
@@ -60,6 +61,7 @@ const App = () => {
           <Route path="/stories" element={<StoriesContent />} />
           <Route path="/audio-book" element={<AudioBooksContent />} />
           <Route path="/library" element={<Library />} />
+          <Route path="/profile" element={<Profile />} />
           <Route path="/downloaded-podcasts" element={<DownloadedPodcasts />} />
           <Route path="/your-playlist" element={<MyPlaylist />} />
           <Route path="/your-playlist/:playlist" element={<SinglePlaylist />} />

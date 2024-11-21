@@ -2,6 +2,13 @@ import { FaHeart } from "react-icons/fa";
 import { IoDownloadSharp } from "react-icons/io5";
 import { GiBookCover } from "react-icons/gi";
 
+export const user = {
+  name: "Rohan Patil",
+  email: "rohan@gmail.com",
+  imageUrl: "https://placehold.co/50",
+  following: 0,
+};
+
 export const creatorNameLength = 14;
 export const creatorTitleLength = 18;
 export const playerTitleLength = 35;

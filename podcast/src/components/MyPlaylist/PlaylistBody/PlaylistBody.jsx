@@ -15,7 +15,6 @@ const PlaylistBody = () => {
 
   return (
     <>
-      {/* Header Section */}
       <div className="flex items-center justify-between gap-5 mb-4">
         <p className="text-lg sm:text-xl font-semibold">Your Playlist</p>
         <div
@@ -30,7 +29,6 @@ const PlaylistBody = () => {
         </div>
       </div>
 
-      {/* Filter & Create Playlist Section */}
       <div className="flex items-center justify-between mb-4">
         <ul className="flex items-center gap-2 sm:gap-4 text-xs sm:text-sm">
           <li className="rounded-lg border px-2 py-1">Podcasts</li>
@@ -40,27 +38,23 @@ const PlaylistBody = () => {
           <li className="rounded-lg border px-2 py-1">Stories</li>
         </ul>
         <div
-          className="flex items-center gap-2 sm:gap-3 bg-white text-black text-xs sm:text-sm px-3 py-1 rounded-md cursor-pointer mx-2 text-xs"
+          className="flex items-center gap-2 sm:gap-3 bg-white text-black sm:text-sm px-3 py-1 rounded-md cursor-pointer mx-2 text-xs"
           onClick={openCreatePlaylist}>
           <FaPlus className="text-sm" />
           <p>Create playlist</p>
         </div>
       </div>
 
-      {/* Main Content */}
       <div className="grid grid-cols-12 gap-6 sm:gap-16">
-        {/* Left Section */}
         <div className="col-span-12 sm:col-span-5">
           <Playlists />
         </div>
-        {/* Right Section */}
         <div className="col-span-12 sm:col-span-7">
           <p className="font-semibold mb-3">Motivation</p>
           <PlaylistPodcasts />
         </div>
       </div>
 
-      {/* Modal */}
       {isCreatePlaylistOpen && (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
           <div className="bg-[#222222] w-[90%] sm:w-[50%] max-w-md py-5 px-4 rounded-lg">
