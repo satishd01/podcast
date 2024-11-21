@@ -40,7 +40,7 @@ const EditProfile = ({ setIsEditOpen }) => {
         <button
           className="px-3 py-1 bg-gray-500 rounded-md"
           onClick={() => setIsEditOpen(false)}>
-          Cancel
+          Close
         </button>
         <button className="px-3 py-1 bg-gray-100 text-black rounded-md">
           Save
