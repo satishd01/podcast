@@ -9,12 +9,11 @@ import LatestShows from "../../components/Podcasts/LatestShows/LatestShows";
 import TopCreators from "../../components/Podcasts/TopCreators/TopCreators";
 import CreatorImage from "../../components/SingleCreator/CreatorImage/CreatorImage";
 import CreatorInfo from "../../components/SingleCreator/CreatorInfo/CreatorInfo";
-import creators from "../../utils/json/topCreators.json";
-import podcasts from "../../utils/json/podcasts.json";
-import UserSlider from "../Home/features/UserSlider/UserSlider";
-import CreatorData from "./../../components/SingleCreator/CreatorData/CreatorData";
 import SliderDiv from "../../components/SliderDiv/SliderDiv";
-import { userSliderHandler } from "../../utils/constants";
+import { resizeHandler, userSliderHandler } from "../../utils/constants";
+import podcasts from "../../utils/json/podcasts.json";
+import creators from "../../utils/json/topCreators.json";
+import CreatorData from "./../../components/SingleCreator/CreatorData/CreatorData";
 
 const SingleCreator = () => {
   const params = useParams();
@@ -25,18 +24,7 @@ const SingleCreator = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const handleResize = () => {
-      const isMobile = window.innerWidth < 640;
-      if (isMobile) {
-        dispatch(toggleSlider(false));
-      } else {
-        dispatch(toggleSlider(true));
-      }
-    };
-
-    handleResize();
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
+    resizeHandler(dispatch, toggleSlider);
   }, [dispatch]);
 
   useEffect(() => {

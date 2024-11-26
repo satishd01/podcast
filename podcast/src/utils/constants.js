@@ -51,15 +51,15 @@ export const userSliderHandler = (dispatch, toggleSlider, isUserViewOpen) => {
   let startX = 0;
 
   const disableScrolling = () => {
-    document.body.style.overflow = "hidden"; // Prevent scrolling
-    document.body.style.position = "fixed"; // Ensure the page doesn't move
-    document.body.style.width = "100%"; // Prevent layout shifts
+    document.body.style.overflow = "hidden";
+    document.body.style.position = "fixed";
+    document.body.style.width = "100%";
   };
 
   const enableScrolling = () => {
-    document.body.style.overflow = ""; // Restore scrolling
-    document.body.style.position = ""; // Restore position
-    document.body.style.width = ""; // Restore width
+    document.body.style.overflow = "";
+    document.body.style.position = "";
+    document.body.style.width = "";
   };
 
   const handleTouchStart = (e) => {
@@ -69,7 +69,6 @@ export const userSliderHandler = (dispatch, toggleSlider, isUserViewOpen) => {
   const handleTouchMove = (e) => {
     const deltaX = e.touches[0].clientX - startX;
     if (deltaX < -50) {
-      // Detect left swipe and close slider
       dispatch(toggleSlider(false));
     }
   };
@@ -84,10 +83,24 @@ export const userSliderHandler = (dispatch, toggleSlider, isUserViewOpen) => {
     window.removeEventListener("touchmove", handleTouchMove);
   }
 
-  // Cleanup function
   return () => {
     enableScrolling();
     window.removeEventListener("touchstart", handleTouchStart);
     window.removeEventListener("touchmove", handleTouchMove);
   };
+};
+
+export const resizeHandler = (dispatch, toggleSlider) => {
+  const handleResize = () => {
+    const isMobile = window.innerWidth < 640;
+    if (isMobile) {
+      dispatch(toggleSlider(false));
+    } else {
+      dispatch(toggleSlider(true));
+    }
+  };
+
+  handleResize();
+  window.addEventListener("resize", handleResize);
+  return () => window.removeEventListener("resize", handleResize);
 };

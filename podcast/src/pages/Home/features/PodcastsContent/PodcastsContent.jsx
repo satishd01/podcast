@@ -6,10 +6,8 @@ import Navbar from "../../../../components/Navbar/Navbar";
 import LatestShows from "../../../../components/Podcasts/LatestShows/LatestShows";
 import PodcastList from "../../../../components/Podcasts/PodcastList/PodcastList";
 import TopCreators from "../../../../components/Podcasts/TopCreators/TopCreators";
-import Player from "../../../../components/Player/Player";
-import UserSlider from "../../../Home/features/UserSlider/UserSlider";
 import SliderDiv from "../../../../components/SliderDiv/SliderDiv";
-import { userSliderHandler } from "../../../../utils/constants";
+import { resizeHandler, userSliderHandler } from "../../../../utils/constants";
 
 const PodcastsContent = () => {
   const isUserViewOpen = useSelector((state) => state.slider.isSliderOpen);
@@ -17,18 +15,7 @@ const PodcastsContent = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const handleResize = () => {
-      const isMobile = window.innerWidth < 640;
-      if (isMobile) {
-        dispatch(toggleSlider(false));
-      } else {
-        dispatch(toggleSlider(true));
-      }
-    };
-
-    handleResize();
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
+    resizeHandler(dispatch, toggleSlider);
   }, [dispatch]);
 
   useEffect(() => {

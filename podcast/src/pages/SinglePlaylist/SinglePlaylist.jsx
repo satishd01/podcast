@@ -5,7 +5,11 @@ import { toggleSlider } from "../../app/slices/sliderSlice";
 import { GiBookCover } from "react-icons/gi";
 import { useParams } from "react-router-dom";
 import SliderDiv from "../../components/SliderDiv/SliderDiv";
-import { playlistData, userSliderHandler } from "../../utils/constants";
+import {
+  playlistData,
+  resizeHandler,
+  userSliderHandler,
+} from "../../utils/constants";
 import Breadcrumbs from "./../../components/Breadcrumbs/Breadcrumbs";
 import Navbar from "./../../components/Navbar/Navbar";
 
@@ -24,22 +28,9 @@ const SinglePlaylist = () => {
   const playlist = playlistData.find(
     (play) => play.name.toLowerCase() === params.playlist.toLowerCase()
   );
-  console.log(playlist);
-  console.log(params.playlist);
 
   useEffect(() => {
-    const handleResize = () => {
-      const isMobile = window.innerWidth < 640;
-      if (isMobile) {
-        dispatch(toggleSlider(false));
-      } else {
-        dispatch(toggleSlider(true));
-      }
-    };
-
-    handleResize();
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
+    resizeHandler(dispatch, toggleSlider);
   }, [dispatch]);
 
   useEffect(() => {

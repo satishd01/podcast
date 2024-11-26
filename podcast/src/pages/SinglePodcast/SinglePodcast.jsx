@@ -1,20 +1,18 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 
 import { useDispatch, useSelector } from "react-redux";
 import { toggleSlider } from "../../app/slices/sliderSlice";
 import Footer from "../../components/Footer/Footer";
 import Navbar from "../../components/Navbar/Navbar";
-import Player from "../../components/Player/Player";
 import LatestShows from "../../components/Podcasts/LatestShows/LatestShows";
 import TopCreators from "../../components/Podcasts/TopCreators/TopCreators";
 import PodcastData from "../../components/SinglePodcast/PodcastData/PodcastData";
 import PodcastImage from "../../components/SinglePodcast/PodcastImage/PodcastImage";
 import PodcastInfo from "../../components/SinglePodcast/PodcastInfo/PodcastInfo";
-import podcasts from "../../utils/json/podcasts.json";
-import UserSlider from "../Home/features/UserSlider/UserSlider";
 import SliderDiv from "../../components/SliderDiv/SliderDiv";
-import { userSliderHandler } from "../../utils/constants";
+import { resizeHandler, userSliderHandler } from "../../utils/constants";
+import podcasts from "../../utils/json/podcasts.json";
 
 const SinglePodcast = () => {
   const params = useParams();
@@ -25,18 +23,7 @@ const SinglePodcast = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const handleResize = () => {
-      const isMobile = window.innerWidth < 640;
-      if (isMobile) {
-        dispatch(toggleSlider(false));
-      } else {
-        dispatch(toggleSlider(true));
-      }
-    };
-
-    handleResize();
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
+    resizeHandler(dispatch, toggleSlider);
   }, [dispatch]);
 
   useEffect(() => {

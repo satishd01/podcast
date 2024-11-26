@@ -1,16 +1,15 @@
 import React, { useEffect } from "react";
+import { FaHeart } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleSlider } from "../../app/slices/sliderSlice";
-import UserSlider from "../Home/features/UserSlider/UserSlider";
-import { FaHeart } from "react-icons/fa";
 
 import SearchNav from "../../components/Search/SearchNav/SearchNav";
 
-import podcasts from "../../utils/json/podcasts.json";
-import SuggestionCard from "../../components/Search/Suggestions/SuggestionCard";
 import LibraryDetails from "../../components/Library/LibraryDetails/LibraryDetails";
+import SuggestionCard from "../../components/Search/Suggestions/SuggestionCard";
 import SliderDiv from "../../components/SliderDiv/SliderDiv";
-import { userSliderHandler } from "../../utils/constants";
+import { resizeHandler, userSliderHandler } from "../../utils/constants";
+import podcasts from "../../utils/json/podcasts.json";
 
 const Library = () => {
   const dispatch = useDispatch();
@@ -20,18 +19,7 @@ const Library = () => {
   const isUserViewOpen = useSelector((state) => state.slider.isSliderOpen);
 
   useEffect(() => {
-    const handleResize = () => {
-      const isMobile = window.innerWidth < 640;
-      if (isMobile) {
-        dispatch(toggleSlider(false));
-      } else {
-        dispatch(toggleSlider(true));
-      }
-    };
-
-    handleResize();
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
+    resizeHandler(dispatch, toggleSlider);
   }, [dispatch]);
 
   useEffect(() => {

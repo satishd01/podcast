@@ -6,7 +6,7 @@ import SliderDiv from "../../components/SliderDiv/SliderDiv";
 import Navbar from "./../../components/Navbar/Navbar";
 
 import PlaylistBody from "../../components/MyPlaylist/PlaylistBody/PlaylistBody";
-import { userSliderHandler } from "../../utils/constants";
+import { resizeHandler, userSliderHandler } from "../../utils/constants";
 
 const MyPlaylist = () => {
   const dispatch = useDispatch();
@@ -14,18 +14,7 @@ const MyPlaylist = () => {
   const isUserViewOpen = useSelector((state) => state.slider.isSliderOpen);
 
   useEffect(() => {
-    const handleResize = () => {
-      const isMobile = window.innerWidth < 640;
-      if (isMobile) {
-        dispatch(toggleSlider(false));
-      } else {
-        dispatch(toggleSlider(true));
-      }
-    };
-
-    handleResize();
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
+    resizeHandler(dispatch, toggleSlider);
   }, [dispatch]);
 
   useEffect(() => {
