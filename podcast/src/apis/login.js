@@ -19,7 +19,6 @@ export const login = async (navigate, user) => {
     }
 
     const data = await res.json();
-    console.log(data);
     if (data?.user?.email) {
       localStorage.setItem("user", JSON.stringify(data.user));
       navigate("/");
