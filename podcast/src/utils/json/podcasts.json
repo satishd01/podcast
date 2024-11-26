@@ -1,0 +1,152 @@
+[
+  {
+    "_id": "1",
+    "name": "The Daily Grind",
+    "season": "1",
+    "episodes": 5,
+    "time": "30.45",
+    "description": "Your daily dose of productivity tips and life hacks.",
+    "studio": "Urban Cast Studios",
+    "imageUrl": "https://placehold.co/50"
+  },
+  {
+    "_id": "2",
+    "name": "Tech Trends",
+    "season": "1",
+    "episodes": 5,
+    "time": "25.30",
+    "description": "Exploring the latest in technology and innovation.",
+    "studio": "Future Lab Media",
+    "imageUrl": "https://placehold.co/50"
+  },
+  {
+    "_id": "3",
+    "name": "Mindful Moments",
+    "season": "1",
+    "episodes": 5,
+    "time": "40.15",
+    "description": "Guided meditations and mindfulness practices.",
+    "studio": "ZenWave Productions",
+    "imageUrl": "https://placehold.co/50"
+  },
+  {
+    "_id": "4",
+    "name": "History Uncovered",
+    "season": "1",
+    "episodes": 5,
+    "time": "50.05",
+    "description": "Deep dives into fascinating historical events and figures.",
+    "studio": "Heritage Broadcasting",
+    "imageUrl": "https://placehold.co/50"
+  },
+  {
+    "_id": "5",
+    "name": "Science Weekly",
+    "season": "1",
+    "episodes": 5,
+    "time": "35.20",
+    "description": "The latest discoveries and discussions in the world of science.",
+    "studio": "Curiosity Media",
+    "imageUrl": "https://placehold.co/50"
+  },
+  {
+    "_id": "6",
+    "name": "The Storyteller",
+    "season": "1",
+    "episodes": 5,
+    "time": "45.10",
+    "description": "Captivating stories from around the world.",
+    "studio": "Narrative Soundworks",
+    "imageUrl": "https://placehold.co/50"
+  },
+  {
+    "_id": "7",
+    "name": "Book Club Discussions",
+    "season": "1",
+    "episodes": 5,
+    "time": "38.00",
+    "description": "Weekly discussions on popular books and authors.",
+    "studio": "Literary Voices",
+    "imageUrl": "https://placehold.co/50"
+  },
+  {
+    "_id": "8",
+    "name": "Health Talks",
+    "season": "1",
+    "episodes": 5,
+    "time": "29.30",
+    "description": "Insights into health, wellness, and medical breakthroughs.",
+    "studio": "Wellness Audio",
+    "imageUrl": "https://placehold.co/50"
+  },
+  {
+    "_id": "9",
+    "name": "Travel Diaries",
+    "season": "1",
+    "episodes": 5,
+    "time": "32.25",
+    "description": "Journeys and experiences from around the globe.",
+    "studio": "Wanderlust Studios",
+    "imageUrl": "https://placehold.co/50"
+  },
+  {
+    "_id": "10",
+    "name": "Business Insights",
+    "season": "1",
+    "episodes": 5,
+    "time": "41.15",
+    "description": "Expert advice and analysis on the business world.",
+    "studio": "Commerce Media",
+    "imageUrl": "https://placehold.co/50"
+  },
+  {
+    "_id": "11",
+    "name": "Music Vibes",
+    "season": "1",
+    "episodes": 5,
+    "time": "27.50",
+    "description": "Discovering the latest in music trends and artists.",
+    "studio": "Sound Sphere",
+    "imageUrl": "https://placehold.co/50"
+  },
+  {
+    "_id": "12",
+    "name": "Sports Recap",
+    "season": "1",
+    "episodes": 5,
+    "time": "36.40",
+    "description": "Weekly recaps and highlights from the world of sports.",
+    "studio": "GameTime Network",
+    "imageUrl": "https://placehold.co/50"
+  },
+  {
+    "_id": "13",
+    "name": "Cultural Conversations",
+    "season": "1",
+    "episodes": 5,
+    "time": "48.10",
+    "description": "Discussions on culture, art, and society.",
+    "studio": "Global Culture Media",
+    "imageUrl": "https://placehold.co/50"
+  },
+  {
+    "_id": "14",
+    "name": "News and Views",
+    "season": "1",
+    "episodes": 5,
+    "time": "26.30",
+    "description": "Current events and expert opinions from around the world.",
+    "studio": "Insight Broadcasts",
+    "imageUrl": "https://placehold.co/50"
+  },
+  {
+    "_id": "15",
+    "name": "Comedy Hour",
+    "season": "1",
+    "episodes": 5,
+    "time": "33.50",
+    "description": "A humorous take on current events and everyday life.",
+    "studio": "Laugh Central",
+    "imageUrl": "https://placehold.co/50"
+  }
+]
