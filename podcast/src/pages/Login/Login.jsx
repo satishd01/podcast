@@ -1,14 +1,53 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { login } from "../../apis/login";
+import toast from "react-hot-toast";
 
 const Login = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [name, setName] = useState("");
+
+  const navigate = useNavigate();
+
+  const validateInputs = () => {
+    if (!name.trim() || !email.trim() || !password.trim()) {
+      toast.error("All fields are required!");
+      return false;
+    }
+    return true;
+  };
+
+  const loginHandler = async (e) => {
+    e.preventDefault();
+
+    if (!validateInputs()) return;
+
+    toast.loading("Logging in...");
+    await login(navigate, { name, email, password });
+    toast.dismiss();
+  };
+
   return (
     <div className="min-h-screen bg-black flex items-center justify-center">
       <div className="w-full max-w-md bg-[#1F1F1F] p-8 rounded-lg shadow-md">
         <h2 className="text-2xl font-bold text-gray-200 text-center mb-6">
           Login
         </h2>
-        <form>
+        <form onSubmit={loginHandler}>
+          <div className="mb-4">
+            <label htmlFor="name" className="block text-gray-400 text-sm mb-2">
+              Name
+            </label>
+            <input
+              type="text"
+              id="name"
+              className="w-full px-4 py-2 rounded bg-[#151515] text-gray-200 outline-none focus:ring-2 focus:ring-gray-500"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              placeholder="Enter your name"
+            />
+          </div>
           <div className="mb-4">
             <label htmlFor="email" className="block text-gray-400 text-sm mb-2">
               Email
@@ -17,6 +56,8 @@ const Login = () => {
               type="email"
               id="email"
               className="w-full px-4 py-2 rounded bg-[#151515] text-gray-200 outline-none focus:ring-2 focus:ring-gray-500"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               placeholder="Enter your email"
             />
           </div>
@@ -30,6 +71,8 @@ const Login = () => {
               type="password"
               id="password"
               className="w-full px-4 py-2 rounded bg-[#151515] text-gray-200 outline-none focus:ring-2 focus:ring-gray-500"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
               placeholder="Enter your password"
             />
           </div>

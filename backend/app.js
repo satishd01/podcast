@@ -1,23 +1,22 @@
+const express = require("express");
+const bodyParser = require("body-parser");
+const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
+const db = require("./db");
+const cron = require("node-cron");
+const http = require("http");
+const socketIo = require("socket.io");
+const cors = require("cors");
 
-const express = require('express');
-const bodyParser = require('body-parser');
-const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
-const db = require('./db');
-const cron = require('node-cron');
-const http = require('http');
-const socketIo = require('socket.io');
-
-const userRoutes = require('./routes/userroutes');
-const podcastRoutes = require('./routes/podcastRoutes');
-const profileRoutes = require('./routes/profileRoutes');
-const audiobookRoutes = require('./routes/audiobookRoutes');
-const storyRoutes = require('./routes/storyRoutes');
-const libraryRoutes = require('./routes/libraryRoutes');
-const planRoutes = require('./routes/planRoutes');
-const signupRoutes = require('./routes/signupRoutes');
-const loginRoutes = require('./routes/loginRoutes');
-
+const userRoutes = require("./routes/userroutes");
+const podcastRoutes = require("./routes/podcastRoutes");
+const profileRoutes = require("./routes/profileRoutes");
+const audiobookRoutes = require("./routes/audiobookRoutes");
+const storyRoutes = require("./routes/storyRoutes");
+const libraryRoutes = require("./routes/libraryRoutes");
+const planRoutes = require("./routes/planRoutes");
+const signupRoutes = require("./routes/signupRoutes");
+const loginRoutes = require("./routes/loginRoutes");
 
 const app = express();
 const server = http.createServer(app);
@@ -25,73 +24,81 @@ const io = socketIo(server);
 
 app.use(bodyParser.json());
 
-const JWT_SECRET = '8cc4510a207f10f3a4170bf15c114b6ff73deafd20d05c3384ee34175fa0fe98';
+const corsOptions = {
+  origin: "http://localhost:5173",
+  credentials: true,
+};
 
-app.get('/api/token', (req, res) => {
-    const payload = { user: 'demoUser' }; 
-    const token = jwt.sign(payload, JWT_SECRET, { expiresIn: '1h' }); 
-    res.json({ token });
+app.use(cors(corsOptions));
+
+const JWT_SECRET =
+  "8cc4510a207f10f3a4170bf15c114b6ff73deafd20d05c3384ee34175fa0fe98";
+
+app.get("/api/token", (req, res) => {
+  const payload = { user: "demoUser" };
+  const token = jwt.sign(payload, JWT_SECRET, { expiresIn: "1h" });
+  res.json({ token });
 });
 
 const verifyToken = (req, res, next) => {
-    const authHeader = req.headers['authorization'];
+  const authHeader = req.headers["authorization"];
 
-    if (!authHeader) {
-        return res.status(403).json({ message: 'Authorization header is missing' });
+  if (!authHeader) {
+    return res.status(403).json({ message: "Authorization header is missing" });
+  }
+
+  const token = authHeader.split(" ")[1];
+  if (!token) {
+    return res.status(403).json({ message: "Token is missing" });
+  }
+
+  jwt.verify(token, JWT_SECRET, (err, decoded) => {
+    if (err) {
+      return res.status(401).json({ message: "Invalid or expired token" });
     }
-
-    const token = authHeader.split(' ')[1]; 
-    if (!token) {
-        return res.status(403).json({ message: 'Token is missing' });
-    }
-
-    jwt.verify(token, JWT_SECRET, (err, decoded) => {
-        if (err) {
-            return res.status(401).json({ message: 'Invalid or expired token' });
-        }
-        req.user = decoded; 
-        next();
-    });
+    req.user = decoded;
+    next();
+  });
 };
 
-io.on('connection', (socket) => {
-    console.log('A user connected:', socket.id);
+io.on("connection", (socket) => {
+  console.log("A user connected:", socket.id);
 
-    socket.emit('welcome', 'Welcome to the chat!');
+  socket.emit("welcome", "Welcome to the chat!");
 
-    socket.on('chat message', (msg) => {
-        console.log('Message received:', msg);
-        io.emit('chat message', msg);
-    });
+  socket.on("chat message", (msg) => {
+    console.log("Message received:", msg);
+    io.emit("chat message", msg);
+  });
 
-    socket.on('disconnect', () => {
-        console.log('A user disconnected:', socket.id);
-    });
+  socket.on("disconnect", () => {
+    console.log("A user disconnected:", socket.id);
+  });
 });
 
-cron.schedule('0 0 * * *', () => {
-    const query = 'UPDATE plans SET is_active = FALSE WHERE valid_until < CURDATE() AND is_active = TRUE';
+cron.schedule("0 0 * * *", () => {
+  const query =
+    "UPDATE plans SET is_active = FALSE WHERE valid_until < CURDATE() AND is_active = TRUE";
 
-    db.query(query, (err, results) => {
-        if (err) {
-            console.error('Error updating plans:', err);
-        } else {
-            console.log(`Deactivated ${results.affectedRows} expired plan(s)`);
-        }
-    });
+  db.query(query, (err, results) => {
+    if (err) {
+      console.error("Error updating plans:", err);
+    } else {
+      console.log(`Deactivated ${results.affectedRows} expired plan(s)`);
+    }
+  });
 });
 
-app.use('/api', verifyToken, userRoutes);
-app.use('/api', verifyToken, podcastRoutes);
-app.use('/api', verifyToken, profileRoutes);
-app.use('/api', verifyToken, audiobookRoutes);
-app.use('/stories', verifyToken, storyRoutes);
-app.use('/api', verifyToken, libraryRoutes);
-app.use('/api/plans', verifyToken, planRoutes);
-app.use('/api', verifyToken, signupRoutes);
-app.use('/api/auth',verifyToken, loginRoutes); 
-
+app.use("/api", verifyToken, userRoutes);
+app.use("/api", verifyToken, podcastRoutes);
+app.use("/api", verifyToken, profileRoutes);
+app.use("/api", verifyToken, audiobookRoutes);
+app.use("/stories", verifyToken, storyRoutes);
+app.use("/api", verifyToken, libraryRoutes);
+app.use("/api/plans", verifyToken, planRoutes);
+app.use("/api", verifyToken, signupRoutes);
+app.use("/api/auth", verifyToken, loginRoutes);
 
 server.listen(8081, () => {
-    console.log('Server is running on port 8081');
+  console.log("Server is running on port 8081");
 });

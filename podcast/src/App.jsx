@@ -5,6 +5,8 @@ import Loading from "./components/Loading/Loading";
 import Player from "./components/Player/Player";
 import { setActivePlayer } from "./app/slices/activePlayerSlice";
 
+import { Toaster } from "react-hot-toast";
+
 const Home = lazy(() => import("./pages/Home/Home"));
 const Search = lazy(() => import("./pages/Search/Search"));
 const GenresPage = lazy(() => import("./pages/GenresPage/GenresPage"));
@@ -82,6 +84,7 @@ const App = () => {
       {activePlayer?.name &&
         location.pathname !== "/login" &&
         location.pathname !== "/signup" && <Player />}
+      <Toaster />
     </div>
   );
 };
