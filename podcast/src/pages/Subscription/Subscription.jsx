@@ -10,6 +10,7 @@ import SubscriptionPlans from "../../components/Subscription/SubscriptionPlans/S
 import subsBg from "../../images/subsBG.png";
 import PlanComparisonTable from "../../components/Subscription/PlanComparisonTable/PlanComparisonTable";
 import SliderDiv from "../../components/SliderDiv/SliderDiv";
+import { userSliderHandler } from "../../utils/constants";
 
 const Subscription = () => {
   const isUserViewOpen = useSelector((state) => state.slider.isSliderOpen);
@@ -32,16 +33,7 @@ const Subscription = () => {
   }, [dispatch]);
 
   useEffect(() => {
-    const handleScroll = () => {
-      const isMobile = window.innerWidth < 640;
-      const scrollThreshold = 200;
-      if (isUserViewOpen && isMobile && window.scrollY > scrollThreshold) {
-        dispatch(toggleSlider(false));
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    userSliderHandler(dispatch, toggleSlider, isUserViewOpen);
   }, [isUserViewOpen, dispatch]);
 
   return (

@@ -5,6 +5,7 @@ import { toggleSlider } from "../../app/slices/sliderSlice";
 import SliderDiv from "../../components/SliderDiv/SliderDiv";
 import Navbar from "./../../components/Navbar/Navbar";
 import ProfileBody from "../../components/Profile/ProfileBody/ProfileBody";
+import { userSliderHandler } from "../../utils/constants";
 
 const Profile = () => {
   const dispatch = useDispatch();
@@ -27,16 +28,7 @@ const Profile = () => {
   }, [dispatch]);
 
   useEffect(() => {
-    const handleScroll = () => {
-      const isMobile = window.innerWidth < 640;
-      const scrollThreshold = 200;
-      if (isUserViewOpen && isMobile && window.scrollY > scrollThreshold) {
-        dispatch(toggleSlider(false));
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    userSliderHandler(dispatch, toggleSlider, isUserViewOpen);
   }, [isUserViewOpen, dispatch]);
 
   return (

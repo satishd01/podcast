@@ -5,6 +5,7 @@ import Footer from "../../../../components/Footer/Footer";
 import Navbar from "../../../../components/Navbar/Navbar";
 import UserSlider from "../../../Home/features/UserSlider/UserSlider";
 import SliderDiv from "../../../../components/SliderDiv/SliderDiv";
+import { userSliderHandler } from "../../../../utils/constants";
 
 const StoriesContent = () => {
   const isUserViewOpen = useSelector((state) => state.slider.isSliderOpen);
@@ -27,23 +28,14 @@ const StoriesContent = () => {
   }, [dispatch]);
 
   useEffect(() => {
-    const handleScroll = () => {
-      const isMobile = window.innerWidth < 640;
-      const scrollThreshold = 200;
-      if (isUserViewOpen && isMobile && window.scrollY > scrollThreshold) {
-        dispatch(toggleSlider(false));
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    userSliderHandler(dispatch, toggleSlider, isUserViewOpen);
   }, [isUserViewOpen, dispatch]);
 
   return (
     <div>
       <Navbar />
       <div className="grid grid-cols-12">
-       <SliderDiv  /> 
+        <SliderDiv />
 
         <div
           className={`${

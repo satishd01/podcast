@@ -14,6 +14,7 @@ import podcasts from "../../utils/json/podcasts.json";
 import UserSlider from "../Home/features/UserSlider/UserSlider";
 import CreatorData from "./../../components/SingleCreator/CreatorData/CreatorData";
 import SliderDiv from "../../components/SliderDiv/SliderDiv";
+import { userSliderHandler } from "../../utils/constants";
 
 const SingleCreator = () => {
   const params = useParams();
@@ -39,16 +40,7 @@ const SingleCreator = () => {
   }, [dispatch]);
 
   useEffect(() => {
-    const handleScroll = () => {
-      const isMobile = window.innerWidth < 640;
-      const scrollThreshold = 200;
-      if (isUserViewOpen && isMobile && window.scrollY > scrollThreshold) {
-        dispatch(toggleSlider(false));
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    userSliderHandler(dispatch, toggleSlider, isUserViewOpen);
   }, [isUserViewOpen, dispatch]);
 
   return (

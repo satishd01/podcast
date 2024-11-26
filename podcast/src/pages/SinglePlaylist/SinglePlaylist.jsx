@@ -5,7 +5,7 @@ import { toggleSlider } from "../../app/slices/sliderSlice";
 import { GiBookCover } from "react-icons/gi";
 import { useParams } from "react-router-dom";
 import SliderDiv from "../../components/SliderDiv/SliderDiv";
-import { playlistData } from "../../utils/constants";
+import { playlistData, userSliderHandler } from "../../utils/constants";
 import Breadcrumbs from "./../../components/Breadcrumbs/Breadcrumbs";
 import Navbar from "./../../components/Navbar/Navbar";
 
@@ -43,16 +43,7 @@ const SinglePlaylist = () => {
   }, [dispatch]);
 
   useEffect(() => {
-    const handleScroll = () => {
-      const isMobile = window.innerWidth < 640;
-      const scrollThreshold = 200;
-      if (isUserViewOpen && isMobile && window.scrollY > scrollThreshold) {
-        dispatch(toggleSlider(false));
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    userSliderHandler(dispatch, toggleSlider, isUserViewOpen);
   }, [isUserViewOpen, dispatch]);
 
   return (

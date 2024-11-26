@@ -10,6 +10,7 @@ import podcasts from "../../utils/json/podcasts.json";
 import SuggestionCard from "../../components/Search/Suggestions/SuggestionCard";
 import LibraryDetails from "../../components/Library/LibraryDetails/LibraryDetails";
 import SliderDiv from "../../components/SliderDiv/SliderDiv";
+import { userSliderHandler } from "../../utils/constants";
 
 const Library = () => {
   const dispatch = useDispatch();
@@ -34,16 +35,7 @@ const Library = () => {
   }, [dispatch]);
 
   useEffect(() => {
-    const handleScroll = () => {
-      const isMobile = window.innerWidth < 640;
-      const scrollThreshold = 200;
-      if (isUserViewOpen && isMobile && window.scrollY > scrollThreshold) {
-        dispatch(toggleSlider(false));
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    userSliderHandler(dispatch, toggleSlider, isUserViewOpen);
   }, [isUserViewOpen, dispatch]);
 
   return (

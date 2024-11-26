@@ -8,6 +8,7 @@ import UserSlider from "../Home/features/UserSlider/UserSlider";
 import GenreCard from "../../components/Search/Genres/GenreCard";
 import genres from "../../utils/json/genres.json";
 import SliderDiv from "../../components/SliderDiv/SliderDiv";
+import { userSliderHandler } from "../../utils/constants";
 
 const GenresPage = () => {
   const isUserViewOpen = useSelector((state) => state.slider.isSliderOpen);
@@ -30,16 +31,7 @@ const GenresPage = () => {
   }, [dispatch]);
 
   useEffect(() => {
-    const handleScroll = () => {
-      const isMobile = window.innerWidth < 640;
-      const scrollThreshold = 200;
-      if (isUserViewOpen && isMobile && window.scrollY > scrollThreshold) {
-        dispatch(toggleSlider(false));
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    userSliderHandler(dispatch, toggleSlider, isUserViewOpen);
   }, [isUserViewOpen, dispatch]);
 
   return (

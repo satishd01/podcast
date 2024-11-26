@@ -8,6 +8,7 @@ import UserSlider from "../Home/features/UserSlider/UserSlider";
 import Genres from "../../components/Search/Genres/Genres";
 import TopCreators from "./../../components/Podcasts/TopCreators/TopCreators";
 import Suggestions from "../../components/Search/Suggestions/Suggestions";
+import { userSliderHandler } from "../../utils/constants";
 
 const Search = () => {
   const isUserViewOpen = useSelector((state) => state.slider.isSliderOpen);
@@ -32,16 +33,7 @@ const Search = () => {
   }, [dispatch]);
 
   useEffect(() => {
-    const handleScroll = () => {
-      const isMobile = window.innerWidth < 640;
-      const scrollThreshold = 200;
-      if (isUserViewOpen && isMobile && window.scrollY > scrollThreshold) {
-        dispatch(toggleSlider(false));
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    userSliderHandler(dispatch, toggleSlider, isUserViewOpen);
   }, [isUserViewOpen, dispatch]);
 
   return (

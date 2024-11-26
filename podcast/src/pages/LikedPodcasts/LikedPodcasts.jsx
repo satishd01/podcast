@@ -7,6 +7,7 @@ import { FaHeart } from "react-icons/fa";
 import Navbar from "./../../components/Navbar/Navbar";
 import LikedList from "./../../components/LikedPodcasts/LikedList/LikedList";
 import SliderDiv from "../../components/SliderDiv/SliderDiv";
+import { userSliderHandler } from "../../utils/constants";
 
 const LikedPodcasts = () => {
   const dispatch = useDispatch();
@@ -29,15 +30,7 @@ const LikedPodcasts = () => {
   }, [dispatch]);
 
   useEffect(() => {
-    const handleScroll = () => {
-      const isMobile = window.innerWidth < 640;
-      const scrollThreshold = 200;
-      if (isUserViewOpen && isMobile && window.scrollY > scrollThreshold) {
-        dispatch(toggleSlider(false));
-      }
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    userSliderHandler(dispatch, toggleSlider, isUserViewOpen);
   }, [isUserViewOpen, dispatch]);
 
   return (
