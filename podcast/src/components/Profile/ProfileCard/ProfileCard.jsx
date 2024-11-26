@@ -40,7 +40,7 @@ const ProfileCard = () => {
 
       {isEditOpen && (
         <div
-          className="absolute top-20 left-0 w-full h-full bg-black bg-opacity-50 flex items-center justify-center z-50"
+          className="absolute md:top-[30%] md:left-[50%] left-0 top-[10%] w-full h-full bg-black bg-opacity-50 flex items-center justify-center z-50"
           onClick={() => setIsEditOpen(false)}>
           <div
             className="bg-[#222222]  rounded-lg w-full"

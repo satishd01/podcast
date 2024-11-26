@@ -2,7 +2,7 @@ import React from "react";
 
 const AddPlaylist = ({ name, setName, setIsCreatePlaylistOpen }) => {
   return (
-    <div className="absolute top-20 flex items-center justify-center z-50 w-[100%] md:w-[100%]">
+    <div className="absolute top-[12%]  flex items-center justify-center z-50 w-[100%] md:w-[100%]">
       <div className="bg-[#222222]  max-w-md py-5 px-4 rounded-lg w-[100%] md:w-[100%]">
         <p className="text-center font-semibold">Enter Playlist Name</p>
         <input
