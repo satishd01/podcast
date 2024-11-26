@@ -1,5 +1,5 @@
 import React, { lazy, Suspense, useEffect } from "react";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import Loading from "./components/Loading/Loading";
 import Player from "./components/Player/Player";
@@ -13,6 +13,10 @@ const SingleCreator = lazy(() => import("./pages/SingleCreator/SingleCreator"));
 const Subscription = lazy(() => import("./pages/Subscription/Subscription"));
 const Library = lazy(() => import("./pages/Library/Library"));
 const Profile = lazy(() => import("./pages/Profile/Profile"));
+
+const Login = lazy(() => import("./pages/Login/Login"));
+const SignUp = lazy(() => import("./pages/SignUp/SignUp"));
+
 const LikedPodcasts = lazy(() =>
   import("./pages/LikedPodcasts/LikedPodcasts.jsx")
 );
@@ -37,6 +41,8 @@ const App = () => {
   const dispatch = useDispatch();
   const activePlayer = useSelector((state) => state.activePlayer.activePlayer);
 
+  const location = useLocation();
+
   useEffect(() => {
     const podcast = localStorage.getItem("ActivePlayer");
     if (podcast) {
@@ -56,6 +62,8 @@ const App = () => {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/search" element={<Search />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<SignUp />} />
           <Route path="/genres" element={<GenresPage />} />
           <Route path="/podcasts" element={<PodcastsContent />} />
           <Route path="/stories" element={<StoriesContent />} />
@@ -71,7 +79,9 @@ const App = () => {
           <Route path="/creator/:creatorId" element={<SingleCreator />} />
         </Routes>
       </Suspense>
-      {activePlayer?.name && <Player />}
+      {activePlayer?.name &&
+        location.pathname !== "/login" &&
+        location.pathname !== "/signup" && <Player />}
     </div>
   );
 };
