@@ -10,7 +10,7 @@ const SmallUserCard = () => {
 
   return (
     <div
-      className="w-full py-4 px-3 flex items-center justify-between rounded-md  shadow-md"
+      className="w-full py-4 px-3 flex items-center justify-between rounded-md  shadow-md cursor-pointer"
       onClick={() => navigate("/profile")}>
       <img
         alt={`${name}'s profile`}
