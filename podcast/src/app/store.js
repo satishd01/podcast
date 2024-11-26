@@ -3,6 +3,7 @@ import sliderReducer from "./slices/sliderSlice";
 import activeTabReducer from "./slices/activeTabSlice";
 import searchReducer from "./slices/searchSlice";
 import activePlayerReducer from "./slices/activePlayerSlice";
+import notificationReducer from "./slices/notificationSlice";
 
 export const store = configureStore({
   reducer: {
@@ -10,5 +11,6 @@ export const store = configureStore({
     activeTab: activeTabReducer,
     activePlayer: activePlayerReducer,
     search: searchReducer,
+    notification: notificationReducer,
   },
 });

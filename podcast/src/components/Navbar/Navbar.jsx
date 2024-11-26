@@ -4,9 +4,9 @@ import { HiMenu } from "react-icons/hi";
 import { IoIosNotifications } from "react-icons/io";
 import { RxCross2 } from "react-icons/rx";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate, useLocation } from "react-router-dom";
-import { toggleActiveTab } from "../../app/slices/activeTabSlice";
+import { useLocation, useNavigate } from "react-router-dom";
 import { toggleSlider } from "../../app/slices/sliderSlice";
+import Notification from "../Notification/Notification";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -25,7 +25,6 @@ const Navbar = () => {
     navigate(tab === "All" ? "/" : `/${tab.toLowerCase().replace(" ", "-")}`);
   };
 
-  // Update activeTab based on URL path whenever location changes
   useEffect(() => {
     const path = location.pathname.replace("/", "").toLowerCase();
     const tab =
@@ -33,7 +32,6 @@ const Navbar = () => {
     setActiveTab(tab);
   }, [location]);
 
-  // Close menu on scroll
   useEffect(() => {
     const handleScroll = () => {
       if (isMenuOpen) {
@@ -93,9 +91,7 @@ const Navbar = () => {
             <CiSearch className="text-xl " />
           </div>
 
-          <div className="text-2xl md:mt-0 mt-3 flex justify-end cursor-pointer">
-            <IoIosNotifications />
-          </div>
+          <Notification />
         </div>
       </div>
     </nav>
