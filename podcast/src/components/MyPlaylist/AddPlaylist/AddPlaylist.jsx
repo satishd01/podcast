@@ -1,9 +1,37 @@
-import React from "react";
+import React, { useEffect } from "react";
 
-const AddPlaylist = ({ name, setName, setIsCreatePlaylistOpen }) => {
+const AddPlaylist = ({
+  name,
+  setName,
+  isCreatePlaylistOpen,
+  setIsCreatePlaylistOpen,
+}) => {
+  const handleOverlayClick = (e) => {
+    if (e.target.id === "overlay") {
+      setIsCreatePlaylistOpen(false);
+    }
+  };
+
+  useEffect(() => {
+    if (isCreatePlaylistOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, [isCreatePlaylistOpen]);
+
   return (
-    <div className="absolute top-[12%]  flex items-center justify-center z-50 w-[100%] md:w-[100%]">
-      <div className="bg-[#222222]  max-w-md py-5 px-4 rounded-lg w-[100%] md:w-[100%]">
+    <div
+      id="overlay"
+      className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50"
+      onClick={handleOverlayClick}>
+      <div
+        className="bg-[#222222] max-w-md py-5 px-4 rounded-lg w-[90%] md:w-[70%]"
+        onClick={(e) => e.stopPropagation()}>
         <p className="text-center font-semibold">Enter Playlist Name</p>
         <input
           type="text"

@@ -10,7 +10,7 @@ const EditProfile = ({ setIsEditOpen }) => {
     <form className="py-4 px-6">
       <p className="text-center text-xl">Edit Profile</p>
       <div className="mt-3">
-        <p htmlFor="name">Name</p>
+        <label htmlFor="name">Name</label>
         <input
           type="text"
           placeholder="ex: xyz"
@@ -22,7 +22,7 @@ const EditProfile = ({ setIsEditOpen }) => {
         />
       </div>
       <div className="mt-3">
-        <p htmlFor="email">Email</p>
+        <label htmlFor="email">Email</label>
         <input
           type="email"
           placeholder="ex: xyz"
@@ -36,10 +36,13 @@ const EditProfile = ({ setIsEditOpen }) => {
         <p>Change Image</p>
         <img alt={name} src={image} className="rounded-lg mt-2 h-28" />
       </div>
-      <div className="mt-3  flex justify-end gap-4">
+      <div className="mt-3 flex justify-end gap-4">
         <button
           className="px-3 py-1 bg-gray-500 rounded-md"
-          onClick={() => setIsEditOpen(false)}>
+          onClick={(e) => {
+            e.preventDefault(); // Prevent form submission
+            setIsEditOpen(false);
+          }}>
           Close
         </button>
         <button className="px-3 py-1 bg-gray-100 text-black rounded-md">

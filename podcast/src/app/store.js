@@ -4,6 +4,7 @@ import activeTabReducer from "./slices/activeTabSlice";
 import searchReducer from "./slices/searchSlice";
 import activePlayerReducer from "./slices/activePlayerSlice";
 import notificationReducer from "./slices/notificationSlice";
+import addContentReducer from "./slices/addContentSlice";
 
 export const store = configureStore({
   reducer: {
@@ -12,5 +13,6 @@ export const store = configureStore({
     activePlayer: activePlayerReducer,
     search: searchReducer,
     notification: notificationReducer,
+    addContent: addContentReducer,
   },
 });

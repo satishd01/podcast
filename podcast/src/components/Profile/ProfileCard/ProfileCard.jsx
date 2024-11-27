@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { user } from "../../../utils/constants";
 import { GiBookCover } from "react-icons/gi";
 import { MdOutlineKeyboardArrowRight } from "react-icons/md";
@@ -9,6 +9,18 @@ const ProfileCard = () => {
   const [isEditOpen, setIsEditOpen] = useState(false);
 
   const { imageUrl, email, name, following } = user;
+
+  useEffect(() => {
+    if (isEditOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, [isEditOpen]);
 
   return (
     <div className="p-4 rounded-lg relative">
@@ -40,10 +52,13 @@ const ProfileCard = () => {
 
       {isEditOpen && (
         <div
-          className="absolute md:top-[30%] md:left-[50%] left-0 top-[10%] w-full h-full bg-black bg-opacity-50 flex items-center justify-center z-50"
-          onClick={() => setIsEditOpen(false)}>
+          id="editOverlay"
+          className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50"
+          onClick={(e) => {
+            if (e.target.id === "editOverlay") setIsEditOpen(false);
+          }}>
           <div
-            className="bg-[#222222]  rounded-lg w-full"
+            className="bg-[#222222] rounded-lg w-[400px] max-w-[90%]"
             onClick={(e) => e.stopPropagation()}>
             <EditProfile setIsEditOpen={setIsEditOpen} />
           </div>

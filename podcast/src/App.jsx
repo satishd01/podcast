@@ -7,6 +7,8 @@ import { setActivePlayer } from "./app/slices/activePlayerSlice";
 
 import { Toaster } from "react-hot-toast";
 import ProtectedRoutes from "./components/ProtectedRoutes/ProtectedRoutes.jsx";
+import UploadContent from "./components/UploadContent/UploadContent.jsx";
+import { toggleAddContent } from "./app/slices/addContentSlice.js";
 
 const Home = lazy(() => import("./pages/Home/Home"));
 const Search = lazy(() => import("./pages/Search/Search"));
@@ -59,6 +61,12 @@ const App = () => {
     }
   }, [activePlayer]);
 
+  const isFormOpen = useSelector((state) => state.addContent.isAddContentOpen);
+
+  const formCloseHandler = () => {
+    dispatch(toggleAddContent(false));
+  };
+
   return (
     <div className="select-none font-poppins">
       <Suspense fallback={<Loading />}>
@@ -66,34 +74,30 @@ const App = () => {
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
 
-          <Route element={<ProtectedRoutes />}>
-            <Route path="/" element={<Home />} />
-            <Route path="/search" element={<Search />} />
-            <Route path="/genres" element={<GenresPage />} />
-            <Route path="/podcasts" element={<PodcastsContent />} />
-            <Route path="/stories" element={<StoriesContent />} />
-            <Route path="/audio-book" element={<AudioBooksContent />} />
-            <Route path="/library" element={<Library />} />
-            <Route path="/profile" element={<Profile />} />
-            <Route
-              path="/downloaded-podcasts"
-              element={<DownloadedPodcasts />}
-            />
-            <Route path="/your-playlist" element={<MyPlaylist />} />
-            <Route
-              path="/your-playlist/:playlist"
-              element={<SinglePlaylist />}
-            />
-            <Route path="/liked-podcasts" element={<LikedPodcasts />} />
-            <Route path="/subscription" element={<Subscription />} />
-            <Route path="/podcast/:podId" element={<SinglePodcast />} />
-            <Route path="/creator/:creatorId" element={<SingleCreator />} />
-          </Route>
+          {/* <Route element={<ProtectedRoutes />}> */}
+          <Route path="/" element={<Home />} />
+          <Route path="/search" element={<Search />} />
+          <Route path="/genres" element={<GenresPage />} />
+          <Route path="/podcasts" element={<PodcastsContent />} />
+          <Route path="/stories" element={<StoriesContent />} />
+          <Route path="/audio-book" element={<AudioBooksContent />} />
+          <Route path="/library" element={<Library />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/downloaded-podcasts" element={<DownloadedPodcasts />} />
+          <Route path="/your-playlist" element={<MyPlaylist />} />
+          <Route path="/your-playlist/:playlist" element={<SinglePlaylist />} />
+          <Route path="/liked-podcasts" element={<LikedPodcasts />} />
+          <Route path="/subscription" element={<Subscription />} />
+          <Route path="/podcast/:podId" element={<SinglePodcast />} />
+          <Route path="/creator/:creatorId" element={<SingleCreator />} />
+          {/* </Route> */}
         </Routes>
       </Suspense>
       {activePlayer?.name &&
         location.pathname !== "/login" &&
         location.pathname !== "/signup" && <Player />}
+      <UploadContent isOpen={isFormOpen} onClose={formCloseHandler} />
+
       <Toaster />
     </div>
   );

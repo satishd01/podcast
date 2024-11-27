@@ -59,6 +59,7 @@ const PlaylistBody = () => {
         <AddPlaylist
           name={name}
           setName={setName}
+          isCreatePlaylistOpen={isCreatePlaylistOpen}
           setIsCreatePlaylistOpen={setIsCreatePlaylistOpen}
         />
       )}
