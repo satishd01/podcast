@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import { resizeHandler } from "../../utils/constants";
 import { useDispatch } from "react-redux";
 import { toggleSlider } from "../../app/slices/sliderSlice";
 
@@ -9,7 +8,10 @@ const UploadContent = ({ isOpen, onClose }) => {
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = "hidden";
-      resizeHandler(dispatch, toggleSlider);
+      const isMobile = window.innerWidth < 640;
+      if (isMobile) {
+        dispatch(toggleSlider(false));
+      }
     } else {
       document.body.style.overflow = "auto";
     }
