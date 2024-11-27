@@ -33,7 +33,7 @@ const UploadContent = ({ isOpen, onClose }) => {
       className="fixed inset-0 bg-black/10 backdrop-blur-sm flex justify-center items-center z-50"
       onClick={handleOutsideClick}>
       <div
-        className="bg-[#151515] text-white rounded-lg shadow-lg p-6 w-[400px]"
+        className="bg-[#151515] text-white rounded-lg shadow-lg p-6 w-[90%] md:h-auto  md:w-[400px]"
         onClick={(e) => e.stopPropagation()}>
         <h2 className="text-center text-xl font-semibold mb-4">
           Upload Podcast
