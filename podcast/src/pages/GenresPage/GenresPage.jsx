@@ -26,7 +26,7 @@ const GenresPage = () => {
     <div>
       <Navbar />
       <div className="grid grid-cols-12 ">
-        <SliderDiv />
+        {isUserViewOpen && <SliderDiv />}
 
         <div
           className={`${
