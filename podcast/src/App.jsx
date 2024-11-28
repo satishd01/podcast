@@ -68,7 +68,7 @@ const App = () => {
   };
 
   return (
-    <div className="select-none font-poppins ">
+    <div className="select-none font-poppins">
       <Suspense fallback={<Loading />}>
         <Routes>
           <Route path="/login" element={<Login />} />
