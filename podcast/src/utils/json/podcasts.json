@@ -2,6 +2,7 @@
   {
     "_id": "1",
     "name": "The Daily Grind",
+    "genre": "non",
     "season": "1",
     "episodes": 5,
     "time": "30.45",
@@ -12,6 +13,7 @@
   {
     "_id": "2",
     "name": "Tech Trends",
+    "genre": "non",
     "season": "1",
     "episodes": 5,
     "time": "25.30",
@@ -22,6 +24,7 @@
   {
     "_id": "3",
     "name": "Mindful Moments",
+    "genre": "non",
     "season": "1",
     "episodes": 5,
     "time": "40.15",
@@ -32,6 +35,7 @@
   {
     "_id": "4",
     "name": "History Uncovered",
+    "genre": "non",
     "season": "1",
     "episodes": 5,
     "time": "50.05",
@@ -42,6 +46,7 @@
   {
     "_id": "5",
     "name": "Science Weekly",
+    "genre": "non",
     "season": "1",
     "episodes": 5,
     "time": "35.20",
@@ -52,6 +57,7 @@
   {
     "_id": "6",
     "name": "The Storyteller",
+    "genre": "non",
     "season": "1",
     "episodes": 5,
     "time": "45.10",
@@ -62,6 +68,7 @@
   {
     "_id": "7",
     "name": "Book Club Discussions",
+    "genre": "non",
     "season": "1",
     "episodes": 5,
     "time": "38.00",
@@ -72,6 +79,7 @@
   {
     "_id": "8",
     "name": "Health Talks",
+    "genre": "non",
     "season": "1",
     "episodes": 5,
     "time": "29.30",
@@ -82,6 +90,7 @@
   {
     "_id": "9",
     "name": "Travel Diaries",
+    "genre": "non",
     "season": "1",
     "episodes": 5,
     "time": "32.25",
@@ -92,6 +101,7 @@
   {
     "_id": "10",
     "name": "Business Insights",
+    "genre": "non",
     "season": "1",
     "episodes": 5,
     "time": "41.15",
@@ -102,6 +112,7 @@
   {
     "_id": "11",
     "name": "Music Vibes",
+    "genre": "non",
     "season": "1",
     "episodes": 5,
     "time": "27.50",
@@ -112,6 +123,7 @@
   {
     "_id": "12",
     "name": "Sports Recap",
+    "genre": "non",
     "season": "1",
     "episodes": 5,
     "time": "36.40",
@@ -122,6 +134,7 @@
   {
     "_id": "13",
     "name": "Cultural Conversations",
+    "genre": "non",
     "season": "1",
     "episodes": 5,
     "time": "48.10",
@@ -132,6 +145,7 @@
   {
     "_id": "14",
     "name": "News and Views",
+    "genre": "non",
     "season": "1",
     "episodes": 5,
     "time": "26.30",
@@ -142,6 +156,7 @@
   {
     "_id": "15",
     "name": "Comedy Hour",
+    "genre": "non",
     "season": "1",
     "episodes": 5,
     "time": "33.50",

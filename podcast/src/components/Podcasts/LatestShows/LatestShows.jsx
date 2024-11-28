@@ -1,5 +1,5 @@
 import React from "react";
-import shows from "../../../utils/json/latestShows.json";
+import shows from "../../../utils/json/podcasts.json";
 import ShowCard from "./ShowCard";
 
 const LatestShows = ({ isTwoRows = false, text }) => {

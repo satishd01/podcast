@@ -34,7 +34,7 @@ const PodcastsContent = () => {
           } col-span-12 text-white bg-black relative h-auto px-4 md:px-10 py-10`}>
           <TopCreators text={"Top Creators"} />
           <LatestShows text={"Latest Shows"} />
-          <PodcastList />
+          <PodcastList text={"Podcasts"} />
           <div className="md:mt-44 mt-10">
             <TopCreators text={"Top Creators"} isTwoRows={true} />
           </div>
