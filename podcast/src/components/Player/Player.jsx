@@ -4,10 +4,12 @@ import { FaHeart } from "react-icons/fa";
 import { GoClockFill } from "react-icons/go";
 import { IoIosBookmark } from "react-icons/io";
 import { IoPlay } from "react-icons/io5";
-import { FaPause } from "react-icons/fa6";
-import { MdThumbsUpDown } from "react-icons/md";
+import { FaPause } from "react-icons/fa";
+import { MdSkipPrevious, MdThumbsUpDown } from "react-icons/md";
 import { RiForward15Fill, RiReplay15Fill } from "react-icons/ri";
 import { TbPlaylist, TbRepeat } from "react-icons/tb";
+import { MdSkipNext } from "react-icons/md"; // Import skip next icon
+import { BiSkipPrevious } from "react-icons/bi"; // Import skip previous icon
 import { useSelector } from "react-redux";
 import { playerTitleLength } from "../../utils/constants";
 import PlayerOptions from "./PlayerOptions/PlayerOptions";
@@ -17,11 +19,11 @@ import ProgressBar from "./ProgressBar";
 const Player = () => {
   const [isPlayerOptionOpen, setIsPlayerOptionOpen] = useState(false);
   const [isPlayNextOpen, setIsPlayNextOpen] = useState(false);
-  const [isPlaying, setIsPlaying] = useState(false);
-  const [currentTime, setCurrentTime] = useState(0); // Current time of audio
-  const [duration, setDuration] = useState(0); // Total duration of the audio
-  const [speed, setSpeed] = useState(1); // Playback speed (1x, 2x, 4x)
-  const [currentIndex, setCurrentIndex] = useState(0); // Track current song index
+  const [isPlaying, setIsPlaying] = useState(false); // Default is false (paused)
+  const [currentTime, setCurrentTime] = useState(0);
+  const [duration, setDuration] = useState(0);
+  const [speed, setSpeed] = useState(1);
+  const [currentIndex, setCurrentIndex] = useState(0);
   const [songs, setSongs] = useState([
     {
       name: "Podcast 1",
@@ -49,14 +51,14 @@ const Player = () => {
       audioRef.current.src = currentSong.audioUrl;
 
       audioRef.current.onloadedmetadata = () => {
-        setDuration(audioRef.current.duration || 0); // Set total duration of the audio
+        setDuration(audioRef.current.duration || 0);
       };
     }
   }, [currentIndex, songs]);
 
   useEffect(() => {
     if (audioRef.current) {
-      audioRef.current.playbackRate = speed; // Set the playback speed
+      audioRef.current.playbackRate = speed;
     }
   }, [speed]);
 
@@ -72,13 +74,13 @@ const Player = () => {
 
   const handleTimeUpdate = () => {
     if (audioRef.current) {
-      setCurrentTime(audioRef.current.currentTime); // Update current time
+      setCurrentTime(audioRef.current.currentTime);
     }
   };
 
   const handleSeek = (time) => {
     if (audioRef.current) {
-      audioRef.current.currentTime = time; // Set the audio playback position
+      audioRef.current.currentTime = time;
       setCurrentTime(time);
     }
   };
@@ -86,7 +88,7 @@ const Player = () => {
   const skipTime = (seconds) => {
     if (audioRef.current) {
       let newTime = audioRef.current.currentTime + seconds;
-      newTime = Math.max(0, Math.min(newTime, duration)); // Clamp to 0 and duration
+      newTime = Math.max(0, Math.min(newTime, duration));
       handleSeek(newTime);
     }
   };
@@ -110,17 +112,23 @@ const Player = () => {
 
   const playNextSong = () => {
     if (currentIndex < songs.length - 1) {
-      setCurrentIndex(currentIndex + 1); // Move to the next song
+      setCurrentIndex(currentIndex + 1);
     } else {
-      setCurrentIndex(0); // Restart from the first song
+      setCurrentIndex(0);
+    }
+  };
+
+  const playPreviousSong = () => {
+    if (currentIndex > 0) {
+      setCurrentIndex(currentIndex - 1);
+    } else {
+      setCurrentIndex(songs.length - 1);
     }
   };
 
   useEffect(() => {
-    // After currentIndex is updated, automatically play the next song
-    if (audioRef.current) {
+    if (audioRef.current && isPlaying) {
       audioRef.current.play();
-      setIsPlaying(true);
     }
   }, [currentIndex]);
 
@@ -130,7 +138,7 @@ const Player = () => {
         <audio
           ref={audioRef}
           onTimeUpdate={handleTimeUpdate}
-          onEnded={playNextSong} // Play next song when current one ends
+          onEnded={playNextSong}
         />
         <div className="flex items-center gap-3 mb-4 sm:mb-0">
           <img
@@ -157,24 +165,33 @@ const Player = () => {
           </div>
         </div>
         <div className="flex flex-col items-center md:justify-center gap-3 mb-4 sm:mb-0">
-          <div className="flex items-center justify-center gap-10 md:gap-20 px-8">
+          <div className="flex items-center justify-center gap-8 md:gap-20 px-8">
             <IoIosBookmark className="text-xl" />
             <RiReplay15Fill
               className="text-xl cursor-pointer"
-              onClick={() => skipTime(-15)} // Skip backward 15 seconds
+              onClick={() => skipTime(-15)}
             />
+            <MdSkipPrevious
+              className="text-white text-xl cursor-pointer"
+              onClick={playPreviousSong}
+            />
+
             <div
               className="md:p-4 p-2 rounded-full flex items-center justify-center bg-white cursor-pointer"
               onClick={togglePlayPause}>
               {isPlaying ? (
-                <FaPause className="text-[#FF0000]" /> // Pause icon
+                <FaPause className="text-[#FF0000]" />
               ) : (
-                <IoPlay className="text-[#FF0000]" /> // Play icon
+                <IoPlay className="text-[#FF0000]" />
               )}
             </div>
+            <MdSkipNext
+              className="text-white text-xl cursor-pointer"
+              onClick={playNextSong}
+            />
             <RiForward15Fill
               className="text-xl cursor-pointer"
-              onClick={() => skipTime(15)} // Skip forward 15 seconds
+              onClick={() => skipTime(15)}
             />
             <TbRepeat className="text-xl" />
           </div>
@@ -190,8 +207,7 @@ const Player = () => {
         <div className="flex items-center justify-center gap-5 text-lg">
           <p className="text-[1rem]" onClick={toggleSpeed}>
             {speed}x
-          </p>{" "}
-          {/* Display speed */}
+          </p>
           <TbPlaylist
             className="text-white cursor-pointer"
             onClick={() => setIsPlayNextOpen((prev) => !prev)}
