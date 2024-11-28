@@ -104,3 +104,10 @@ export const resizeHandler = (dispatch, toggleSlider) => {
   window.addEventListener("resize", handleResize);
   return () => window.removeEventListener("resize", handleResize);
 };
+
+export const scrollToTop = () => {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth",
+  });
+};

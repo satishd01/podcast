@@ -1,8 +1,11 @@
 import React from "react";
 import shows from "../../../utils/json/podcasts.json";
 import ShowCard from "./ShowCard";
+import { useNavigate } from "react-router-dom";
 
 const LatestShows = ({ isTwoRows = false, text }) => {
+  const navigate = useNavigate();
+
   const rowCount = isTwoRows ? Math.ceil(shows.length / 2) : shows.length;
   const firstRowShows = shows?.slice(0, rowCount);
   const secondRowShows = shows?.slice(rowCount);
@@ -11,7 +14,11 @@ const LatestShows = ({ isTwoRows = false, text }) => {
     <>
       <div className="flex items-center justify-between md:mt-14 mt-8 md:pr-0 pr-4">
         <p className="md:text-2xl text-xl">{text}</p>
-        <p className="text-sm text-gray-400">See all</p>
+        <p
+          className="text-sm text-gray-400 cursor-pointer "
+          onClick={() => navigate("/all-latest-shows")}>
+          See all
+        </p>
       </div>
 
       <div className="my-5 overflow-x-auto flex space-x-4 w-full scrollbar-thin scrollbar-thumb-gray-400">

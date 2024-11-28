@@ -45,6 +45,9 @@ const AudioBooksContent = lazy(() =>
 const AllTopCreators = lazy(() =>
   import("./pages/AllTopCreators/AllTopCreators")
 );
+const AllLatestShows = lazy(() =>
+  import("./pages/AllLatestShows/AllLatestShows")
+);
 
 const App = () => {
   const dispatch = useDispatch();
@@ -88,6 +91,7 @@ const App = () => {
           <Route path="/library" element={<Library />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/all-top-creators" element={<AllTopCreators />} />
+          <Route path="/all-latest-shows" element={<AllLatestShows />} />
           <Route path="/downloaded-podcasts" element={<DownloadedPodcasts />} />
           <Route path="/your-playlist" element={<MyPlaylist />} />
           <Route path="/your-playlist/:playlist" element={<SinglePlaylist />} />
