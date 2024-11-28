@@ -21,30 +21,38 @@ const Player = () => {
   const [currentTime, setCurrentTime] = useState(0); // Current time of audio
   const [duration, setDuration] = useState(0); // Total duration of the audio
   const [speed, setSpeed] = useState(1); // Playback speed (1x, 2x, 4x)
+  const [currentIndex, setCurrentIndex] = useState(0); // Track current song index
+  const [songs, setSongs] = useState([
+    {
+      name: "Podcast 1",
+      audioUrl: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3",
+      imageUrl: "https://placehold.co/50",
+    },
+    {
+      name: "Podcast 2",
+      audioUrl: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3",
+      imageUrl: "https://placehold.co/50",
+    },
+    {
+      name: "Podcast 3",
+      audioUrl: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
+      imageUrl: "https://placehold.co/50",
+    },
+  ]);
 
   const audioRef = useRef(null);
   const activePlayer = useSelector((state) => state.activePlayer.activePlayer);
 
   useEffect(() => {
-    if (!activePlayer) return;
+    if (audioRef.current) {
+      const currentSong = songs[currentIndex];
+      audioRef.current.src = currentSong.audioUrl;
 
-    const fetchAudio = async () => {
-      const audioUrl =
-        activePlayer?.audioUrl ||
-        "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3";
-
-      if (audioRef.current) {
-        audioRef.current.src = audioUrl;
-
-        // Load metadata to fetch duration
-        audioRef.current.onloadedmetadata = () => {
-          setDuration(audioRef.current.duration || 0); // Set total duration of the audio
-        };
-      }
-    };
-
-    fetchAudio();
-  }, [activePlayer]);
+      audioRef.current.onloadedmetadata = () => {
+        setDuration(audioRef.current.duration || 0); // Set total duration of the audio
+      };
+    }
+  }, [currentIndex, songs]);
 
   useEffect(() => {
     if (audioRef.current) {
@@ -100,34 +108,50 @@ const Player = () => {
     });
   };
 
+  const playNextSong = () => {
+    if (currentIndex < songs.length - 1) {
+      setCurrentIndex(currentIndex + 1); // Move to the next song
+    } else {
+      setCurrentIndex(0); // Restart from the first song
+    }
+  };
+
+  useEffect(() => {
+    // After currentIndex is updated, automatically play the next song
+    if (audioRef.current) {
+      audioRef.current.play();
+      setIsPlaying(true);
+    }
+  }, [currentIndex]);
+
   return (
     activePlayer?.name && (
       <div className="bg-black z-30 py-4 sticky bottom-0 flex flex-col sm:flex-row justify-between text-white px-4">
         <audio
           ref={audioRef}
           onTimeUpdate={handleTimeUpdate}
-          onEnded={() => setIsPlaying(false)}
+          onEnded={playNextSong} // Play next song when current one ends
         />
         <div className="flex items-center gap-3 mb-4 sm:mb-0">
           <img
-            alt={activePlayer.name}
-            src={activePlayer.imageUrl}
+            alt={songs[currentIndex].name}
+            src={songs[currentIndex].imageUrl}
             className="rounded-md w-12 h-12 md:w-16 md:h-16"
           />
           <div className="text-sm">
             <p>
-              {activePlayer.name.length > playerTitleLength
-                ? `${activePlayer.name.slice(0, playerTitleLength)}....`
-                : activePlayer.name}
+              {songs[currentIndex].name.length > playerTitleLength
+                ? `${songs[currentIndex].name.slice(0, playerTitleLength)}....`
+                : songs[currentIndex].name}
             </p>
             <div className="flex items-center gap-2">
               <GoClockFill className="text-white" />
               <p className="text-xs">
-                {`${Math.floor(duration / 60)}:${
-                  Math.floor(duration % 60) < 10
-                    ? "0" + Math.floor(duration % 60)
-                    : Math.floor(duration % 60)
-                } Total`}
+                {`${Math.floor((duration - currentTime) / 60)}:${
+                  Math.floor((duration - currentTime) % 60) < 10
+                    ? "0" + Math.floor((duration - currentTime) % 60)
+                    : Math.floor((duration - currentTime) % 60)
+                } Remaining`}
               </p>
             </div>
           </div>
