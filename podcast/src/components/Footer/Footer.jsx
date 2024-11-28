@@ -1,10 +1,16 @@
 import React from "react";
 import image from "../../images/footerImage.png";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { toggleAddContent } from "../../app/slices/addContentSlice";
 
 const Footer = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
+  const formOpenHandler = () => {
+    dispatch(toggleAddContent(true));
+  };
   return (
     <>
       <div>
@@ -40,7 +46,9 @@ const Footer = () => {
 
         <div className="col-span-12 md:col-span-3 flex flex-col items-center md:items-start">
           <p className="text-lg">Want to partner with us?</p>
-          <button className="px-4 py-2 bg-gray-50 text-black rounded-md mt-4">
+          <button
+            className="px-4 py-2 bg-gray-50 text-black rounded-md mt-4"
+            onClick={formOpenHandler}>
             List your content
           </button>
         </div>

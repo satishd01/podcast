@@ -37,7 +37,7 @@ const GenresPage = () => {
         <div
           className={`${
             isUserViewOpen ? "md:col-span-10" : "md:col-span-12"
-          } col-span-12 text-white bg-black relative h-screen overflow-y-auto px-4 md:px-10 py-10`}>
+          } col-span-12 text-white bg-black relative h-[100%] overflow-y-auto px-4 md:px-10 py-10`}>
           <div className="flex items-center justify-between md:pr-5">
             <p className="text-white text-2xl mb-4">Genres</p>
           </div>
