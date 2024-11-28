@@ -15,7 +15,7 @@ const TopCreators = ({ isTwoRows, text, noSeeAll }) => {
       <div className="flex items-center justify-between md:pr-0 pr-4">
         <p className="md:text-2xl text-xl">{text}</p>
         <p
-          className="text-sm text-gray-400"
+          className="text-sm text-gray-400 cursor-pointer"
           onClick={() => navigate(`/all-top-creators`)}>
           {noSeeAll ? "" : "See all"}
         </p>

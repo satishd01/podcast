@@ -37,7 +37,7 @@ const AllTopCreators = () => {
           <div className="flex items-center justify-between md:pr-0 pr-4">
             <p className="md:text-2xl text-xl">{"All Top Creators"}</p>
           </div>
-          <div className="my-5  flex flex-wrap gap-6 w-full ">
+          <div className="my-5  flex flex-wrap gap-8 w-full ">
             {topCreators.map((creator) => (
               <div
                 key={creator.id}
