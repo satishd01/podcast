@@ -70,7 +70,7 @@ const UserFeaturesNav = () => {
       </div>
       <div
         className={`py-3 flex items-center gap-3 px-3 hover:rounded-lg cursor-pointer ${getNavItemClass(
-          "/history"
+          "/listening-history"
         )}`}
         onClick={() => navigate("/listening-history")}>
         <FaHistory className="text-lg" />
