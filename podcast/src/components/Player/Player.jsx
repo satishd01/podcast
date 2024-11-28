@@ -20,6 +20,7 @@ const Player = () => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0); // Current time of audio
   const [duration, setDuration] = useState(0); // Total duration of the audio
+  const [speed, setSpeed] = useState(1); // Playback speed (1x, 2x, 4x)
 
   const audioRef = useRef(null);
   const activePlayer = useSelector((state) => state.activePlayer.activePlayer);
@@ -44,6 +45,12 @@ const Player = () => {
 
     fetchAudio();
   }, [activePlayer]);
+
+  useEffect(() => {
+    if (audioRef.current) {
+      audioRef.current.playbackRate = speed; // Set the playback speed
+    }
+  }, [speed]);
 
   const togglePlayPause = () => {
     if (!audioRef.current) return;
@@ -74,6 +81,23 @@ const Player = () => {
       newTime = Math.max(0, Math.min(newTime, duration)); // Clamp to 0 and duration
       handleSeek(newTime);
     }
+  };
+
+  const toggleSpeed = () => {
+    setSpeed((prevSpeed) => {
+      switch (prevSpeed) {
+        case 1:
+          return 1.25;
+        case 1.25:
+          return 1.5;
+        case 1.5:
+          return 1.75;
+        case 1.75:
+          return 2;
+        default:
+          return 1;
+      }
+    });
   };
 
   return (
@@ -109,7 +133,7 @@ const Player = () => {
           </div>
         </div>
         <div className="flex flex-col items-center md:justify-center gap-3 mb-4 sm:mb-0">
-          <div className="flex items-center justify-center gap-10 md:gap-20 px-8 ">
+          <div className="flex items-center justify-center gap-10 md:gap-20 px-8">
             <IoIosBookmark className="text-xl" />
             <RiReplay15Fill
               className="text-xl cursor-pointer"
@@ -135,11 +159,15 @@ const Player = () => {
               duration={duration}
               currentTime={currentTime}
               onSeek={handleSeek}
+              playbackSpeed={speed}
             />
           </div>
         </div>
         <div className="flex items-center justify-center gap-5 text-lg">
-          <p className="text-[1rem]">1x</p>
+          <p className="text-[1rem]" onClick={toggleSpeed}>
+            {speed}x
+          </p>{" "}
+          {/* Display speed */}
           <TbPlaylist
             className="text-white cursor-pointer"
             onClick={() => setIsPlayNextOpen((prev) => !prev)}

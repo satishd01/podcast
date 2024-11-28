@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
-const ProgressBar = ({ duration, currentTime, onSeek }) => {
-  const progress = (currentTime / duration) * 100;
+const ProgressBar = ({ duration, currentTime, onSeek, playbackSpeed }) => {
+  // Adjust the progress calculation based on the playback speed
+  const adjustedCurrentTime = currentTime * playbackSpeed; // Modify the time based on speed
+  const progress = (adjustedCurrentTime / duration) * 100;
 
   // Handle click on the progress bar (desktop or mobile)
   const handleProgressClick = (e) => {
@@ -35,6 +37,13 @@ const ProgressBar = ({ duration, currentTime, onSeek }) => {
     }
   };
 
+  useEffect(() => {
+    // Ensure progress doesn't go over 100%
+    if (progress > 100) {
+      onSeek(duration); // Prevent seeking past the end of the track
+    }
+  }, [adjustedCurrentTime, progress, duration, onSeek]);
+
   return (
     <div
       style={{
@@ -55,7 +64,7 @@ const ProgressBar = ({ duration, currentTime, onSeek }) => {
     >
       <div
         style={{
-          width: `${progress}%`,
+          width: `${Math.min(progress, 100)}%`, // Limit the width to 100%
           backgroundColor: "red",
           height: "100%",
           transition: "width 0.2s linear",
