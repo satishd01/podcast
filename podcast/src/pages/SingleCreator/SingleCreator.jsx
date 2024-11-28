@@ -10,12 +10,18 @@ import TopCreators from "../../components/Podcasts/TopCreators/TopCreators";
 import CreatorImage from "../../components/SingleCreator/CreatorImage/CreatorImage";
 import CreatorInfo from "../../components/SingleCreator/CreatorInfo/CreatorInfo";
 import SliderDiv from "../../components/SliderDiv/SliderDiv";
-import { resizeHandler, userSliderHandler } from "../../utils/constants";
+import {
+  resizeHandler,
+  scrollToTop,
+  userSliderHandler,
+} from "../../utils/constants";
 import podcasts from "../../utils/json/podcasts.json";
 import creators from "../../utils/json/topCreators.json";
 import CreatorData from "./../../components/SingleCreator/CreatorData/CreatorData";
 
 const SingleCreator = () => {
+  scrollToTop();
+
   const params = useParams();
 
   const creator = creators.find((creat) => creat.id == params.creatorId);

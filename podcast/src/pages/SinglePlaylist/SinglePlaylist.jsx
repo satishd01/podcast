@@ -8,6 +8,7 @@ import SliderDiv from "../../components/SliderDiv/SliderDiv";
 import {
   playlistData,
   resizeHandler,
+  scrollToTop,
   userSliderHandler,
 } from "../../utils/constants";
 import Breadcrumbs from "./../../components/Breadcrumbs/Breadcrumbs";
@@ -19,6 +20,8 @@ import { RiEdit2Fill } from "react-icons/ri";
 import PlaylistPodcast from "../../components/SinglePlaylist/PlaylistPodcast/PlaylistPodcast";
 
 const SinglePlaylist = () => {
+  scrollToTop();
+
   const dispatch = useDispatch();
 
   const isUserViewOpen = useSelector((state) => state.slider.isSliderOpen);

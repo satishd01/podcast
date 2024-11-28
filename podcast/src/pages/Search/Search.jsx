@@ -2,15 +2,15 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleSlider } from "../../app/slices/sliderSlice";
 import OtherFooter from "../../components/OtherFooter/OtherFooter";
-import Player from "../../components/Player/Player";
-import SearchNav from "../../components/Search/SearchNav/SearchNav";
-import UserSlider from "../Home/features/UserSlider/UserSlider";
 import Genres from "../../components/Search/Genres/Genres";
-import TopCreators from "./../../components/Podcasts/TopCreators/TopCreators";
+import SearchNav from "../../components/Search/SearchNav/SearchNav";
 import Suggestions from "../../components/Search/Suggestions/Suggestions";
 import { resizeHandler, userSliderHandler } from "../../utils/constants";
+import UserSlider from "../Home/features/UserSlider/UserSlider";
+import TopCreators from "./../../components/Podcasts/TopCreators/TopCreators";
 
 const Search = () => {
+  
   const isUserViewOpen = useSelector((state) => state.slider.isSliderOpen);
   const searchedText = useSelector((state) => state.search.searchedText);
 

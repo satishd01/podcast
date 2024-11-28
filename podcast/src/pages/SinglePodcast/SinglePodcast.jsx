@@ -11,10 +11,16 @@ import PodcastData from "../../components/SinglePodcast/PodcastData/PodcastData"
 import PodcastImage from "../../components/SinglePodcast/PodcastImage/PodcastImage";
 import PodcastInfo from "../../components/SinglePodcast/PodcastInfo/PodcastInfo";
 import SliderDiv from "../../components/SliderDiv/SliderDiv";
-import { resizeHandler, userSliderHandler } from "../../utils/constants";
+import {
+  resizeHandler,
+  scrollToTop,
+  userSliderHandler,
+} from "../../utils/constants";
 import podcasts from "../../utils/json/podcasts.json";
 
 const SinglePodcast = () => {
+  scrollToTop();
+
   const params = useParams();
 
   const podcast = podcasts.find((pod) => pod._id === params.podId);

@@ -4,10 +4,16 @@ import { toggleSlider } from "../../app/slices/sliderSlice";
 
 import ProfileBody from "../../components/Profile/ProfileBody/ProfileBody";
 import SliderDiv from "../../components/SliderDiv/SliderDiv";
-import { resizeHandler, userSliderHandler } from "../../utils/constants";
+import {
+  resizeHandler,
+  scrollToTop,
+  userSliderHandler,
+} from "../../utils/constants";
 import Navbar from "./../../components/Navbar/Navbar";
 
 const Profile = () => {
+  scrollToTop();
+
   const dispatch = useDispatch();
 
   const isUserViewOpen = useSelector((state) => state.slider.isSliderOpen);

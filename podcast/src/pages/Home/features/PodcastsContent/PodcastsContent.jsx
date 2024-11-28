@@ -7,9 +7,15 @@ import LatestShows from "../../../../components/Podcasts/LatestShows/LatestShows
 import PodcastList from "../../../../components/Podcasts/PodcastList/PodcastList";
 import TopCreators from "../../../../components/Podcasts/TopCreators/TopCreators";
 import SliderDiv from "../../../../components/SliderDiv/SliderDiv";
-import { resizeHandler, userSliderHandler } from "../../../../utils/constants";
+import {
+  resizeHandler,
+  scrollToTop,
+  userSliderHandler,
+} from "../../../../utils/constants";
 
 const PodcastsContent = () => {
+  scrollToTop();
+
   const isUserViewOpen = useSelector((state) => state.slider.isSliderOpen);
 
   const dispatch = useDispatch();

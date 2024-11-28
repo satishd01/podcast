@@ -6,9 +6,15 @@ import SliderDiv from "../../components/SliderDiv/SliderDiv";
 import Navbar from "./../../components/Navbar/Navbar";
 
 import PlaylistBody from "../../components/MyPlaylist/PlaylistBody/PlaylistBody";
-import { resizeHandler, userSliderHandler } from "../../utils/constants";
+import {
+  resizeHandler,
+  scrollToTop,
+  userSliderHandler,
+} from "../../utils/constants";
 
 const MyPlaylist = () => {
+  scrollToTop();
+
   const dispatch = useDispatch();
 
   const isUserViewOpen = useSelector((state) => state.slider.isSliderOpen);

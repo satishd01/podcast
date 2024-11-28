@@ -4,11 +4,16 @@ import { useDispatch, useSelector } from "react-redux";
 import { toggleSlider } from "../../app/slices/sliderSlice";
 
 import SliderDiv from "../../components/SliderDiv/SliderDiv";
-import { resizeHandler, userSliderHandler } from "../../utils/constants";
+import {
+  resizeHandler,
+  scrollToTop,
+  userSliderHandler,
+} from "../../utils/constants";
 import LikedList from "./../../components/LikedPodcasts/LikedList/LikedList";
 import Navbar from "./../../components/Navbar/Navbar";
 
 const LikedPodcasts = () => {
+  scrollToTop();
   const dispatch = useDispatch();
 
   const isUserViewOpen = useSelector((state) => state.slider.isSliderOpen);

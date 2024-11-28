@@ -5,10 +5,15 @@ import { toggleSlider } from "../../app/slices/sliderSlice";
 
 import DownloadedList from "../../components/DownloadedPodcasts/DownloadedList/DownloadedList";
 import SliderDiv from "../../components/SliderDiv/SliderDiv";
-import { resizeHandler, userSliderHandler } from "../../utils/constants";
+import {
+  resizeHandler,
+  scrollToTop,
+  userSliderHandler,
+} from "../../utils/constants";
 import Navbar from "./../../components/Navbar/Navbar";
 
 const DownloadedPodcasts = () => {
+  scrollToTop();
   const dispatch = useDispatch();
 
   const isUserViewOpen = useSelector((state) => state.slider.isSliderOpen);

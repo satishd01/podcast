@@ -4,12 +4,17 @@ import { toggleSlider } from "../../../../app/slices/sliderSlice";
 import Footer from "../../../../components/Footer/Footer";
 import Navbar from "../../../../components/Navbar/Navbar";
 import SliderDiv from "../../../../components/SliderDiv/SliderDiv";
-import { resizeHandler, userSliderHandler } from "../../../../utils/constants";
+import {
+  resizeHandler,
+  scrollToTop,
+  userSliderHandler,
+} from "../../../../utils/constants";
 import TopCreators from "../../../../components/Podcasts/TopCreators/TopCreators";
 import LatestShows from "../../../../components/Podcasts/LatestShows/LatestShows";
 import PodcastList from "../../../../components/Podcasts/PodcastList/PodcastList";
 
 const AudioBooksContent = () => {
+  scrollToTop();
   const isUserViewOpen = useSelector((state) => state.slider.isSliderOpen);
 
   const dispatch = useDispatch();

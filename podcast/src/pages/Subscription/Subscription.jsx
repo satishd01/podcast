@@ -9,9 +9,15 @@ import Footer from "./../../components/Footer/Footer";
 import SliderDiv from "../../components/SliderDiv/SliderDiv";
 import PlanComparisonTable from "../../components/Subscription/PlanComparisonTable/PlanComparisonTable";
 import subsBg from "../../images/subsBG.png";
-import { resizeHandler, userSliderHandler } from "../../utils/constants";
+import {
+  resizeHandler,
+  scrollToTop,
+  userSliderHandler,
+} from "../../utils/constants";
 
 const Subscription = () => {
+  scrollToTop();
+
   const isUserViewOpen = useSelector((state) => state.slider.isSliderOpen);
 
   const dispatch = useDispatch();

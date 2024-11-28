@@ -6,10 +6,15 @@ import OtherFooter from "../../components/OtherFooter/OtherFooter";
 
 import GenreCard from "../../components/Search/Genres/GenreCard";
 import SliderDiv from "../../components/SliderDiv/SliderDiv";
-import { resizeHandler, userSliderHandler } from "../../utils/constants";
+import {
+  resizeHandler,
+  scrollToTop,
+  userSliderHandler,
+} from "../../utils/constants";
 import genres from "../../utils/json/genres.json";
 
 const GenresPage = () => {
+  scrollToTop();
   const isUserViewOpen = useSelector((state) => state.slider.isSliderOpen);
 
   const dispatch = useDispatch();
