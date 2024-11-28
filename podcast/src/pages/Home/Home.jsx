@@ -3,7 +3,7 @@ import GenresPage from "../GenresPage/GenresPage";
 
 const Home = () => {
   return (
-    <div>
+    <div className="">
       <GenresPage />
     </div>
   );

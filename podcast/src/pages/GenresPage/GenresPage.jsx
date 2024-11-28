@@ -25,18 +25,16 @@ const GenresPage = () => {
   return (
     <div>
       <Navbar />
-      <div className="grid grid-cols-12 ">
+      <div className="grid grid-cols-12">
         {isUserViewOpen && <SliderDiv />}
-
         <div
           className={`${
             isUserViewOpen ? "md:col-span-10" : "md:col-span-12"
-          } col-span-12 text-white bg-black relative h-auto px-4 md:px-10 py-10 -z-40`}>
-          {" "}
-          <div className="flex items-center justify-between  md:pr-5 ">
-            <p className="text-white text-2xl   mb-4">Genres</p>
+          } col-span-12 text-white bg-black relative h-screen overflow-y-auto px-4 md:px-10 py-10`}>
+          <div className="flex items-center justify-between md:pr-5">
+            <p className="text-white text-2xl mb-4">Genres</p>
           </div>
-          <div className="flex md:grid md:grid-cols-3 gap-6  overflow-x-auto md:overflow-visible">
+          <div className="md:grid md:grid-cols-3 gap-6 overflow-x-auto flex w-full scrollbar-thin scrollbar-thumb-gray-400">
             {genres &&
               genres.map((genre) => (
                 <div
