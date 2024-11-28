@@ -14,7 +14,11 @@ const TopCreators = ({ isTwoRows, text, noSeeAll }) => {
     <>
       <div className="flex items-center justify-between md:pr-0 pr-4">
         <p className="md:text-2xl text-xl">{text}</p>
-        <p className="text-sm text-gray-400">{noSeeAll ? "" : "See all"}</p>
+        <p
+          className="text-sm text-gray-400"
+          onClick={() => navigate(`/all-top-creators`)}>
+          {noSeeAll ? "" : "See all"}
+        </p>
       </div>
 
       <div className="my-5 overflow-x-auto flex space-x-4 w-full scrollbar-thin scrollbar-thumb-gray-400 scrollbar-hidden">

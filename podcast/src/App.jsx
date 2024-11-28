@@ -42,6 +42,10 @@ const AudioBooksContent = lazy(() =>
   import("./pages/Home/features/AudioBooksContent/AudioBooksContent")
 );
 
+const AllTopCreators = lazy(() =>
+  import("./pages/AllTopCreators/AllTopCreators")
+);
+
 const App = () => {
   const dispatch = useDispatch();
   const activePlayer = useSelector((state) => state.activePlayer.activePlayer);
@@ -83,6 +87,7 @@ const App = () => {
           <Route path="/audio-book" element={<AudioBooksContent />} />
           <Route path="/library" element={<Library />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="/all-top-creators" element={<AllTopCreators />} />
           <Route path="/downloaded-podcasts" element={<DownloadedPodcasts />} />
           <Route path="/your-playlist" element={<MyPlaylist />} />
           <Route path="/your-playlist/:playlist" element={<SinglePlaylist />} />
