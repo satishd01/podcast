@@ -8,9 +8,9 @@ import Suggestions from "../../components/Search/Suggestions/Suggestions";
 import { resizeHandler, userSliderHandler } from "../../utils/constants";
 import UserSlider from "../Home/features/UserSlider/UserSlider";
 import TopCreators from "./../../components/Podcasts/TopCreators/TopCreators";
+import SliderDiv from "../../components/SliderDiv/SliderDiv";
 
 const Search = () => {
-  
   const isUserViewOpen = useSelector((state) => state.slider.isSliderOpen);
   const searchedText = useSelector((state) => state.search.searchedText);
 
@@ -28,16 +28,7 @@ const Search = () => {
     <>
       <SearchNav />
       <div className="grid grid-cols-12">
-        <div
-          className={`${
-            isUserViewOpen ? "md:col-span-2" : "md:hidden"
-          } absolute text-gray-50 bg-black ${
-            isUserViewOpen
-              ? "z-40  left-0 md:w-full w-6/12 md:mt-0 col-span-12 h-auto transform  "
-              : "  md:relative col-span-0 "
-          } md:block md:relative md:z-0`}>
-          <UserSlider />
-        </div>
+        <SliderDiv />
 
         <div
           className={`${
