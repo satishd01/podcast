@@ -165,7 +165,7 @@ const Player = () => {
           </div>
         </div>
         <div className="flex flex-col items-center md:justify-center gap-3 mb-4 sm:mb-0">
-          <div className="flex items-center justify-center gap-8 md:gap-20 px-8">
+          <div className="flex items-center justify-center gap-5 md:gap-20 px-8">
             <IoIosBookmark className="text-xl" />
             <RiReplay15Fill
               className="text-xl cursor-pointer"
