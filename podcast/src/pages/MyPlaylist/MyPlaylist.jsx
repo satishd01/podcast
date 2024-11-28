@@ -13,7 +13,9 @@ import {
 } from "../../utils/constants";
 
 const MyPlaylist = () => {
-  scrollToTop();
+  useEffect(() => {
+    scrollToTop();
+  }, []);
 
   const dispatch = useDispatch();
 

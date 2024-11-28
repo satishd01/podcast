@@ -14,7 +14,9 @@ import LatestShows from "../../../../components/Podcasts/LatestShows/LatestShows
 import PodcastList from "../../../../components/Podcasts/PodcastList/PodcastList";
 
 const AudioBooksContent = () => {
-  scrollToTop();
+  useEffect(() => {
+    scrollToTop();
+  }, []);
   const isUserViewOpen = useSelector((state) => state.slider.isSliderOpen);
 
   const dispatch = useDispatch();

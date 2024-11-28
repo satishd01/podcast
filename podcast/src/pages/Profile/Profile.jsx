@@ -12,7 +12,9 @@ import {
 import Navbar from "./../../components/Navbar/Navbar";
 
 const Profile = () => {
-  scrollToTop();
+  useEffect(() => {
+    scrollToTop();
+  }, []);
 
   const dispatch = useDispatch();
 

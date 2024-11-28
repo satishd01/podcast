@@ -14,7 +14,9 @@ import ShowCard from "../../components/Podcasts/LatestShows/ShowCard";
 import podcasts from "../../utils/json/podcasts.json";
 
 const AllLatestShows = () => {
-  scrollToTop();
+  useEffect(() => {
+    scrollToTop();
+  }, []);
   const dispatch = useDispatch();
 
   const isUserViewOpen = useSelector((state) => state.slider.isSliderOpen);

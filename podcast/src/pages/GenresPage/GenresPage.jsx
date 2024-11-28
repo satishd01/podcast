@@ -14,7 +14,9 @@ import {
 import genres from "../../utils/json/genres.json";
 
 const GenresPage = () => {
-  scrollToTop();
+  useEffect(() => {
+    scrollToTop();
+  }, []);
   const isUserViewOpen = useSelector((state) => state.slider.isSliderOpen);
 
   const dispatch = useDispatch();

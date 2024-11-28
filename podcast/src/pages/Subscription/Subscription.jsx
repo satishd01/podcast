@@ -16,7 +16,9 @@ import {
 } from "../../utils/constants";
 
 const Subscription = () => {
-  scrollToTop();
+  useEffect(() => {
+    scrollToTop();
+  }, []);
 
   const isUserViewOpen = useSelector((state) => state.slider.isSliderOpen);
 

@@ -5,12 +5,20 @@ import Footer from "../../components/Footer/Footer";
 import Navbar from "../../components/Navbar/Navbar";
 import CreatorCard from "../../components/Podcasts/TopCreators/CreatorCard";
 import SliderDiv from "../../components/SliderDiv/SliderDiv";
-import { resizeHandler, userSliderHandler } from "../../utils/constants";
+import {
+  resizeHandler,
+  scrollToTop,
+  userSliderHandler,
+} from "../../utils/constants";
 
 import topCreators from "../../utils/json/topCreators.json";
 import { useNavigate } from "react-router-dom";
 
 const AllTopCreators = () => {
+  useEffect(() => {
+    scrollToTop();
+  }, []);
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
 

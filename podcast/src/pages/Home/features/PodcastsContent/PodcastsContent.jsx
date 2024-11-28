@@ -14,7 +14,9 @@ import {
 } from "../../../../utils/constants";
 
 const PodcastsContent = () => {
-  scrollToTop();
+  useEffect(() => {
+    scrollToTop();
+  }, []);
 
   const isUserViewOpen = useSelector((state) => state.slider.isSliderOpen);
 

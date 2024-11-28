@@ -19,7 +19,9 @@ import {
 import podcasts from "../../utils/json/podcasts.json";
 
 const SinglePodcast = () => {
-  scrollToTop();
+  useEffect(() => {
+    scrollToTop();
+  }, []);
 
   const params = useParams();
 

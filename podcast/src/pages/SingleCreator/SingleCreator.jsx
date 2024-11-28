@@ -20,7 +20,9 @@ import creators from "../../utils/json/topCreators.json";
 import CreatorData from "./../../components/SingleCreator/CreatorData/CreatorData";
 
 const SingleCreator = () => {
-  scrollToTop();
+  useEffect(() => {
+    scrollToTop();
+  }, []);
 
   const params = useParams();
 

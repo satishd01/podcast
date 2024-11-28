@@ -13,7 +13,9 @@ import {
 import Navbar from "./../../components/Navbar/Navbar";
 
 const DownloadedPodcasts = () => {
-  scrollToTop();
+  useEffect(() => {
+    scrollToTop();
+  }, []);
   const dispatch = useDispatch();
 
   const isUserViewOpen = useSelector((state) => state.slider.isSliderOpen);

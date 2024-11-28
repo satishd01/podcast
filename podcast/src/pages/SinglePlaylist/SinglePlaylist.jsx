@@ -20,7 +20,9 @@ import { RiEdit2Fill } from "react-icons/ri";
 import PlaylistPodcast from "../../components/SinglePlaylist/PlaylistPodcast/PlaylistPodcast";
 
 const SinglePlaylist = () => {
-  scrollToTop();
+  useEffect(() => {
+    scrollToTop();
+  }, []);
 
   const dispatch = useDispatch();
 

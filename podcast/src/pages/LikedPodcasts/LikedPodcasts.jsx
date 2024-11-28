@@ -13,7 +13,9 @@ import LikedList from "./../../components/LikedPodcasts/LikedList/LikedList";
 import Navbar from "./../../components/Navbar/Navbar";
 
 const LikedPodcasts = () => {
-  scrollToTop();
+  useEffect(() => {
+    scrollToTop();
+  }, []);
   const dispatch = useDispatch();
 
   const isUserViewOpen = useSelector((state) => state.slider.isSliderOpen);
