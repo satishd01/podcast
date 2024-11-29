@@ -128,6 +128,14 @@ const Player = () => {
     dispatch(addToHistory(nextSong));
   };
 
+  useEffect(() => {
+    if (audioRef.current) {
+      audioRef.current.onended = () => {
+        playNextSong();
+      };
+    }
+  }, [audioRef.current, playNext, playMode]);
+
   const playPreviousSong = () => {
     if (history.length > 1) {
       const previousSong = history[history.length - 2]; // Get the song before the current song
