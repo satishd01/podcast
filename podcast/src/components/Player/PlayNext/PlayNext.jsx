@@ -2,8 +2,15 @@ import React, { useState, useEffect } from "react";
 import { TbCircleXFilled } from "react-icons/tb";
 import { HiMenuAlt4 } from "react-icons/hi";
 import { DragDropContext, Droppable, Draggable } from "@hello-pangea/dnd";
+import { useSelector, useDispatch } from "react-redux";
+import {
+  removeFromPlayNext,
+  reorderPlayNext,
+} from "../../../app/slices/activePlayerSlice";
 
 const PlayNext = () => {
+  const dispatch = useDispatch();
+
   useEffect(() => {
     document.body.style.position = "fixed";
     document.body.style.width = "100%";
@@ -12,39 +19,8 @@ const PlayNext = () => {
       document.body.style.position = "static";
     };
   }, []);
-  const initialData = [
-    {
-      id: "1",
-      name: "Podcast Episode 1",
-      episodeNumber: "1",
-      imageUrl: "https://placehold.co/50",
-    },
-    {
-      id: "2",
-      name: "Podcast Episode 2",
-      episodeNumber: "2",
-      imageUrl: "https://placehold.co/50",
-    },
-    {
-      id: "3",
-      name: "Another Podcast Episode",
-      episodeNumber: "3",
-      imageUrl: "https://placehold.co/50",
-    },
-    {
-      id: "4",
-      name: "Different Podcast Episode",
-      episodeNumber: "4",
-      imageUrl: "https://placehold.co/50",
-    },
-    {
-      id: "5",
-      name: "More Podcasts to Listen",
-      episodeNumber: "5",
-      imageUrl: "https://placehold.co/50",
-    },
-  ];
 
+  const initialData = useSelector((state) => state.activePlayer.playNext);
   const [data, setData] = useState(initialData);
 
   const handleOnDragEnd = (result) => {
@@ -56,11 +32,15 @@ const PlayNext = () => {
     const [movedItem] = items.splice(source.index, 1);
     items.splice(destination.index, 0, movedItem);
 
+    // Update the local state with the new order
     setData(items);
+
+    // Dispatch the reorderPlayNext action to update the Redux store
+    dispatch(reorderPlayNext(items));
   };
 
   const removeFromPlayNextHandler = (id) => {
-    setData((prev) => prev.filter((pod) => pod.id !== id));
+    dispatch(removeFromPlayNext(id));
   };
 
   return (
