@@ -5,7 +5,7 @@ import { playerTitleLength } from "../../../utils/constants";
 
 const PlaylistPodcasts = () => {
   return (
-    <div className="space-y-3">
+    <div>
       {podcasts.slice(0, 5).map((pod) => (
         <div
           key={pod.id}
