@@ -20,12 +20,10 @@ const ProgressBar = ({ duration, currentTime, onSeek }) => {
         max={duration}
         value={currentTime}
         onChange={handleChange}
-        trackStyle={{ backgroundColor: "red", height: "6px" }}
-        railStyle={{ backgroundColor: "gray", height: "6px" }}
+        trackStyle={{ backgroundColor: "red", height: "4px" }}
+        railStyle={{ backgroundColor: "gray", height: "4px" }}
         handleStyle={{
-          borderColor: "red",
-          height: "16px",
-          width: "16px",
+          display: "none",
         }}
       />
       <div className="flex justify-between mt-2 text-xs text-gray-500">
