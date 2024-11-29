@@ -24,7 +24,7 @@ const Notification = () => {
         <IoIosNotifications />
       </div>
       {isNotificationOpen && (
-        <div className="absolute md:top-[50px] md:mt-0 mt-5  right-0 w-[350px]  md:min-w-[480px] md:max-w-[480px] z-50">
+        <div className="absolute md:top-[50px] md:mt-0 mt-5  right-0 w-[300px] h-auto   md:min-w-[480px] md:max-w-[480px] z-50">
           <div className="absolute -top-4 right-1 w-0 h-0 border-l-[10px] border-r-[10px] border-b-[17px] border-l-transparent border-r-transparent border-b-[#232323]"></div>
 
           <div className="py-4 bg-[#232323] shadow-lg rounded-md  p-3">
@@ -41,7 +41,7 @@ const Notification = () => {
               </li>
             </ul>
             <div className="flex flex-col items-center gap-3 justify-center mt-7 mb-4">
-              <img alt="empty" src={Oops} />
+              <img alt="empty" src={Oops} className="md:w-auto w-32" />
               <p>No New Notifications!</p>
               <p className="text-sm text-[#4f4f4f]">
                 Till then explore some new books.
