@@ -174,7 +174,7 @@ const Player = () => {
             />
           </div>
         </div>
-        <div className="flex items-center gap-5">
+        <div className="flex items-center justify-center md:gap-5 gap-10">
           <p onClick={toggleSpeed} className="cursor-pointer">
             {speed}x
           </p>
@@ -183,6 +183,7 @@ const Player = () => {
             onClick={() => setIsPlayNextOpen((prev) => !prev)}
           />
           <FaHeart />
+
           <MdThumbsUpDown />
           <BsThreeDotsVertical
             onClick={() => setIsPlayerOptionOpen((prev) => !prev)}

@@ -14,7 +14,7 @@ const ProgressBar = ({ duration, currentTime, onSeek }) => {
   };
 
   return (
-    <div className="w-full">
+    <div className="w-full md:mt-0 mt-3">
       <Slider
         min={0}
         max={duration}
