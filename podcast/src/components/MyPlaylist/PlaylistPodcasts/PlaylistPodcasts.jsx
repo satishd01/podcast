@@ -14,7 +14,7 @@ const PlaylistPodcasts = () => {
             <img
               alt={pod.name}
               src={pod.imageUrl}
-              className="w-12 h-12 rounded-md"
+              className="rounded-md w-12 h-12 md:w-16 md:h-16"
             />
           </div>
           <div className="col-span-8">
