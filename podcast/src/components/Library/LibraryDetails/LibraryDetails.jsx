@@ -38,7 +38,9 @@ const LibraryDetails = () => {
                       <p>{item.title}</p>
                       <div className="flex items-center gap-2 ">
                         <GoClockFill className="text-red-600" />
-                        <p className="text-xs">{item.duration} mins</p>
+                        <p className="md:text-sm text-xl font-bold">
+                          {item.duration} mins
+                        </p>
                       </div>
                     </div>
                   </div>
