@@ -54,6 +54,7 @@ const Library = () => {
             </div>
             {!searchedText && (
               <div className="md:col-span-1 md:mt-0  mt-4 w-full">
+                <p className="mb-4 text-xl">Liked</p>
                 {podcasts.slice(0, 4).map((pod) => (
                   <div key={pod._id}>
                     <SuggestionCard podcast={pod} />
