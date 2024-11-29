@@ -14,7 +14,7 @@ const Footer = () => {
   return (
     <>
       <div>
-        <img alt="footer" src={image} className="w-full" />
+        <img alt="footer" src={image} className="w-full mt-20" />
       </div>
       <div className="mx-1 md:mx-16 pt-8 grid grid-cols-12 md:grid-cols-12 gap-y-4 text-center md:text-left">
         <div className="col-span-12 md:col-span-3">
