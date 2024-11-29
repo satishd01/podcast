@@ -9,7 +9,7 @@ const PlaylistPodcasts = () => {
       {podcasts.slice(0, 5).map((pod) => (
         <div
           key={pod.id}
-          className="grid grid-cols-12 items-center gap-3 p-2  rounded-lg">
+          className="grid grid-cols-12 items-center gap-3 p-2 mt-2 rounded-lg">
           <div className="col-span-2 flex justify-center">
             <img
               alt={pod.name}
