@@ -1,5 +1,4 @@
 import React, { useEffect, useRef, useState } from "react";
-
 import { useSelector } from "react-redux";
 import PlayerOptions from "./PlayerOptions/PlayerOptions";
 import PlayNext from "./PlayNext/PlayNext";
@@ -79,6 +78,9 @@ const Player = () => {
     if (audioRef.current) {
       audioRef.current.currentTime = time;
       setCurrentTime(time);
+      if (isPlaying) {
+        audioRef.current.play();
+      }
     }
   };
 
