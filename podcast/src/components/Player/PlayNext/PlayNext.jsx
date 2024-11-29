@@ -20,13 +20,13 @@ const PlayNext = () => {
     };
   }, []);
 
-  // Get playNext queue from Redux state
+  // Get the playNext queue from Redux
   const playNext = useSelector((state) => state.activePlayer.playNext);
 
   const handleOnDragEnd = (result) => {
     const { destination, source } = result;
 
-    if (!destination) return;
+    if (!destination) return; // If the item is dropped outside a valid destination, do nothing.
 
     // Reorder the playNext queue
     const reorderedList = Array.from(playNext);

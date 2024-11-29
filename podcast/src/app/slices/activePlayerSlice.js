@@ -1,61 +1,79 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = {
-  activePlayer: {
-    name: "Podcast 1",
-    audioUrl: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3",
-    imageUrl: "https://placehold.co/50",
-  },
-  playNext: [
-    {
-      id: "1",
-      name: "Podcast 2",
-      episode: "1",
-      audioUrl: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3",
-      imageUrl: "https://placehold.co/50",
-    },
-    {
-      id: "2",
-      name: "Podcast 3",
-      episode: "2",
-      audioUrl: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
-      imageUrl: "https://placehold.co/50",
-    },
-  ],
-  history: [],
-  playMode: 0, // 0: Repeat, 1: Shuffle, 2: Repeat Once
-};
-
 const activePlayerSlice = createSlice({
   name: "activePlayer",
-  initialState,
+  initialState: {
+    activePlayer: {
+      name: "Podcast 1",
+      audioUrl: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3",
+      imageUrl: "https://placehold.co/50",
+    },
+    playNext: [
+      {
+        id: "1",
+        name: "Podcast 2",
+        episode: "1",
+        audioUrl:
+          "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-4.mp3",
+        imageUrl: "https://placehold.co/50",
+      },
+      {
+        id: "4",
+        name: "Podcast 5",
+        episode: "1",
+        audioUrl:
+          "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-4.mp3",
+        imageUrl: "https://placehold.co/50",
+      },
+      {
+        id: "2",
+        name: "Podcast 3",
+        episode: "1",
+        audioUrl:
+          "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-4.mp3",
+        imageUrl: "https://placehold.co/50",
+      },
+      {
+        id: "3",
+        name: "Podcast 4",
+        episode: "1",
+        audioUrl:
+          "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-4.mp3",
+        imageUrl: "https://placehold.co/50",
+      },
+    ],
+    history: [],
+    playMode: 0, // 0 - repeat, 1 - shuffle, 2 - repeat once
+  },
   reducers: {
     setActivePlayer: (state, action) => {
       state.activePlayer = action.payload;
     },
-    togglePlayMode: (state) => {
-      state.playMode = (state.playMode + 1) % 3; // Cycle between 0, 1, 2
-    },
     addToHistory: (state, action) => {
-      state.history.push(action.payload);
+      if (state.history[state.history.length - 1]?.id !== action.payload.id) {
+        state.history.push(action.payload);
+      }
     },
     removeFromPlayNext: (state, action) => {
       state.playNext = state.playNext.filter(
-        (item) => item.id !== action.payload
+        (song) => song.id !== action.payload
       );
     },
     reorderPlayNext: (state, action) => {
       state.playNext = action.payload;
+    },
+    togglePlayMode: (state) => {
+      state.playMode = (state.playMode + 1) % 3;
     },
   },
 });
 
 export const {
   setActivePlayer,
-  togglePlayMode,
   addToHistory,
   removeFromPlayNext,
   reorderPlayNext,
+  togglePlayMode,
 } = activePlayerSlice.actions;
 
 export default activePlayerSlice.reducer;

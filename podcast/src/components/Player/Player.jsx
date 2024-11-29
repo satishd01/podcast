@@ -1,22 +1,22 @@
-import React, { useEffect, useRef, useState, useMemo } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import React, { useEffect, useRef, useState } from "react";
+import { FaHeart, FaPause } from "react-icons/fa";
+import { GoClockFill } from "react-icons/go";
+import { IoIosBookmark, IoMdShuffle } from "react-icons/io";
+import { IoPlay } from "react-icons/io5";
+import { MdSkipNext, MdSkipPrevious, MdThumbsUpDown } from "react-icons/md";
+import { RiForward15Fill, RiReplay15Fill } from "react-icons/ri";
+import { TbPlaylist, TbRepeat, TbRepeatOnce } from "react-icons/tb";
+import { useDispatch, useSelector } from "react-redux";
 import PlayerOptions from "./PlayerOptions/PlayerOptions";
 import PlayNext from "./PlayNext/PlayNext";
 import ProgressBar from "./ProgressBar";
-import { GoClockFill } from "react-icons/go";
-import { IoIosBookmark } from "react-icons/io";
-import { RiForward15Fill, RiReplay15Fill } from "react-icons/ri";
-import { MdSkipNext, MdSkipPrevious, MdThumbsUpDown } from "react-icons/md";
-import { FaHeart, FaPause } from "react-icons/fa";
-import { IoPlay } from "react-icons/io5";
-import { TbPlaylist, TbRepeat, TbRepeatOnce } from "react-icons/tb";
-import { IoMdShuffle } from "react-icons/io";
 
 import { BsThreeDotsVertical } from "react-icons/bs";
 import {
-  togglePlayMode,
   addToHistory,
+  removeFromPlayNext,
   setActivePlayer,
+  togglePlayMode,
 } from "../../app/slices/activePlayerSlice";
 
 const Player = () => {
@@ -26,7 +26,6 @@ const Player = () => {
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
   const [speed, setSpeed] = useState(1);
-  const [currentIndex, setCurrentIndex] = useState(0);
 
   const audioRef = useRef(null);
   const dispatch = useDispatch();
@@ -34,20 +33,16 @@ const Player = () => {
   const playNext = useSelector((state) => state.activePlayer.playNext);
   const activePlayer = useSelector((state) => state.activePlayer.activePlayer);
   const playMode = useSelector((state) => state.activePlayer.playMode);
-  const songs = useMemo(
-    () => [activePlayer, ...playNext],
-    [activePlayer, playNext]
-  );
+  const history = useSelector((state) => state.activePlayer.history);
 
   useEffect(() => {
-    const currentSong = songs[currentIndex];
-    if (audioRef.current && currentSong) {
-      audioRef.current.src = currentSong.audioUrl;
+    if (audioRef.current && activePlayer) {
+      audioRef.current.src = activePlayer.audioUrl;
       audioRef.current.onloadedmetadata = () => {
         setDuration(audioRef.current.duration || 0);
       };
     }
-  }, [currentIndex, songs]);
+  }, [activePlayer]);
 
   useEffect(() => {
     if (audioRef.current) {
@@ -100,39 +95,62 @@ const Player = () => {
   };
 
   const playNextSong = () => {
-    if (songs.length === 0) return;
+    if (playNext.length === 0) {
+      console.log("No songs in the queue.");
+      return;
+    }
+
+    let nextSong;
+
+    // Check if shuffle mode is enabled
     if (playMode === 1) {
-      const randomIndex = Math.floor(Math.random() * songs.length);
-      setCurrentIndex(randomIndex);
+      // Shuffle mode
+      const randomIndex = Math.floor(Math.random() * playNext.length);
+      nextSong = playNext[randomIndex];
     } else {
-      setCurrentIndex((prevIndex) => (prevIndex + 1) % songs.length);
+      // Sequential mode
+      const currentIndex = playNext.findIndex(
+        (song) => song.id === activePlayer.id
+      );
+
+      if (currentIndex === -1 || currentIndex === playNext.length - 1) {
+        nextSong = playNext[0];
+      } else {
+        nextSong = playNext[currentIndex + 1];
+      }
     }
-    const currentSong = songs[currentIndex];
-    if (currentSong) {
-      dispatch(addToHistory(currentSong));
-    }
+
+    console.log(
+      `Next song to play: ${nextSong.name} - Episode ${nextSong.episode}`
+    );
+
+    dispatch(setActivePlayer(nextSong));
+    dispatch(addToHistory(nextSong));
   };
 
   const playPreviousSong = () => {
-    setCurrentIndex(
-      (prevIndex) => (prevIndex - 1 + songs.length) % songs.length
-    );
+    if (history.length > 1) {
+      const previousSong = history[history.length - 2]; // Get the song before the current song
+      dispatch(setActivePlayer(previousSong));
+      dispatch(addToHistory(previousSong)); // Update history with the new active song
+    }
   };
 
   useEffect(() => {
     if (audioRef.current) {
       audioRef.current.onended = () => {
         if (playMode === 2) {
+          // Repeat current song
           audioRef.current.play();
         } else {
           playNextSong();
         }
       };
     }
-  }, [audioRef.current, playMode, currentIndex]);
+  }, [audioRef.current, playMode]);
 
   const handleRemoveSong = (id) => {
-    if (songs[currentIndex]?.id === id) {
+    if (activePlayer?.id === id) {
       playNextSong();
     }
     dispatch(removeFromPlayNext(id));
@@ -148,12 +166,12 @@ const Player = () => {
         <audio ref={audioRef} onTimeUpdate={handleTimeUpdate} />
         <div className="flex items-center gap-3 mb-1">
           <img
-            alt={songs[currentIndex]?.name || "No Song"}
-            src={songs[currentIndex]?.imageUrl || ""}
+            alt={activePlayer?.name || "No Song"}
+            src={activePlayer?.imageUrl || ""}
             className="rounded-md w-12 h-12 md:w-16 md:h-16"
           />
           <div className="text-sm">
-            <p>{songs[currentIndex]?.name || "No Song"}</p>
+            <p>{activePlayer?.name || "No Song"}</p>
             <div className="flex items-center gap-2">
               <GoClockFill className="text-white" />
               <p className="text-xs">
@@ -167,7 +185,6 @@ const Player = () => {
         <div className="flex flex-col items-center gap-3 mb-0">
           <div className="flex items-center gap-5 md:gap-20 px-8">
             <IoIosBookmark className="text-xl" />
-
             <RiReplay15Fill
               className="text-xl cursor-pointer"
               onClick={() => skipTime(-15)}
