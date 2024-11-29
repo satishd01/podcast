@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { TbCircleXFilled } from "react-icons/tb";
 import { HiMenuAlt4 } from "react-icons/hi";
 import { DragDropContext, Droppable, Draggable } from "@hello-pangea/dnd";
@@ -20,26 +20,24 @@ const PlayNext = () => {
     };
   }, []);
 
-  const initialData = useSelector((state) => state.activePlayer.playNext);
-  const [data, setData] = useState(initialData);
+  // Get playNext queue from Redux state
+  const playNext = useSelector((state) => state.activePlayer.playNext);
 
   const handleOnDragEnd = (result) => {
     const { destination, source } = result;
 
     if (!destination) return;
 
-    const items = Array.from(data);
-    const [movedItem] = items.splice(source.index, 1);
-    items.splice(destination.index, 0, movedItem);
+    // Reorder the playNext queue
+    const reorderedList = Array.from(playNext);
+    const [movedItem] = reorderedList.splice(source.index, 1);
+    reorderedList.splice(destination.index, 0, movedItem);
 
-    // Update the local state with the new order
-    setData(items);
-
-    // Dispatch the reorderPlayNext action to update the Redux store
-    dispatch(reorderPlayNext(items));
+    // Dispatch the updated order to Redux
+    dispatch(reorderPlayNext(reorderedList));
   };
 
-  const removeFromPlayNextHandler = (id) => {
+  const handleRemove = (id) => {
     dispatch(removeFromPlayNext(id));
   };
 
@@ -56,8 +54,8 @@ const PlayNext = () => {
                   {...provided.droppableProps}
                   ref={provided.innerRef}
                   className="flex flex-col">
-                  {data.length > 0 ? (
-                    data.map((play, index) => (
+                  {playNext.length > 0 ? (
+                    playNext.map((play, index) => (
                       <Draggable
                         key={play.id}
                         draggableId={play.id}
@@ -70,17 +68,15 @@ const PlayNext = () => {
                             {...provided.dragHandleProps}>
                             <div className="flex items-center gap-3 w-full">
                               <TbCircleXFilled
-                                className="text-xl"
-                                onClick={() =>
-                                  removeFromPlayNextHandler(play.id)
-                                }
+                                className="text-xl cursor-pointer"
+                                onClick={() => handleRemove(play.id)}
                               />
                               <img
                                 alt={play.name}
                                 src={play.imageUrl}
                                 className="rounded-md w-12 h-12 md:w-16 md:h-16"
                               />
-                              <p className="truncate w-32 md:w-48">{`${play.name} episode ${play.episode}`}</p>
+                              <p className="truncate w-32 md:w-48">{`${play.name} - Episode ${play.episode}`}</p>
                             </div>
                             <HiMenuAlt4 className="text-xl" />
                           </div>

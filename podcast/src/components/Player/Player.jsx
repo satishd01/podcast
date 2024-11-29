@@ -16,6 +16,7 @@ import { BsThreeDotsVertical } from "react-icons/bs";
 import {
   togglePlayMode,
   addToHistory,
+  setActivePlayer,
 } from "../../app/slices/activePlayerSlice";
 
 const Player = () => {
@@ -38,11 +39,9 @@ const Player = () => {
     [activePlayer, playNext]
   );
 
-  const history = useSelector((state) => state.activePlayer.history);
-
   useEffect(() => {
     const currentSong = songs[currentIndex];
-    if (audioRef.current) {
+    if (audioRef.current && currentSong) {
       audioRef.current.src = currentSong.audioUrl;
       audioRef.current.onloadedmetadata = () => {
         setDuration(audioRef.current.duration || 0);
@@ -101,13 +100,17 @@ const Player = () => {
   };
 
   const playNextSong = () => {
+    if (songs.length === 0) return;
     if (playMode === 1) {
       const randomIndex = Math.floor(Math.random() * songs.length);
       setCurrentIndex(randomIndex);
     } else {
       setCurrentIndex((prevIndex) => (prevIndex + 1) % songs.length);
     }
-    dispatch(addToHistory(songs[currentIndex]));
+    const currentSong = songs[currentIndex];
+    if (currentSong) {
+      dispatch(addToHistory(currentSong));
+    }
   };
 
   const playPreviousSong = () => {
@@ -117,14 +120,23 @@ const Player = () => {
   };
 
   useEffect(() => {
-    if (audioRef.current && audioRef.current.ended) {
-      if (playMode === 2) {
-        audioRef.current.play();
-      } else {
-        playNextSong();
-      }
+    if (audioRef.current) {
+      audioRef.current.onended = () => {
+        if (playMode === 2) {
+          audioRef.current.play();
+        } else {
+          playNextSong();
+        }
+      };
     }
-  }, [audioRef.current?.ended, playMode, currentIndex]);
+  }, [audioRef.current, playMode, currentIndex]);
+
+  const handleRemoveSong = (id) => {
+    if (songs[currentIndex]?.id === id) {
+      playNextSong();
+    }
+    dispatch(removeFromPlayNext(id));
+  };
 
   const handlePlayModeChange = () => {
     dispatch(togglePlayMode());
@@ -133,19 +145,15 @@ const Player = () => {
   return (
     activePlayer?.name && (
       <div className="bg-black z-30 py-4 sticky bottom-0 flex flex-col sm:flex-row justify-between text-white px-4">
-        <audio
-          ref={audioRef}
-          onTimeUpdate={handleTimeUpdate}
-          onEnded={playNextSong}
-        />
+        <audio ref={audioRef} onTimeUpdate={handleTimeUpdate} />
         <div className="flex items-center gap-3 mb-1">
           <img
-            alt={songs[currentIndex].name}
-            src={songs[currentIndex].imageUrl}
+            alt={songs[currentIndex]?.name || "No Song"}
+            src={songs[currentIndex]?.imageUrl || ""}
             className="rounded-md w-12 h-12 md:w-16 md:h-16"
           />
           <div className="text-sm">
-            <p>{songs[currentIndex].name}</p>
+            <p>{songs[currentIndex]?.name || "No Song"}</p>
             <div className="flex items-center gap-2">
               <GoClockFill className="text-white" />
               <p className="text-xs">
@@ -159,6 +167,7 @@ const Player = () => {
         <div className="flex flex-col items-center gap-3 mb-0">
           <div className="flex items-center gap-5 md:gap-20 px-8">
             <IoIosBookmark className="text-xl" />
+
             <RiReplay15Fill
               className="text-xl cursor-pointer"
               onClick={() => skipTime(-15)}
@@ -220,11 +229,12 @@ const Player = () => {
           />
           <FaHeart />
           <MdThumbsUpDown />
+
           <BsThreeDotsVertical
             onClick={() => setIsPlayerOptionOpen((prev) => !prev)}
           />
         </div>
-        {isPlayNextOpen && <PlayNext />}
+        {isPlayNextOpen && <PlayNext onRemoveSong={handleRemoveSong} />}
         {isPlayerOptionOpen && <PlayerOptions />}
       </div>
     )
