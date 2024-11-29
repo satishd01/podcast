@@ -8,6 +8,7 @@ import { libraryItems } from "../../../utils/constants";
 import { MdKeyboardArrowRight } from "react-icons/md";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import LibraryCard from "../LibraryCard/LibraryCard";
 
 const LibraryDetails = () => {
   const navigate = useNavigate();
@@ -26,31 +27,8 @@ const LibraryDetails = () => {
                 item.title.toLowerCase().includes(searchedText.toLowerCase())
               )
               .map((item) => (
-                <div
-                  key={item.id}
-                  onClick={() => handleNavigation(item.title)}
-                  className="grid grid-cols-12 gap-4  items-center mt-4 w-full cursor-pointer">
-                  <div className="flex items-center gap-3 col-span-6">
-                    <div className="border border-white p-4 rounded-md">
-                      <item.icon className="text-red-600 text-xl" />
-                    </div>
-                    <div>
-                      <p>{item.title}</p>
-                      <div className="flex items-center gap-2 ">
-                        <GoClockFill className="text-red-600" />
-                        <p className="md:text-sm text-xl font-bold">
-                          {item.duration} mins
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="col-span-3 text-lg flex gap-3 items-center justify-end">
-                    <IoMdShare />
-                    <RiEdit2Fill />
-                  </div>
-                  <div className="col-span-3 text-2xl flex justify-end md:pr-5">
-                    <MdKeyboardArrowRight />
-                  </div>
+                <div key={item.id} onClick={() => handleNavigation(item.title)}>
+                  <LibraryCard item={item} />
                 </div>
               ))}
         </div>
@@ -75,31 +53,8 @@ const LibraryDetails = () => {
                 key={item.id}
                 onClick={() =>
                   navigate(`/${item.title.toLowerCase().replace(" ", "-")}`)
-                }
-                className="grid grid-cols-12 gap-4  items-center mt-4 w-full cursor-pointer">
-                <div className="flex items-center gap-3 col-span-6">
-                  <div className="border border-white p-4 rounded-md">
-                    <item.icon className="text-red-600 text-xl" />
-                  </div>
-                  <div>
-                    <p className="md:text-base whitespace-nowrap text-xs">
-                      {item.title}
-                    </p>
-                    <div className="flex items-center gap-2 whitespace-nowrap">
-                      <GoClockFill className="text-red-600" />
-                      <p className="md:text-xs text-[7px] whitespace-nowrap">
-                        {item.duration} mins
-                      </p>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-span-3 text-lg flex gap-3 items-center justify-end">
-                  <IoMdShare />
-                  <RiEdit2Fill />
-                </div>
-                <div className="col-span-3 text-2xl flex justify-end md:pr-5">
-                  <MdKeyboardArrowRight />
-                </div>
+                }>
+                <LibraryCard item={item} />
               </div>
             ))}
         </>
