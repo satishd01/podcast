@@ -92,7 +92,7 @@ export const userSliderHandler = (dispatch, toggleSlider, isUserViewOpen) => {
 
 export const resizeHandler = (dispatch, toggleSlider) => {
   const handleResize = () => {
-    const isMobile = window.innerWidth < 640;
+    const isMobile = window.innerWidth < 750;
     if (isMobile) {
       dispatch(toggleSlider(false));
     } else {
