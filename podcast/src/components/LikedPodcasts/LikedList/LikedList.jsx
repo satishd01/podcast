@@ -37,7 +37,9 @@ const LikedList = () => {
         </div>
       </div>
 
-      <LikedPodcastTable podcasts={podcasts} toggleSort={toggleSort} />
+      <div className="max-h-[400px] flex flex-col overflow-y-auto scrollbar-thin scrollbar-thumb-gray-400">
+        <LikedPodcastTable podcasts={podcasts} toggleSort={toggleSort} />
+      </div>
     </div>
   );
 };

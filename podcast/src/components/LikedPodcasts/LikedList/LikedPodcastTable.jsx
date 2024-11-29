@@ -65,14 +65,14 @@ const LikedPodcastTable = ({ podcasts, toggleSort }) => {
                     </div>
                   </div>
                 </td>
-                <td className="col-span-4 md:col-span-1 px-4 flex items-center justify-between gap-2">
+                <td className="col-span-12 md:col-span-1 px-4 flex items-center md:justify-between justify-end gap-5">
                   <p className="text-xs md:text-sm">{pod.time}</p>
                   <FaHeart className="text-red-600 text-base md:text-lg" />
                   <BsThreeDots className="text-lg md:text-xl" />
                   <div
                     className="p-2 md:p-3 rounded-full flex items-center justify-center bg-white"
                     onClick={() => handlePlayer(pod)}>
-                    <IoPlay className="text-[#FF0000]" />
+                    <IoPlay className="text-[#070707]" />
                   </div>
                 </td>
               </tr>

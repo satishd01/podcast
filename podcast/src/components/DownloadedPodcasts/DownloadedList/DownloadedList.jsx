@@ -47,12 +47,14 @@ const DownloadedList = () => {
         </div>
       </div>
 
-      {data &&
-        data.map((pod) => (
-          <div key={pod._id} className="border-b py-3">
-            <DownloadedCard podcast={pod} />
-          </div>
-        ))}
+      <div className="max-h-[400px] flex flex-col overflow-y-auto scrollbar-thin scrollbar-thumb-gray-400">
+        {data &&
+          data.map((pod) => (
+            <div key={pod._id} className="border-b py-3 ">
+              <DownloadedCard podcast={pod} />
+            </div>
+          ))}
+      </div>
     </div>
   );
 };
