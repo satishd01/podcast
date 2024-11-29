@@ -14,7 +14,7 @@ const ProgressBar = ({ duration, currentTime, onSeek }) => {
   };
 
   return (
-    <div className="w-full md:mt-0 mt-3">
+    <div className="w-full md:mt-0 mt-2">
       <Slider
         min={0}
         max={duration}
@@ -26,7 +26,7 @@ const ProgressBar = ({ duration, currentTime, onSeek }) => {
           display: "none",
         }}
       />
-      <div className="flex justify-between mt-2 text-xs text-gray-500">
+      <div className="flex justify-between  text-xs text-gray-500">
         <span>{formatTime(currentTime)}</span>
         <span>{formatTime(duration)}</span>
       </div>

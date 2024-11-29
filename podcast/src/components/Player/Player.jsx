@@ -120,7 +120,7 @@ const Player = () => {
           onTimeUpdate={handleTimeUpdate}
           onEnded={playNextSong}
         />
-        <div className="flex items-center gap-3 mb-4 sm:mb-0">
+        <div className="flex items-center gap-3 md:mb-4 mb-1">
           <img
             alt={songs[currentIndex].name}
             src={songs[currentIndex].imageUrl}
@@ -138,7 +138,7 @@ const Player = () => {
             </div>
           </div>
         </div>
-        <div className="flex flex-col items-center gap-3 mb-4 sm:mb-0">
+        <div className="flex flex-col items-center gap-3 md:mb-4 mb-0">
           <div className="flex items-center gap-5 md:gap-20 px-8">
             <IoIosBookmark className="text-xl" />
             <RiReplay15Fill
