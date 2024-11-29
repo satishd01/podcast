@@ -10,7 +10,6 @@ import { useDispatch, useSelector } from "react-redux";
 import PlayerOptions from "./PlayerOptions/PlayerOptions";
 import PlayNext from "./PlayNext/PlayNext";
 import ProgressBar from "./ProgressBar";
-
 import { BsThreeDotsVertical } from "react-icons/bs";
 import {
   addToHistory,
@@ -94,7 +93,7 @@ const Player = () => {
     );
   };
 
-  const playNextSong = () => {
+  const playNextSong = async () => {
     if (playNext.length === 0) {
       console.log("No songs in the queue.");
       return;
@@ -102,13 +101,10 @@ const Player = () => {
 
     let nextSong;
 
-    // Check if shuffle mode is enabled
     if (playMode === 1) {
-      // Shuffle mode
       const randomIndex = Math.floor(Math.random() * playNext.length);
       nextSong = playNext[randomIndex];
     } else {
-      // Sequential mode
       const currentIndex = playNext.findIndex(
         (song) => song.id === activePlayer.id
       );
@@ -126,7 +122,24 @@ const Player = () => {
 
     dispatch(setActivePlayer(nextSong));
     dispatch(addToHistory(nextSong));
+
+    // Ensure the audio source is properly loaded and ready
+    if (audioRef.current) {
+      try {
+        audioRef.current.load();
+        await audioRef.current.play(); // Wait for play to succeed
+      } catch (error) {
+        console.error("Error trying to play audio:", error);
+      }
+    }
   };
+
+  useEffect(() => {
+    if (audioRef.current && activePlayer) {
+      audioRef.current.load();
+      audioRef.current.play();
+    }
+  }, [activePlayer]);
 
   useEffect(() => {
     if (audioRef.current) {
@@ -138,9 +151,9 @@ const Player = () => {
 
   const playPreviousSong = () => {
     if (history.length > 1) {
-      const previousSong = history[history.length - 2]; // Get the song before the current song
+      const previousSong = history[history.length - 2];
       dispatch(setActivePlayer(previousSong));
-      dispatch(addToHistory(previousSong)); // Update history with the new active song
+      dispatch(addToHistory(previousSong));
     }
   };
 
@@ -148,7 +161,6 @@ const Player = () => {
     if (audioRef.current) {
       audioRef.current.onended = () => {
         if (playMode === 2) {
-          // Repeat current song
           audioRef.current.play();
         } else {
           playNextSong();
