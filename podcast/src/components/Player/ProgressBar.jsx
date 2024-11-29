@@ -25,8 +25,8 @@ const ProgressBar = ({ duration, currentTime, onSeek }) => {
         handleStyle={{
           backgroundColor: "red",
           border: "1px solid red",
-          width: "5px",
-          height: "3px",
+          width: "3px",
+          height: "4px",
           marginLeft: "-1px",
           marginTop: "0px",
           borderRadius: "100%",
