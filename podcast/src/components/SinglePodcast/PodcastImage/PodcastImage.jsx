@@ -5,7 +5,7 @@ const PodcastImage = ({ podcast }) => {
     <div className="col-span-5">
       <img
         alt={podcast.name}
-        src={podcast.imageUrl}
+        src={podcast.image}
         className="md:w-[400px] w-[200px] rounded-xl"
       />
     </div>

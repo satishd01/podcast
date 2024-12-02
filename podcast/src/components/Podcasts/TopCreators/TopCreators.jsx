@@ -1,16 +1,13 @@
 import React from "react";
-import creators from "../../../utils/json/topCreators.json";
-import CreatorCard from "./CreatorCard";
 import { useNavigate } from "react-router-dom";
+import CreatorCard from "./CreatorCard";
 
-const TopCreators = ({ isTwoRows, text, noSeeAll, topCreators }) => {
+const TopCreators = ({ isTwoRows, text, noSeeAll, data, page }) => {
   const navigate = useNavigate();
 
-  const rowCount = isTwoRows
-    ? Math.ceil(topCreators?.length / 2)
-    : topCreators?.length;
-  const firstRowCreators = topCreators?.slice(0, rowCount);
-  const secondRowCreators = topCreators?.slice(rowCount);
+  const rowCount = isTwoRows ? Math.ceil(data?.length / 2) : data?.length;
+  const firstRowCreators = data?.slice(0, rowCount);
+  const secondRowCreators = data?.slice(rowCount);
 
   return (
     <>
@@ -24,24 +21,39 @@ const TopCreators = ({ isTwoRows, text, noSeeAll, topCreators }) => {
       </div>
 
       <div className="my-5 overflow-x-auto flex space-x-4 w-full scrollbar-thin scrollbar-thumb-gray-400 scrollbar-hidden">
-        {firstRowCreators?.map((creator) => (
+        {firstRowCreators?.map((info) => (
           <div
-            key={creator.id}
+            key={info.id}
             className="flex-shrink-0 cursor-pointer"
-            onClick={() => navigate(`/creator/${creator.id}`)}>
-            <CreatorCard creator={creator} />
+            onClick={() =>
+              navigate(
+                `/${page}/${info.id || info.podcast_id}`,
+                page === "podcast"
+                  ? { state: { podcast: info } }
+                  : { state: { creator: info } }
+              )
+            }>
+            <CreatorCard info={info} />
           </div>
         ))}
       </div>
 
       {isTwoRows && (
         <div className="my-5 overflow-x-auto flex space-x-4 w-full scrollbar-thumb-gray-400 scrollbar-hidden">
-          {secondRowCreators?.map((creator) => (
+          {secondRowCreators?.map((info) => (
             <div
-              key={creator.id}
+              key={info.id || info.podcast_id}
               className="flex-shrink-0 cursor-pointer"
-              onClick={() => navigate(`/creator/${creator.id}`)}>
-              <CreatorCard creator={creator} />
+              onClick={() =>
+                navigate(
+                  `/${page}/${info.id || info.podcast_id}`,
+
+                  page === "podcast"
+                    ? { state: { podcast: info } }
+                    : { state: { creator: info } }
+                )
+              }>
+              <CreatorCard info={info} />
             </div>
           ))}
         </div>

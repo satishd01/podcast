@@ -36,7 +36,7 @@ const Player = () => {
 
   useEffect(() => {
     if (audioRef.current && activePlayer) {
-      audioRef.current.src = activePlayer.audioUrl;
+      audioRef.current.src = activePlayer.audioUrl || activePlayer.audio_file;
       audioRef.current.onloadedmetadata = () => {
         setDuration(audioRef.current.duration || 0);
       };
@@ -116,10 +116,6 @@ const Player = () => {
       }
     }
 
-    console.log(
-      `Next song to play: ${nextSong.name} - Episode ${nextSong.episode}`
-    );
-
     dispatch(setActivePlayer(nextSong));
     dispatch(addToHistory(nextSong));
 
@@ -187,11 +183,11 @@ const Player = () => {
         <div className="flex items-center gap-3 mb-1">
           <img
             alt={activePlayer?.name || "No Song"}
-            src={activePlayer?.imageUrl || ""}
+            src={activePlayer?.imageUrl || activePlayer?.image || ""}
             className="rounded-md w-12 h-12 md:w-16 md:h-16"
           />
           <div className="text-sm">
-            <p>{activePlayer?.name || "No Song"}</p>
+            <p>{activePlayer?.title || activePlayer?.name || "No Song"}</p>
             <div className="flex items-center gap-2">
               <GoClockFill className="text-white" />
               <p className="text-xs">

@@ -1,8 +1,7 @@
 import React from "react";
-import podcasts from "../../../utils/json/podcasts.json";
 import PodcastCard from "./PodcastCard.jsx";
 
-const PodcastList = ({ text }) => {
+const PodcastList = ({ text, data }) => {
   return (
     <>
       <div className="flex items-center justify-between md:mt-14 mt-8 md:pr-0 pr-4">
@@ -11,11 +10,12 @@ const PodcastList = ({ text }) => {
       </div>
       <div className="overflow-x-auto  w-full mt-6">
         <div className="grid grid-rows-3 grid-flow-col md:gap-x-10 gap-x-5  auto-cols-[270px] md:auto-cols-[300px] scrollbar-thin scrollbar-thumb-gray-400">
-          {podcasts.map((podcast, index) => (
-            <div key={index} className="flex-shrink-0 pb-3">
-              <PodcastCard podcast={podcast} />
-            </div>
-          ))}
+          {data &&
+            data.map((podcast, index) => (
+              <div key={index} className="flex-shrink-0 pb-3">
+                <PodcastCard podcast={podcast} />
+              </div>
+            ))}
         </div>
       </div>
     </>

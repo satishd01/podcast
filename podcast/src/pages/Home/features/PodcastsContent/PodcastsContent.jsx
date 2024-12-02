@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { fetchPodcasts } from "../../../../apis/fetchPodcasts";
+import { fetchTopPodcastCreators } from "../../../../apis/fetchTopPodcastCreators";
 import { toggleSlider } from "../../../../app/slices/sliderSlice";
 import Footer from "../../../../components/Footer/Footer";
 import Navbar from "../../../../components/Navbar/Navbar";
@@ -12,9 +14,10 @@ import {
   scrollToTop,
   userSliderHandler,
 } from "../../../../utils/constants";
-import { fetchTopPodcastCreators } from "../../../../apis/fetchTopPodcastCreators";
 
 const PodcastsContent = () => {
+  const [podcasts, setPodcasts] = useState([]);
+
   const isUserViewOpen = useSelector((state) => state.slider.isSliderOpen);
 
   const dispatch = useDispatch();
@@ -22,6 +25,7 @@ const PodcastsContent = () => {
   useEffect(() => {
     scrollToTop();
     fetchTopPodcastCreators(dispatch);
+    fetchPodcasts(setPodcasts);
   }, []);
 
   const topCreators = useSelector((state) => state.topCreators.topCreators);
@@ -44,14 +48,19 @@ const PodcastsContent = () => {
           className={`${
             isUserViewOpen ? "md:col-span-10" : "md:col-span-12"
           } col-span-12 text-white bg-black relative h-auto px-4 md:px-10 py-10`}>
-          <TopCreators text={"Top Creators"} topCreators={topCreators} />
+          <TopCreators
+            text={"Top Creators"}
+            data={topCreators}
+            page="creator"
+          />
           <LatestShows text={"Latest Shows"} />
-          <PodcastList text={"Podcasts"} />
+          <PodcastList text={"Podcasts"} data={podcasts} />
           <div className="md:mt-44 mt-10">
             <TopCreators
               text={"Top Creators"}
               isTwoRows={true}
-              topCreators={topCreators}
+              data={topCreators}
+              page="creator"
             />
           </div>
           <div className="md:mb-72 mb-10">
