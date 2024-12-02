@@ -1,4 +1,6 @@
-const db = require('../db');
+
+const db = require('../db'); 
+const jwt = require('jsonwebtoken');
 
 const createProfile = (req, res) => {
     const { name, email, plan_id, subscription_start_date, subscription_end_date } = req.body;
@@ -9,7 +11,7 @@ const createProfile = (req, res) => {
         });
     }
 
-    const checkPlanSQL = 'SELECT * FROM Plan WHERE plan_id = ?';  // Changed id to plan_id
+    const checkPlanSQL = 'SELECT * FROM Plan WHERE plan_id = ?';
     db.query(checkPlanSQL, [plan_id], (planError, planResult) => {
         if (planError) {
             return res.status(500).json({ message: 'Error checking plan', error: planError });
@@ -26,7 +28,16 @@ const createProfile = (req, res) => {
             if (profileError) {
                 return res.status(500).json({ message: 'Error creating profile', error: profileError });
             }
-            res.status(201).json({ message: 'Profile created successfully', profileId: profileResult.insertId });
+
+            // Generate JWT token after profile creation
+            const profileId = profileResult.insertId;  // This is the newly created profile ID
+            const token = jwt.sign({ profile_id: profileId }, '8cc4510a207f10f3a4170bf15c114b6ff73deafd20d05c3384ee34175fa0fe98-secret-key', { expiresIn: '1h' });
+
+            res.status(201).json({
+                message: 'Profile created successfully',
+                profileId: profileId,
+                token: token // Send back the token so the client can use it for future requests
+            });
         });
     });
 };

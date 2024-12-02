@@ -90,6 +90,20 @@ exports.deleteUserInfo = (req, res) => {
       res.status(200).json({ message: 'User info deleted successfully' });
     });
   };
+  exports.getUserInfoByEmail = (req, res) => {
+    const { email } = req.params;
+  
+    db.query('SELECT * FROM userinfo WHERE email = ?', [email], (err, result) => {
+      if (err) {
+        return res.status(500).json({ message: 'Database error', error: err });
+      }
+      if (result.length === 0) {
+        return res.status(404).json({ message: 'User not found' });
+      }
+      res.status(200).json(result[0]);
+    });
+  };
+  
     
   
 
