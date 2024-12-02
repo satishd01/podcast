@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleSlider } from "../../../../app/slices/sliderSlice";
 import Footer from "../../../../components/Footer/Footer";
@@ -12,15 +12,19 @@ import {
   scrollToTop,
   userSliderHandler,
 } from "../../../../utils/constants";
+import { fetchTopPodcastCreators } from "../../../../apis/fetchTopPodcastCreators";
 
 const PodcastsContent = () => {
-  useEffect(() => {
-    scrollToTop();
-  }, []);
-
   const isUserViewOpen = useSelector((state) => state.slider.isSliderOpen);
 
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    scrollToTop();
+    fetchTopPodcastCreators(dispatch);
+  }, []);
+
+  const topCreators = useSelector((state) => state.topCreators.topCreators);
 
   useEffect(() => {
     resizeHandler(dispatch, toggleSlider);
@@ -40,11 +44,15 @@ const PodcastsContent = () => {
           className={`${
             isUserViewOpen ? "md:col-span-10" : "md:col-span-12"
           } col-span-12 text-white bg-black relative h-auto px-4 md:px-10 py-10`}>
-          <TopCreators text={"Top Creators"} />
+          <TopCreators text={"Top Creators"} topCreators={topCreators} />
           <LatestShows text={"Latest Shows"} />
           <PodcastList text={"Podcasts"} />
           <div className="md:mt-44 mt-10">
-            <TopCreators text={"Top Creators"} isTwoRows={true} />
+            <TopCreators
+              text={"Top Creators"}
+              isTwoRows={true}
+              topCreators={topCreators}
+            />
           </div>
           <div className="md:mb-72 mb-10">
             <LatestShows text={"Latest Shows"} />

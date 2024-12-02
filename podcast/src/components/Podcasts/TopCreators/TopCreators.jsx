@@ -3,12 +3,14 @@ import creators from "../../../utils/json/topCreators.json";
 import CreatorCard from "./CreatorCard";
 import { useNavigate } from "react-router-dom";
 
-const TopCreators = ({ isTwoRows, text, noSeeAll }) => {
+const TopCreators = ({ isTwoRows, text, noSeeAll, topCreators }) => {
   const navigate = useNavigate();
 
-  const rowCount = isTwoRows ? Math.ceil(creators.length / 2) : creators.length;
-  const firstRowCreators = creators?.slice(0, rowCount);
-  const secondRowCreators = creators?.slice(rowCount);
+  const rowCount = isTwoRows
+    ? Math.ceil(topCreators?.length / 2)
+    : topCreators?.length;
+  const firstRowCreators = topCreators?.slice(0, rowCount);
+  const secondRowCreators = topCreators?.slice(rowCount);
 
   return (
     <>
@@ -22,7 +24,7 @@ const TopCreators = ({ isTwoRows, text, noSeeAll }) => {
       </div>
 
       <div className="my-5 overflow-x-auto flex space-x-4 w-full scrollbar-thin scrollbar-thumb-gray-400 scrollbar-hidden">
-        {firstRowCreators.map((creator) => (
+        {firstRowCreators?.map((creator) => (
           <div
             key={creator.id}
             className="flex-shrink-0 cursor-pointer"
@@ -34,7 +36,7 @@ const TopCreators = ({ isTwoRows, text, noSeeAll }) => {
 
       {isTwoRows && (
         <div className="my-5 overflow-x-auto flex space-x-4 w-full scrollbar-thumb-gray-400 scrollbar-hidden">
-          {secondRowCreators.map((creator) => (
+          {secondRowCreators?.map((creator) => (
             <div
               key={creator.id}
               className="flex-shrink-0 cursor-pointer"

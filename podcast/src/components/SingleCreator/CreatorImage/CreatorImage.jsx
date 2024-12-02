@@ -1,12 +1,11 @@
 import React from "react";
 
 const CreatorImage = ({ creator }) => {
-  console.log("creator", creator);
   return (
     <div className="col-span-5">
       <img
-        alt={creator?.name}
-        src={creator?.imageUrl}
+        alt={creator?.creatorName}
+        src={creator?.image}
         className="md:w-[400px] w-[200px] rounded-xl"
       />
     </div>

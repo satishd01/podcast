@@ -5,6 +5,7 @@ import searchReducer from "./slices/searchSlice";
 import activePlayerReducer from "./slices/activePlayerSlice";
 import notificationReducer from "./slices/notificationSlice";
 import addContentReducer from "./slices/addContentSlice";
+import topCreatorsReducer from "./slices/topCreatorsSlice";
 
 export const store = configureStore({
   reducer: {
@@ -14,5 +15,6 @@ export const store = configureStore({
     search: searchReducer,
     notification: notificationReducer,
     addContent: addContentReducer,
+    topCreators: topCreatorsReducer,
   },
 });

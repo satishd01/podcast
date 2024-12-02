@@ -1,17 +1,20 @@
 const express = require('express');
 const router = express.Router();
-const storyController = require('../controller/storyController');
+
+// Import the controller functions
+const { createStory, getAllStories, getStoryById,likeStory,getAllLikesStory,removeLikeStory } = require('../controller/storyController');
+const verifyToken = require('../middleware/verifyToken');
+  // Adjust path as needed
+
+// Define routes
+router.post('/stories', createStory);  // Create story (admin only)
+router.get('/stories', getAllStories);  // Get all stories
+router.get('/stories/:id', getStoryById);  // Get story by ID
+router.post('/like-story', verifyToken, likeStory);
+
+router.get('/liked-stories', verifyToken, getAllLikesStory);
+router.post('/remove-like', verifyToken, removeLikeStory);
 
 
-router.post('/', storyController.createStory);
-
-router.get('/', storyController.getAllStories);
-
-router.get('/stories/:id', storyController.getStoryById);
-
-
-router.put('/:id', storyController.updateStory);
-
-router.delete('/:id', storyController.deleteStory);
 
 module.exports = router;

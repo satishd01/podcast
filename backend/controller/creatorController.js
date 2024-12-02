@@ -10,10 +10,14 @@ const createCreator = (req, res) => {
     const { showTitle, creatorName, creatorType, genre, ageRestriction, starRating, description, listens } = req.body;
     const imagePath = req.file ? req.file.path : null;
 
+    // Construct the full image URL
+    const baseUrl = `${req.protocol}://${req.get('host')}`;
+    const imageUrl = imagePath ? `${baseUrl}/${imagePath.replace(/\\/g, '/')}` : null;
+
     const query = `INSERT INTO creator (showTitle, creatorName, creatorType, genre, ageRestriction, starRating, description, listens, image) 
                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`;
 
-    db.query(query, [showTitle, creatorName, creatorType, genre, ageRestriction, starRating, description, listens, imagePath], (err, result) => {
+    db.query(query, [showTitle, creatorName, creatorType, genre, ageRestriction, starRating, description, listens, imageUrl], (err, result) => {
       if (err) {
         return res.status(500).json({ message: 'Failed to add creator', error: err });
       }
@@ -29,12 +33,13 @@ const createCreator = (req, res) => {
           starRating,
           description,
           listens,
-          image: imagePath,
+          image: imageUrl,
         },
       });
     });
   });
 };
+
 
 const getCreators = (req, res) => {
   const query = 'SELECT * FROM creator';
@@ -85,11 +90,65 @@ const getTopPodcastCreator = (req, res) => {
   });
 };
 
+const getCreatorById = (req, res) => {
+  const creatorId = req.params.id; // Extract creator ID from request parameters
+
+  const query = 'SELECT * FROM creator WHERE id = ?';
+
+  db.query(query, [creatorId], (err, result) => {
+    if (err) {
+      return res.status(500).json({ message: 'Failed to fetch creator', error: err });
+    }
+
+    if (result.length === 0) {
+      return res.status(404).json({ message: 'Creator not found' });
+    }
+
+    return res.status(200).json({
+      message: 'Creator fetched successfully',
+      creator: result[0], // Return the first matching creator
+    });
+  });
+};
+
+const deleteCreator = (req, res) => {
+  const creatorId = req.params.id; // Extract creator ID from request parameters
+
+  // Check if the creator exists before attempting deletion
+  const checkQuery = 'SELECT * FROM creator WHERE id = ?';
+
+  db.query(checkQuery, [creatorId], (err, result) => {
+    if (err) {
+      return res.status(500).json({ message: 'Failed to check creator existence', error: err });
+    }
+
+    if (result.length === 0) {
+      return res.status(404).json({ message: 'Creator not found' });
+    }
+
+    // Delete the creator record
+    const deleteQuery = 'DELETE FROM creator WHERE id = ?';
+
+    db.query(deleteQuery, [creatorId], (err, deleteResult) => {
+      if (err) {
+        return res.status(500).json({ message: 'Failed to delete creator', error: err });
+      }
+
+      return res.status(200).json({
+        message: 'Creator deleted successfully',
+        creatorId,
+      });
+    });
+  });
+};
+
 module.exports = {
   createCreator,
   getCreators,
   getPodcastByCreatorId,
   getTopPodcastCreator,
+  getCreatorById,
+  deleteCreator, 
 };
 
 

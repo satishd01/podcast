@@ -11,7 +11,6 @@ import {
   userSliderHandler,
 } from "../../utils/constants";
 
-import topCreators from "../../utils/json/topCreators.json";
 import { useNavigate } from "react-router-dom";
 
 const AllTopCreators = () => {
@@ -23,6 +22,7 @@ const AllTopCreators = () => {
   const navigate = useNavigate();
 
   const isUserViewOpen = useSelector((state) => state.slider.isSliderOpen);
+  const topCreators = useSelector((state) => state.topCreators.topCreators);
 
   useEffect(() => {
     resizeHandler(dispatch, toggleSlider);

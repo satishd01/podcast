@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 import { useDispatch, useSelector } from "react-redux";
@@ -18,18 +18,23 @@ import {
 import podcasts from "../../utils/json/podcasts.json";
 import creators from "../../utils/json/topCreators.json";
 import CreatorData from "./../../components/SingleCreator/CreatorData/CreatorData";
+import { fetchCreatorById } from "../../apis/fetchCreatorById";
 
 const SingleCreator = () => {
+  const [creator, setCreator] = useState(null);
+  const params = useParams();
+
+  const isUserViewOpen = useSelector((state) => state.slider.isSliderOpen);
+
+  const dispatch = useDispatch();
+
   useEffect(() => {
     scrollToTop();
   }, []);
 
-  const params = useParams();
-
-  const creator = creators.find((creat) => creat.id == params.creatorId);
-  const isUserViewOpen = useSelector((state) => state.slider.isSliderOpen);
-
-  const dispatch = useDispatch();
+  useEffect(() => {
+    fetchCreatorById(params?.creatorId, setCreator);
+  }, [params?.creatorId]);
 
   useEffect(() => {
     resizeHandler(dispatch, toggleSlider);
@@ -54,7 +59,7 @@ const SingleCreator = () => {
             <div className="col-span-12 md:col-span-7">
               <CreatorInfo creator={creator} />
 
-              <CreatorData podcasts={podcasts} />
+              <CreatorData creator={creator} />
             </div>
           </div>
           <div>

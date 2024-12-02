@@ -1,24 +1,16 @@
 import React from "react";
-import { GoClockFill } from "react-icons/go";
-import { IoPlay } from "react-icons/io5";
-import { IoMdShare } from "react-icons/io";
-import { IoArrowDownCircleSharp } from "react-icons/io5";
 import { AiFillPlusCircle } from "react-icons/ai";
-import { useDispatch } from "react-redux";
-import { setActivePlayer } from "../../../app/slices/activePlayerSlice";
+import { GoClockFill } from "react-icons/go";
+import { IoMdShare } from "react-icons/io";
+import { IoArrowDownCircleSharp, IoPlay } from "react-icons/io5";
 
 const SuggestionCard = ({ podcast }) => {
-  const dispatch = useDispatch();
-
-  const handlePlayer = () => {
-    dispatch(setActivePlayer(podcast));
-  };
   return (
     <div className="grid grid-cols-12 gap-4 items-center  rounded-lg mb-4">
       <div className="flex items-center gap-2 col-span-6">
         <img
           alt={podcast.name}
-          src={podcast.imageUrl}
+          src={podcast.image}
           className="rounded-lg w-12 h-12 sm:w-16 sm:h-16"
         />
         <div className="text-xs sm:text-sm text-white">
@@ -38,9 +30,7 @@ const SuggestionCard = ({ podcast }) => {
       </div>
 
       <div className="flex justify-end col-span-3">
-        <div
-          className=" inline-block p-2 rounded-full  items-center justify-center bg-white cursor-pointer"
-          onClick={handlePlayer}>
+        <div className=" inline-block p-2 rounded-full  items-center justify-center bg-white cursor-pointer">
           <IoPlay className="text-[#FF0000]" />
         </div>
       </div>

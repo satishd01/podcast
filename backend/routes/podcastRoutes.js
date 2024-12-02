@@ -15,6 +15,7 @@ router.post('/authors', podcastController.createAuthor);
 router.post('/episodes', podcastController.createEpisode);
 router.get('/podcasts/:podcastId/episodes', podcastController.getEpisodesByPodcast);
 router.delete('/episodes/:id', podcastController.deleteEpisode);
+router.delete('/podcast/:id', podcastController.deletePodcastById);
 
 
 
