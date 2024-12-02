@@ -246,13 +246,6 @@ app.use('/api/follow', followRoutes);
 app.use('/api/genre',verifyToken, genreRoutes);
 app.use('/api/playlist',verifyToken, playlistRoutes);
 
-
-
-
-
-
-
-// Start the server
 server.listen(8081, () => {
     console.log('Server is running on port 8081');
 });
