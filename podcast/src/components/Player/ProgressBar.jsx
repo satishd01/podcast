@@ -31,7 +31,7 @@ const ProgressBar = ({ duration, currentTime, onSeek }) => {
           marginTop: "0px",
           borderRadius: "100%",
           boxShadow: "none",
-          zIndex: "10",
+          zIndex: "-10",
         }}
       />
       <div className="flex justify-between text-xs text-gray-500">
