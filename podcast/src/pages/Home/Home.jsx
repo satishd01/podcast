@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import GenresPage from "../GenresPage/GenresPage";
 import Navbar from "../../components/Navbar/Navbar";
 import SliderDiv from "../../components/SliderDiv/SliderDiv";
@@ -13,15 +13,23 @@ import {
 } from "../../utils/constants";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleSlider } from "../../app/slices/sliderSlice";
+import { fetchTopPodcastCreators } from "./../../apis/fetchTopPodcastCreators";
+import { fetchPodcasts } from "./../../apis/fetchPodcasts";
 
 const Home = () => {
-  useEffect(() => {
-    scrollToTop();
-  }, []);
+  const [podcasts, setPodcasts] = useState([]);
+
+  const [topCreators, setTopCreators] = useState([]);
 
   const isUserViewOpen = useSelector((state) => state.slider.isSliderOpen);
 
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    scrollToTop();
+    fetchTopPodcastCreators(setTopCreators);
+    fetchPodcasts(setPodcasts);
+  }, []);
 
   useEffect(() => {
     resizeHandler(dispatch, toggleSlider);
@@ -41,10 +49,18 @@ const Home = () => {
           className={`${
             isUserViewOpen ? "md:col-span-10" : "md:col-span-12"
           } col-span-12 text-white bg-black relative h-auto px-4 md:px-10 py-10`}>
-          <TopCreators text={"Top Podcast Creators"} />
+          <TopCreators
+            text={"Top Podcast Creators"}
+            data={topCreators}
+            page="creator"
+          />
           <TopCreators text={"Top Stories Creators"} />
           <TopCreators text={"Top Audio Book Creators"} />
-          <LatestShows text={"Latest Podcasts"} />
+          <LatestShows
+            text={"Latest Podcasts"}
+            data={podcasts}
+            page="podcast"
+          />
           <LatestShows text={"Latest Stories"} />
           <LatestShows text={"Latest Audio Books"} />
           <PodcastList text={"Podcasts"} />

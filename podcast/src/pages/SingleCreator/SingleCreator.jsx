@@ -23,17 +23,18 @@ const SingleCreator = () => {
   const [creator, setCreator] = useState(null);
 
   const [podcasts, setPodcasts] = useState([]);
+  const [topCreators, setTopCreators] = useState([]);
 
   const location = useLocation();
   const isUserViewOpen = useSelector((state) => state.slider.isSliderOpen);
-  const topCreators = useSelector((state) => state.topCreators.topCreators);
 
   const dispatch = useDispatch();
 
   useEffect(() => {
     scrollToTop();
     fetchPodcasts(setPodcasts);
-    fetchTopPodcastCreators(dispatch);
+      fetchTopPodcastCreators(setTopCreators);
+
   }, []);
 
   useEffect(() => {

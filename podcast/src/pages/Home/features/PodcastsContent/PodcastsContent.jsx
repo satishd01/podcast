@@ -17,6 +17,7 @@ import {
 
 const PodcastsContent = () => {
   const [podcasts, setPodcasts] = useState([]);
+  const [topCreators, setTopCreators] = useState([]);
 
   const isUserViewOpen = useSelector((state) => state.slider.isSliderOpen);
 
@@ -24,11 +25,9 @@ const PodcastsContent = () => {
 
   useEffect(() => {
     scrollToTop();
-    fetchTopPodcastCreators(dispatch);
+    fetchTopPodcastCreators(setTopCreators);
     fetchPodcasts(setPodcasts);
   }, []);
-
-  const topCreators = useSelector((state) => state.topCreators.topCreators);
 
   useEffect(() => {
     resizeHandler(dispatch, toggleSlider);

@@ -15,15 +15,16 @@ import { useNavigate } from "react-router-dom";
 import { fetchTopPodcastCreators } from "../../apis/fetchTopPodcastCreators";
 
 const AllTopCreators = () => {
+  const [topCreators, setTopCreators] = useState([]);
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const isUserViewOpen = useSelector((state) => state.slider.isSliderOpen);
-  const topCreators = useSelector((state) => state.topCreators.topCreators);
 
   useEffect(() => {
     scrollToTop();
-    fetchTopPodcastCreators(dispatch);
+    fetchTopPodcastCreators(setTopCreators);
   }, []);
 
   useEffect(() => {

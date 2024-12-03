@@ -1,7 +1,7 @@
 import { setTopCreators } from "../app/slices/topCreatorsSlice";
 import { fetchToken } from "./fetchToken";
 
-export const fetchTopPodcastCreators = async (dispatch) => {
+export const fetchTopPodcastCreators = async (setTopCreators) => {
   try {
     const token = await fetchToken();
 
@@ -20,7 +20,7 @@ export const fetchTopPodcastCreators = async (dispatch) => {
 
     const data = await res.json();
     if (data?.creators?.length > 0) {
-      dispatch(setTopCreators(data.creators));
+      setTopCreators(data.creators);
     }
   } catch (error) {
     console.log(`failed to fetch top creators`);
