@@ -28,7 +28,7 @@ const SuggestionCard = ({ data }) => {
           className="rounded-lg w-12 h-12 sm:w-16 sm:h-16"
         />
         <div className="text-xs sm:text-sm text-white">
-          <p className="font-semibold whitespace-nowrap">{data.name}</p>
+          <p className="font-semibold whitespace-nowrap">{data.title}</p>
           <p className="text-gray-300 whitespace-nowrap">{`Season ${data.season}`}</p>
           <div className="flex items-center gap-1 text-gray-400">
             <GoClockFill />

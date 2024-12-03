@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleSlider } from "../../app/slices/sliderSlice";
 import Footer from "../../components/Footer/Footer";
@@ -10,17 +10,19 @@ import {
   userSliderHandler,
 } from "../../utils/constants";
 
+import { fetchPodcasts } from "../../apis/fetchPodcasts";
 import ShowCard from "../../components/Podcasts/LatestShows/ShowCard";
-import podcasts from "../../utils/json/podcasts.json";
 
 const AllLatestShows = () => {
-  useEffect(() => {
-    scrollToTop();
-  }, []);
+  const [latestShows, setLatestShows] = useState([]);
   const dispatch = useDispatch();
 
   const isUserViewOpen = useSelector((state) => state.slider.isSliderOpen);
 
+  useEffect(() => {
+    scrollToTop();
+    fetchPodcasts(setLatestShows);
+  }, []);
   useEffect(() => {
     resizeHandler(dispatch, toggleSlider);
   }, [dispatch]);
@@ -43,10 +45,10 @@ const AllLatestShows = () => {
             <p className="md:text-2xl text-xl">{"All Latest Shows"}</p>
           </div>
           <div className="my-5 flex flex-wrap  gap-4 md:gap-10 w-full ">
-            {podcasts &&
-              podcasts.map((show) => (
+            {latestShows &&
+              latestShows.map((show) => (
                 <div key={show.id} className="flex-shrink-0 pb-3">
-                  <ShowCard show={show} />
+                  <ShowCard show={show} page="podcast" />
                 </div>
               ))}
           </div>

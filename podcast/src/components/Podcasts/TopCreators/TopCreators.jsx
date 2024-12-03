@@ -15,39 +15,24 @@ const TopCreators = ({ isTwoRows, text, noSeeAll, data, page }) => {
         <p className="md:text-2xl text-xl">{text}</p>
         <p
           className="text-sm text-gray-400 cursor-pointer"
-          onClick={() => navigate(`/all-top-creators`)}>
+          onClick={() =>
+            navigate(
+              page === "podcast" ? "/all-latest-shows" : "/all-top-creators"
+            )
+          }>
           {noSeeAll ? "" : "See all"}
         </p>
       </div>
 
       <div className="my-5 overflow-x-auto flex space-x-4 w-full scrollbar-thin scrollbar-thumb-gray-400 scrollbar-hidden">
-        {firstRowCreators?.map((info) => (
-          <div
-            key={info.id}
-            className="flex-shrink-0 cursor-pointer"
-            onClick={() =>
-              navigate(
-                `/${page}/${info.id || info.podcast_id}`,
-                page === "podcast"
-                  ? { state: { podcast: info } }
-                  : { state: { creator: info } }
-              )
-            }>
-            <CreatorCard info={info} />
-          </div>
-        ))}
-      </div>
-
-      {isTwoRows && (
-        <div className="my-5 overflow-x-auto flex space-x-4 w-full scrollbar-thumb-gray-400 scrollbar-hidden">
-          {secondRowCreators?.map((info) => (
+        {firstRowCreators &&
+          firstRowCreators?.map((info) => (
             <div
               key={info.id || info.podcast_id}
               className="flex-shrink-0 cursor-pointer"
               onClick={() =>
                 navigate(
                   `/${page}/${info.id || info.podcast_id}`,
-
                   page === "podcast"
                     ? { state: { podcast: info } }
                     : { state: { creator: info } }
@@ -56,6 +41,27 @@ const TopCreators = ({ isTwoRows, text, noSeeAll, data, page }) => {
               <CreatorCard info={info} />
             </div>
           ))}
+      </div>
+
+      {isTwoRows && (
+        <div className="my-5 overflow-x-auto flex space-x-4 w-full scrollbar-thumb-gray-400 scrollbar-hidden">
+          {secondRowCreators &&
+            secondRowCreators?.map((info) => (
+              <div
+                key={info.id || info.podcast_id}
+                className="flex-shrink-0 cursor-pointer"
+                onClick={() =>
+                  navigate(
+                    `/${page}/${info.id || info.podcast_id}`,
+
+                    page === "podcast"
+                      ? { state: { podcast: info } }
+                      : { state: { creator: info } }
+                  )
+                }>
+                <CreatorCard info={info} />
+              </div>
+            ))}
         </div>
       )}
     </>

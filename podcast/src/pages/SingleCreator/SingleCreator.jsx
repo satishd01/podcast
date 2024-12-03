@@ -16,16 +16,24 @@ import {
   userSliderHandler,
 } from "../../utils/constants";
 import CreatorData from "./../../components/SingleCreator/CreatorData/CreatorData";
+import { fetchPodcasts } from "./../../apis/fetchPodcasts";
+import { fetchTopPodcastCreators } from "./../../apis/fetchTopPodcastCreators";
 
 const SingleCreator = () => {
   const [creator, setCreator] = useState(null);
+
+  const [podcasts, setPodcasts] = useState([]);
+
   const location = useLocation();
   const isUserViewOpen = useSelector((state) => state.slider.isSliderOpen);
+  const topCreators = useSelector((state) => state.topCreators.topCreators);
 
   const dispatch = useDispatch();
 
   useEffect(() => {
     scrollToTop();
+    fetchPodcasts(setPodcasts);
+    fetchTopPodcastCreators(dispatch);
   }, []);
 
   useEffect(() => {
@@ -60,10 +68,20 @@ const SingleCreator = () => {
               </div>
             </div>
             <div>
-              <LatestShows text={"Recommended Creators"} isTwoRows={true} />
+              <LatestShows
+                text={"Recommended Creators"}
+                isTwoRows={true}
+                data={topCreators}
+                page="creator"
+              />
             </div>
             <div>
-              <TopCreators text={"Recommended Podcast"} isTwoRows={true} />
+              <TopCreators
+                text={"Recommended Podcast"}
+                isTwoRows={true}
+                data={podcasts}
+                page="podcast"
+              />
             </div>
             <Footer />
           </div>

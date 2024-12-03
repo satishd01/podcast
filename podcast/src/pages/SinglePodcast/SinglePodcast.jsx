@@ -72,8 +72,16 @@ const SinglePodcast = () => {
               />
             </div>
             <div>
-              <LatestShows text={"Latest Shows"} />
-              <LatestShows text={"Latest Shows"} />
+              <LatestShows
+                text={"Latest Shows"}
+                data={podcasts}
+                page="podcast"
+              />
+              <LatestShows
+                text={"Latest Shows"}
+                data={podcasts}
+                page="podcast"
+              />
             </div>
             <Footer />
           </div>

@@ -3,11 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const activePlayerSlice = createSlice({
   name: "activePlayer",
   initialState: {
-    activePlayer: {
-      name: "Podcast 1",
-      audioUrl: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3",
-      imageUrl: "https://placehold.co/50",
-    },
+    activePlayer: null,
     playNext: [
       {
         id: "1",

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleSlider } from "../../app/slices/sliderSlice";
 import Footer from "../../components/Footer/Footer";
@@ -12,17 +12,19 @@ import {
 } from "../../utils/constants";
 
 import { useNavigate } from "react-router-dom";
+import { fetchTopPodcastCreators } from "../../apis/fetchTopPodcastCreators";
 
 const AllTopCreators = () => {
-  useEffect(() => {
-    scrollToTop();
-  }, []);
-
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const isUserViewOpen = useSelector((state) => state.slider.isSliderOpen);
   const topCreators = useSelector((state) => state.topCreators.topCreators);
+
+  useEffect(() => {
+    scrollToTop();
+    fetchTopPodcastCreators(dispatch);
+  }, []);
 
   useEffect(() => {
     resizeHandler(dispatch, toggleSlider);
@@ -46,14 +48,17 @@ const AllTopCreators = () => {
             <p className="md:text-2xl text-xl">{"All Top Creators"}</p>
           </div>
           <div className="my-5  flex flex-wrap gap-8 w-full ">
-            {topCreators.map((creator) => (
-              <div
-                key={creator.id}
-                className="flex-shrink-0 cursor-pointer"
-                onClick={() => navigate(`/creator/${creator.id}`)}>
-                <CreatorCard creator={creator} />
-              </div>
-            ))}
+            {topCreators &&
+              topCreators.map((creator) => (
+                <div
+                  key={creator.id}
+                  className="flex-shrink-0 cursor-pointer"
+                  onClick={() =>
+                    navigate(`/creator/${creator.id}`, { state: { creator } })
+                  }>
+                  <CreatorCard info={creator} />
+                </div>
+              ))}
           </div>
 
           <Footer />

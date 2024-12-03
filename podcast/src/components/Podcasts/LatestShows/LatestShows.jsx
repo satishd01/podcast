@@ -1,14 +1,13 @@
 import React from "react";
-import shows from "../../../utils/json/podcasts.json";
-import ShowCard from "./ShowCard";
 import { useNavigate } from "react-router-dom";
+import ShowCard from "./ShowCard";
 
-const LatestShows = ({ isTwoRows = false, text }) => {
+const LatestShows = ({ isTwoRows = false, text, data, page }) => {
   const navigate = useNavigate();
 
-  const rowCount = isTwoRows ? Math.ceil(shows.length / 2) : shows.length;
-  const firstRowShows = shows?.slice(0, rowCount);
-  const secondRowShows = shows?.slice(rowCount);
+  const rowCount = isTwoRows ? Math.ceil(data?.length / 2) : data?.length;
+  const firstRowShows = data?.slice(0, rowCount);
+  const secondRowShows = data?.slice(rowCount);
 
   return (
     <>
@@ -16,7 +15,11 @@ const LatestShows = ({ isTwoRows = false, text }) => {
         <p className="md:text-2xl text-xl">{text}</p>
         <p
           className="text-sm text-gray-400 cursor-pointer "
-          onClick={() => navigate("/all-latest-shows")}>
+          onClick={() =>
+            navigate(
+              page === "podcast" ? "/all-latest-shows" : "/all-top-creators"
+            )
+          }>
           See all
         </p>
       </div>
@@ -24,8 +27,10 @@ const LatestShows = ({ isTwoRows = false, text }) => {
       <div className="my-5 overflow-x-auto flex space-x-4 w-full scrollbar-thin scrollbar-thumb-gray-400">
         {firstRowShows &&
           firstRowShows.map((show) => (
-            <div key={show.id} className="flex-shrink-0 pb-3">
-              <ShowCard show={show} />
+            <div
+              key={show.id || show.podcast_id}
+              className="flex-shrink-0 pb-3">
+              <ShowCard show={show} page={page} />
             </div>
           ))}
       </div>
@@ -34,8 +39,10 @@ const LatestShows = ({ isTwoRows = false, text }) => {
         <div className="my-5 overflow-x-auto flex space-x-4 w-full scrollbar-thin scrollbar-thumb-gray-400">
           {secondRowShows &&
             secondRowShows.map((show) => (
-              <div key={show.id} className="flex-shrink-0 pb-3">
-                <ShowCard show={show} />
+              <div
+                key={show.id || show.podcast_id}
+                className="flex-shrink-0 pb-3">
+                <ShowCard show={show} page={page} />
               </div>
             ))}
         </div>

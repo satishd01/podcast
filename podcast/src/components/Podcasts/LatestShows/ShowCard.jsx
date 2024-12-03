@@ -3,24 +3,31 @@ import { FaHeart } from "react-icons/fa";
 import { IoPlay } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
 
-const ShowCard = ({ show }) => {
+const ShowCard = ({ show, page }) => {
   const navigate = useNavigate();
   return (
     <>
       <div
         className="relative shadow-lg hover:shadow-xl transform hover:scale-90 transition duration-300 ease-in-out cursor-pointer"
-        onClick={() => navigate(`/podcast/${show._id}`)}>
+        onClick={() =>
+          navigate(
+            `/podcast/${show?.id || show?.podcast_id}`,
+            page === "podcast"
+              ? { state: { podcast: show } }
+              : { state: { creator: show } }
+          )
+        }>
         <FaHeart className="absolute right-3 top-3 text-[#FF0000]" />
         <img
-          alt={show.studio}
-          src={show.imageUrl}
+          alt={show?.studio || show?.creator_name}
+          src={show?.image}
           className="md:w-72 md:h-72 h-56 w-56 rounded-xl object-cover"
         />
         <div className="flex justify-center px-3">
           <div className=" md:w-64   w-56  absolute bottom-4 bg-[#2D272773] px-4 py-3 flex items-center justify-between rounded-md opacity-70">
             <div>
-              <p>{show.studio}</p>
-              <p className="text-xs">{show.genre}</p>
+              <p>{show?.creator_name}</p>
+              <p className="text-xs">{show?.genre}</p>
             </div>
             <div className="md:p-3 p-2 rounded-full bg-white">
               <IoPlay className="text-[#FF0000]" />
