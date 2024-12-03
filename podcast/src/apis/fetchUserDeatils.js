@@ -1,18 +1,20 @@
 import toast from "react-hot-toast";
 import { fetchToken } from "./fetchToken";
 
-export const login = async (navigate, user) => {
+export const login = async (navigate, email, setUser) => {
   try {
     const token = await fetchToken();
 
-    const res = await fetch("http://localhost:8081/api/auth/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-      body: JSON.stringify(user),
-    });
+    const res = await fetch(
+      `http://localhost:8081/api/userinfo/email/${email}`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
 
     if (!res.ok) {
       throw new Error(`Server error: ${res.status}`);
@@ -22,14 +24,13 @@ export const login = async (navigate, user) => {
     console.log(data);
     if (data?.user?.email) {
       localStorage.setItem("user", JSON.stringify(data.user));
-      localStorage.setItem("token", JSON.stringify(data.token));
+     
       navigate("/");
     } else {
-      throw new Error(data.message || "Login failed");
+      throw new Error(data.message || "failed to get details");
     }
   } catch (error) {
-    toast.error("Invalid Details");
-    console.error(`Failed to login`);
+    console.error(`Failed to get details`);
     toast.error(error.message || "Something went wrong, please try again.");
   }
 };

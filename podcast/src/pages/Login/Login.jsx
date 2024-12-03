@@ -25,7 +25,9 @@ const Login = () => {
 
     toast.loading("Logging in...");
     await login(navigate, { name, email, password });
-    toast.dismiss();
+    setInterval(() => {
+      toast.dismiss();
+    }, 1000);
   };
 
   return (

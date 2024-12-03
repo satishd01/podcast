@@ -11,7 +11,7 @@ const ShowCard = ({ show, page }) => {
         className="relative shadow-lg hover:shadow-xl transform hover:scale-90 transition duration-300 ease-in-out cursor-pointer"
         onClick={() =>
           navigate(
-            `/podcast/${show?.id || show?.podcast_id}`,
+            `/${page}/${show?.id || show?.podcast_id}`,
             page === "podcast"
               ? { state: { podcast: show } }
               : { state: { creator: show } }

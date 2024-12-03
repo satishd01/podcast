@@ -84,26 +84,32 @@ const App = () => {
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
 
-          {/* <Route element={<ProtectedRoutes />}> */}
-          <Route path="/" element={<Home />} />
-          <Route path="/search" element={<Search />} />
-          <Route path="/genres" element={<GenresPage />} />
-          <Route path="/podcasts" element={<PodcastsContent />} />
-          <Route path="/stories" element={<StoriesContent />} />
-          <Route path="/audio-book" element={<AudioBooksContent />} />
-          <Route path="/library" element={<Library />} />
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/all-top-creators" element={<AllTopCreators />} />
-          <Route path="/all-latest-shows" element={<AllLatestShows />} />
-          <Route path="/listening-history" element={<ListeningHistory />} />
-          <Route path="/downloaded-podcasts" element={<DownloadedPodcasts />} />
-          <Route path="/your-playlist" element={<MyPlaylist />} />
-          <Route path="/your-playlist/:playlist" element={<SinglePlaylist />} />
-          <Route path="/liked-podcasts" element={<LikedPodcasts />} />
-          <Route path="/subscription" element={<Subscription />} />
-          <Route path="/podcast/:podId" element={<SinglePodcast />} />
-          <Route path="/creator/:creatorId" element={<SingleCreator />} />
-          {/* </Route> */}
+          <Route element={<ProtectedRoutes />}>
+            <Route path="/" element={<Home />} />
+            <Route path="/search" element={<Search />} />
+            <Route path="/genres" element={<GenresPage />} />
+            <Route path="/podcasts" element={<PodcastsContent />} />
+            <Route path="/stories" element={<StoriesContent />} />
+            <Route path="/audio-book" element={<AudioBooksContent />} />
+            <Route path="/library" element={<Library />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/all-top-creators" element={<AllTopCreators />} />
+            <Route path="/all-latest-shows" element={<AllLatestShows />} />
+            <Route path="/listening-history" element={<ListeningHistory />} />
+            <Route
+              path="/downloaded-podcasts"
+              element={<DownloadedPodcasts />}
+            />
+            <Route path="/your-playlist" element={<MyPlaylist />} />
+            <Route
+              path="/your-playlist/:playlist"
+              element={<SinglePlaylist />}
+            />
+            <Route path="/liked-podcasts" element={<LikedPodcasts />} />
+            <Route path="/subscription" element={<Subscription />} />
+            <Route path="/podcast/:podId" element={<SinglePodcast />} />
+            <Route path="/creator/:creatorId" element={<SingleCreator />} />
+          </Route>
         </Routes>
       </Suspense>
       {activePlayer?.name &&

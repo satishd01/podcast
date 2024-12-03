@@ -34,7 +34,9 @@ const SignUp = () => {
       password,
       confirm_password: confirmPassword,
     });
-    toast.dismiss();
+    setInterval(() => {
+      toast.dismiss();
+    }, 1000);
   };
 
   return (

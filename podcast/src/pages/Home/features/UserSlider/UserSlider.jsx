@@ -5,12 +5,19 @@ import { useDispatch } from "react-redux";
 import { toggleAddContent } from "../../../../app/slices/addContentSlice";
 import SmallUserCard from "../../../../components/UserSlider/SmallUserCard";
 import UserFeaturesNav from "../../../../components/UserSlider/UserFeaturesNav";
+import { logout } from "../../../../apis/logout";
+import { useNavigate } from "react-router-dom";
 
 const UserSlider = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const formOpenHandler = () => {
     dispatch(toggleAddContent(true));
+  };
+
+  const logoutHandler = async () => {
+    await logout(navigate);
   };
 
   return (
@@ -27,7 +34,9 @@ const UserSlider = () => {
         </div>
         <UserFeaturesNav />
         <div className=" md:mt-20 mt-10  text-center flex justify-center items-center">
-          <div className="flex items-center gap-2 border border-white px-4 py-1 rounded-md cursor-pointer hover:bg-gray-200 hover:text-black">
+          <div
+            className="flex items-center gap-2 border border-white px-4 py-1 rounded-md cursor-pointer hover:bg-gray-200 hover:text-black"
+            onClick={logoutHandler}>
             <IoLogOut className="text-xl" />
             <p>Logout</p>
           </div>

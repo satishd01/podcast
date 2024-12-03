@@ -4,42 +4,9 @@ const activePlayerSlice = createSlice({
   name: "activePlayer",
   initialState: {
     activePlayer: null,
-    playNext: [
-      {
-        id: "1",
-        name: "Podcast 2",
-        episode: "1",
-        audioUrl:
-          "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-4.mp3",
-        imageUrl: "https://placehold.co/50",
-      },
-      {
-        id: "4",
-        name: "Podcast 5",
-        episode: "1",
-        audioUrl:
-          "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-4.mp3",
-        imageUrl: "https://placehold.co/50",
-      },
-      {
-        id: "2",
-        name: "Podcast 3",
-        episode: "1",
-        audioUrl:
-          "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-4.mp3",
-        imageUrl: "https://placehold.co/50",
-      },
-      {
-        id: "3",
-        name: "Podcast 4",
-        episode: "1",
-        audioUrl:
-          "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-4.mp3",
-        imageUrl: "https://placehold.co/50",
-      },
-    ],
+    playNext: [],
     history: [],
-    playMode: 0, // 0 - repeat, 1 - shuffle, 2 - repeat once
+    playMode: 0,
   },
   reducers: {
     setActivePlayer: (state, action) => {
