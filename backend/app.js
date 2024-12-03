@@ -136,7 +136,7 @@ const io = socketIo(server);
 app.use(express.json());
 
 const corsOptions = {
-  origin: "http://localhost:5173",
+  origin: ["http://localhost:5173", "https://podcaster-v1.vercel.app"],
   credentials: true,
 };
 app.use(cors(corsOptions));
