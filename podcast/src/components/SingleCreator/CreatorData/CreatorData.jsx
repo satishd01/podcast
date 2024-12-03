@@ -10,6 +10,7 @@ const CreatorData = ({ creator }) => {
   useEffect(() => {
     fetchPodcastsByCreatorId(creator?.id, setPodcasts);
   }, [creator?.id]);
+
   return (
     <div className="w-full">
       <div className="my-5">
@@ -17,10 +18,14 @@ const CreatorData = ({ creator }) => {
         {podcasts?.length > 0 ? (
           podcasts.slice(0, 4).map((pod) => (
             <div
-              key={pod._id}
-              onClick={() => navigate(`/podcast/${pod._id}`)}
+              key={pod.podcast_id}
+              onClick={() =>
+                navigate(`/podcast/${pod.podcast_id}`, {
+                  state: { podcast: pod },
+                })
+              }
               className="cursor-pointer">
-              <SuggestionCard podcast={pod} />
+              <SuggestionCard data={pod} page="podcast" />
             </div>
           ))
         ) : (

@@ -18,22 +18,23 @@ const SuggestionCard = ({ data }) => {
   const playerHandler = () => {
     dispatch(setActivePlayer(data));
   };
-
   return (
     <div className="grid grid-cols-12 gap-4 items-center  rounded-lg mb-4">
       <div className="flex items-center gap-2 col-span-6">
         <img
-          alt={data.name}
-          src={data.image}
+          alt={data?.name || data?.creator_name}
+          src={data?.image}
           className="rounded-lg w-12 h-12 sm:w-16 sm:h-16"
         />
         <div className="text-xs sm:text-sm text-white">
-          <p className="font-semibold whitespace-nowrap">{data.title}</p>
-          <p className="text-gray-300 whitespace-nowrap">{`Season ${data.season}`}</p>
+          <p className="font-semibold whitespace-nowrap">
+            {data?.title || data?.show_title}
+          </p>
+          <p className="text-gray-300 whitespace-nowrap">{`Season ${data?.season}`}</p>
           <div className="flex items-center gap-1 text-gray-400">
             <GoClockFill />
             <p className="whitespace-nowrap">{`${convertSecondsToMinutes(
-              data.duration
+              data?.duration && data?.duration
             )} min`}</p>
           </div>
         </div>

@@ -126,7 +126,6 @@ const genreRoutes = require("./routes/genreRoutes");
 const playlistRoutes = require("./routes/playlistRoutes");
 const storyRoutes = require("./routes/storyRoutes");
 const cors = require("cors");
-const { credential } = require("firebase-admin");
 
 const app = express();
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
