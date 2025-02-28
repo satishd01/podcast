@@ -1,15 +1,15 @@
-
-
 import React, { useEffect, useState } from "react";
 import SuggestionCard from "../../Search/Suggestions/SuggestionCard";
-import { fetchPodcastEpisodes } from "../../../apis/fetchPodcastEpisodes";
+import { fetchStoryEpisodes } from "../../../apis/fetchstoryepisode";
 
-const PodcastData = ({ podcast }) => {
+const StoryData = ({ story }) => {
   const [episodes, setEpisodes] = useState([]);
 
   useEffect(() => {
-    fetchPodcastEpisodes(podcast.id, setEpisodes);
-  }, [podcast?.podcast_id]);
+    if (story?.id) {
+      fetchStoryEpisodes(story.id, setEpisodes);
+    }
+  }, [story?.id]);
 
   return (
     <div className="w-full">
@@ -20,11 +20,11 @@ const PodcastData = ({ podcast }) => {
       </div>
 
       <div className="my-5">
-        <p className="text-xl mb-4">Podcast</p>
+        <p className="text-xl mb-4">Story Episodes</p>
         {episodes?.length > 0 ? (
-          episodes.slice(0, 4).map((pod) => (
-            <div key={pod.id || pod.podcast_id}>
-              <SuggestionCard data={pod} />
+          episodes.slice(0, 4).map((episode) => (
+            <div key={episode.id || episode.episode_id}>
+              <SuggestionCard data={episode} />
             </div>
           ))
         ) : (
@@ -35,4 +35,4 @@ const PodcastData = ({ podcast }) => {
   );
 };
 
-export default PodcastData;
+export default StoryData;

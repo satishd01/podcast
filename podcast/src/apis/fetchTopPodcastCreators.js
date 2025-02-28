@@ -6,7 +6,7 @@ export const fetchTopPodcastCreators = async (setTopCreators) => {
     const token = await fetchToken();
 
     const res = await fetch(
-      "http://localhost:8081/api/creators/top-podcast-creators",
+      "https://audiobook.shellcode.cloud/api/admin/creator/top-podcast-creators",
       {
         headers: {
           "Content-Type": "application/json",

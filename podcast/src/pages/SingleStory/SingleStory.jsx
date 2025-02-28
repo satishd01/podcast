@@ -1,39 +1,35 @@
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
-
 import { useDispatch, useSelector } from "react-redux";
 import { toggleSlider } from "../../app/slices/sliderSlice";
 import Footer from "../../components/Footer/Footer";
 import Navbar from "../../components/Navbar/Navbar";
 import LatestShows from "../../components/Podcasts/LatestShows/LatestShows";
 import TopCreators from "../../components/Podcasts/TopCreators/TopCreators";
-import PodcastData from "../../components/SinglePodcast/PodcastData/PodcastData";
-import PodcastImage from "../../components/SinglePodcast/PodcastImage/PodcastImage";
-import PodcastInfo from "../../components/SinglePodcast/PodcastInfo/PodcastInfo";
+import StoryData from "../../components/SingleStory/StoryData/StoryData";
+import StoryImage from "../../components/SingleStory/StoryImage/StoryImage";
+import StoryInfo from "../../components/SingleStory/StoryInfo/Storyinfo";
 import SliderDiv from "../../components/SliderDiv/SliderDiv";
 import {
   resizeHandler,
   scrollToTop,
   userSliderHandler,
 } from "../../utils/constants";
-import { fetchPodcasts } from "../../apis/fetchPodcasts";
+import { fetchStories } from "../../apis/FetchStories";
 
-const SinglePodcast = () => {
-  const [podcast, setPodcast] = useState(null);
-  const [podcasts, setPodcasts] = useState(null);
-  console.log(podcast,"podcast");
+const SingleStory = () => {
+  const [story, setStory] = useState(null);
+  const [stories, setStories] = useState(null);
+  console.log(story, "story");
+
   const isUserViewOpen = useSelector((state) => state.slider.isSliderOpen);
-
   const dispatch = useDispatch();
-
   const location = useLocation();
 
   useEffect(() => {
-    setPodcast(location.state.podcast);
-    fetchPodcasts(setPodcasts);
-  }, [location.state.podcast]);
-
-
+    setStory(location.state.story);
+    fetchStories(setStories);
+  }, [location.state.story]);
 
   useEffect(() => {
     scrollToTop();
@@ -48,7 +44,7 @@ const SinglePodcast = () => {
   }, [isUserViewOpen, dispatch]);
 
   return (
-    podcast && (
+    story && (
       <div>
         <Navbar />
         <div className="grid grid-cols-12">
@@ -59,31 +55,25 @@ const SinglePodcast = () => {
               isUserViewOpen ? "md:col-span-10" : "md:col-span-12"
             } col-span-12 text-white bg-black relative h-auto px-4 md:px-5 py-10`}>
             <div className="grid grid-cols-12 md:px-5 md:gap-10 gap-3">
-              <PodcastImage podcast={podcast} />
+              <StoryImage story={story} />
               <div className="col-span-12 md:col-span-7">
-                <PodcastInfo podcast={podcast} />
-
-                <PodcastData podcast={podcast} />
+                <StoryInfo story={story} />
+                <StoryData story={story} />
               </div>
             </div>
             <div className="px-4">
               <TopCreators
-                text={"Recommended Podcast"}
+                text={"Recommended Stories"}
                 isTwoRows={true}
-                data={podcasts}
-                page="podcast"
+                data={stories}
+                page="story"
               />
             </div>
             <div>
               <LatestShows
                 text={"Latest Shows"}
-                data={podcasts}
-                page="podcast"
-              />
-              <LatestShows
-                text={"Latest Shows"}
-                data={podcasts}
-                page="podcast"
+                data={stories}
+                page="story"
               />
             </div>
             <Footer />
@@ -94,4 +84,4 @@ const SinglePodcast = () => {
   );
 };
 
-export default SinglePodcast;
+export default SingleStory;

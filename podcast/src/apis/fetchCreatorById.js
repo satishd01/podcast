@@ -5,7 +5,7 @@ export const fetchCreatorById = async (id, setCreator) => {
     const token = await fetchToken();
 
     const res = await fetch(
-      `http://localhost:8081/api/creators/creators/${id}`,
+      `https://audiobook.shellcode.cloud/api/creators/creators/${id}`,
       {
         headers: {
           "Content-Type": "application/json",

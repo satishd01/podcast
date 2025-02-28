@@ -2,11 +2,11 @@
 
 import { fetchToken } from "./fetchToken";
 
-export const fetchPodcastEpisodes = async (id, setEpisodes) => {
+export const fetchStoryEpisodes = async (id, setEpisodes) => {
   try {
     const token = await fetchToken();
 
-    const res = await fetch(`https://audiobook.shellcode.cloud/api/user/podcasts/${id}/episodes`, {
+    const res = await fetch(`https://audiobook.shellcode.cloud/api/user/stories/${id}/episodes`, {
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,

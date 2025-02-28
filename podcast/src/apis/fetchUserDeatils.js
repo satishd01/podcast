@@ -6,7 +6,7 @@ export const login = async (navigate, email, setUser) => {
     const token = await fetchToken();
 
     const res = await fetch(
-      `http://localhost:8081/api/userinfo/email/${email}`,
+      `https://audiobook.shellcode.cloud/api/userinfo/email/${email}`,
       {
         method: "GET",
         headers: {

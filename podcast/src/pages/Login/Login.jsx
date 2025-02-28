@@ -1,18 +1,16 @@
 import React, { useState } from "react";
 import toast from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
-import { login } from "../../apis/login";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [name, setName] = useState("");
 
   const navigate = useNavigate();
 
   const validateInputs = () => {
-    if (!name.trim() || !email.trim() || !password.trim()) {
-      toast.error("All fields are required!");
+    if (!email.trim() || !password.trim()) {
+      toast.error("Email and password are required!");
       return false;
     }
     return true;
@@ -24,10 +22,37 @@ const Login = () => {
     if (!validateInputs()) return;
 
     toast.loading("Logging in...");
-    await login(navigate, { name, email, password });
-    setInterval(() => {
+
+    try {
+      const response = await fetch("https://audiobook.shellcode.cloud/api/users/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email,
+          password,
+        }),
+      });
+
+      const data = await response.json();
+
+      console.log("API Response:", data); // Log the API response for debugging
+
+      if (response.ok) {
+        toast.success("Login successful!");
+        // Save the token in local storage
+        localStorage.setItem('token', data.token);
+        navigate("/profile"); // Navigate to the profile or another appropriate route
+      } else {
+        toast.error(data.message || "Failed to login");
+      }
+    } catch (error) {
+      console.error("API Request Error:", error); // Log any errors for debugging
+      toast.error("Network error or invalid API endpoint");
+    } finally {
       toast.dismiss();
-    }, 1000);
+    }
   };
 
   return (
@@ -37,19 +62,6 @@ const Login = () => {
           Login
         </h2>
         <form onSubmit={loginHandler}>
-          <div className="mb-4">
-            <label htmlFor="name" className="block text-gray-400 text-sm mb-2">
-              Name
-            </label>
-            <input
-              type="text"
-              id="name"
-              className="w-full px-4 py-2 rounded bg-[#151515] text-gray-200 outline-none focus:ring-2 focus:ring-gray-500"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              placeholder="Enter your name"
-            />
-          </div>
           <div className="mb-4">
             <label htmlFor="email" className="block text-gray-400 text-sm mb-2">
               Email

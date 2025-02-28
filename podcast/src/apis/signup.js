@@ -5,7 +5,7 @@ export const signup = async (navigate, user) => {
   try {
     const token = await fetchToken();
 
-    const res = await fetch("http://localhost:8081/api/signup", {
+    const res = await fetch("https://audiobook.shellcode.cloud/api/signup", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

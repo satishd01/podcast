@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import toast from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
-import { signup } from "../../apis/signup";
 
 const SignUp = () => {
   const [email, setEmail] = useState("");
@@ -16,6 +15,10 @@ const SignUp = () => {
       toast.error("All fields are required!");
       return false;
     }
+    if (password !== confirmPassword) {
+      toast.error("Passwords do not match");
+      return false;
+    }
     return true;
   };
 
@@ -23,20 +26,37 @@ const SignUp = () => {
     e.preventDefault();
 
     if (!validateInputs()) return;
-    if (password !== confirmPassword) {
-      toast.error("Password do not match");
-      return;
-    }
-    toast.loading("Signing in...");
-    await signup(navigate, {
-      name,
-      email,
-      password,
-      confirm_password: confirmPassword,
-    });
-    setInterval(() => {
+
+    toast.loading("Signing up...");
+
+    try {
+      const response = await fetch("https://audiobook.shellcode.cloud/api/users/signup", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name,
+          email,
+          password,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        toast.success(data.message || "Sign up successful!");
+        // Optionally, you can store the token in local storage or a context provider
+        // localStorage.setItem('token', data.token);
+        navigate("/login");
+      } else {
+        toast.error(data.message || "Failed to sign up");
+      }
+    } catch (error) {
+      toast.error("Network error or invalid API endpoint");
+    } finally {
       toast.dismiss();
-    }, 1000);
+    }
   };
 
   return (
@@ -45,7 +65,7 @@ const SignUp = () => {
         <h2 className="text-2xl font-bold text-gray-200 text-center mb-6">
           Sign Up
         </h2>
-        <form>
+        <form onSubmit={signUpHandler}>
           <div className="mb-4">
             <label htmlFor="name" className="block text-gray-400 text-sm mb-2">
               Name
@@ -104,8 +124,7 @@ const SignUp = () => {
           </div>
           <button
             type="submit"
-            className="w-full py-2 bg-gray-200 text-black font-semibold rounded hover:bg-gray-300"
-            onClick={signUpHandler}>
+            className="w-full py-2 bg-gray-200 text-black font-semibold rounded hover:bg-gray-300">
             Sign Up
           </button>
         </form>

@@ -1,6 +1,6 @@
 import { fetchToken } from "./fetchToken";
 
-export const fetchPodcastsByCreatorId = async (id, setPodcasts) => {
+export const fetchRecommendedPodcasts = async (id, setRecommendedPodcasts) => {
   try {
     const token = await fetchToken();
 
@@ -15,18 +15,17 @@ export const fetchPodcastsByCreatorId = async (id, setPodcasts) => {
     );
 
     if (!res.ok) {
-      throw new Error(`Failed to fetch podcasts by id: ${res.status}`);
+      throw new Error(`Failed to fetch recommended podcasts by id: ${res.status}`);
     }
 
     const data = await res.json();
 
     if (data?.message === "Creator and related content fetched successfully") {
-      // Set only the podcasts field
-      setPodcasts(data.podcasts);
+      setRecommendedPodcasts(data.recommendedPodcasts || []);
     } else {
-      console.log(`Failed to fetch podcasts by id: ${data?.message}`);
+      console.log(`Failed to fetch recommended podcasts by id: ${data?.message}`);
     }
   } catch (error) {
-    console.error(`Failed to fetch podcasts by id: ${error.message}`);
+    console.error(`Failed to fetch recommended podcasts by id: ${error.message}`);
   }
 };

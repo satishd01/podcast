@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
-
 import { useDispatch, useSelector } from "react-redux";
 import { toggleSlider } from "../../app/slices/sliderSlice";
 import Footer from "../../components/Footer/Footer";
@@ -18,27 +17,32 @@ import {
 import CreatorData from "./../../components/SingleCreator/CreatorData/CreatorData";
 import { fetchPodcasts } from "./../../apis/fetchPodcasts";
 import { fetchTopPodcastCreators } from "./../../apis/fetchTopPodcastCreators";
+import { fetchrecommendedCreators } from "./../../apis/recomandedCreators";
+import { fetchRecommendedPodcasts } from "./../../apis/recomondedpodcast";
 
 const SingleCreator = () => {
   const [creator, setCreator] = useState(null);
-
   const [podcasts, setPodcasts] = useState([]);
   const [topCreators, setTopCreators] = useState([]);
+  const [recommendedCreatorsList, setRecommendedCreatorsList] = useState([]);
+  const [recommendedPodcastsList, setRecommendedPodcastsList] = useState([]);
 
   const location = useLocation();
   const isUserViewOpen = useSelector((state) => state.slider.isSliderOpen);
-
   const dispatch = useDispatch();
 
   useEffect(() => {
     scrollToTop();
     fetchPodcasts(setPodcasts);
-      fetchTopPodcastCreators(setTopCreators);
-
+    fetchTopPodcastCreators(setTopCreators);
   }, []);
 
   useEffect(() => {
     setCreator(location?.state?.creator);
+    if (location?.state?.creator?.id) {
+      fetchrecommendedCreators(location.state.creator.id, setRecommendedCreatorsList);
+      fetchRecommendedPodcasts(location.state.creator.id, setRecommendedPodcastsList);
+    }
   }, [location?.state?.creator]);
 
   useEffect(() => {
@@ -48,6 +52,9 @@ const SingleCreator = () => {
   useEffect(() => {
     userSliderHandler(dispatch, toggleSlider, isUserViewOpen);
   }, [isUserViewOpen, dispatch]);
+
+  console.log(recommendedCreatorsList, "recommendedCreatorsList");
+  console.log(recommendedPodcastsList, "recommendedPodcastsList");
 
   return (
     creator && (
@@ -64,7 +71,6 @@ const SingleCreator = () => {
               <CreatorImage creator={creator} />
               <div className="col-span-12 md:col-span-7">
                 <CreatorInfo creator={creator} />
-
                 <CreatorData creator={creator} />
               </div>
             </div>
@@ -72,15 +78,15 @@ const SingleCreator = () => {
               <LatestShows
                 text={"Recommended Creators"}
                 isTwoRows={true}
-                data={topCreators}
+                data={recommendedCreatorsList}
                 page="creator"
               />
             </div>
             <div>
               <TopCreators
-                text={"Recommended Podcast"}
+                text={"Recommended Podcasts"}
                 isTwoRows={true}
-                data={podcasts}
+                data={recommendedPodcastsList}
                 page="podcast"
               />
             </div>

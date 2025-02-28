@@ -54,7 +54,7 @@ const PodcastsContent = () => {
           />
           <LatestShows text={"Latest Shows"} data={podcasts} page="podcast" />
           <PodcastList text={"Podcasts"} data={podcasts} page="podcast" />
-          <div className="md:mt-44 mt-10">
+          {/* <div className="md:mt-44 mt-10">
             <TopCreators
               text={"Top Creators"}
               isTwoRows={true}
@@ -64,7 +64,7 @@ const PodcastsContent = () => {
           </div>
           <div className="md:mb-72 mb-10">
             <LatestShows text={"Latest Shows"} data={podcasts} page="podcast" />
-          </div>
+          </div> */}
           <Footer />
         </div>
       </div>

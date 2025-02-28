@@ -5,7 +5,7 @@ export const logout = async (navigate) => {
   try {
     const token = await fetchToken();
 
-    const res = await fetch("http://localhost:8081/api/auth/logout", {
+    const res = await fetch("https://audiobook.shellcode.cloud/api/auth/logout", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
