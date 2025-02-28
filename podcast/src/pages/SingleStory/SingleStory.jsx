@@ -6,8 +6,8 @@ import Footer from "../../components/Footer/Footer";
 import Navbar from "../../components/Navbar/Navbar";
 import LatestShows from "../../components/Podcasts/LatestShows/LatestShows";
 import TopCreators from "../../components/Podcasts/TopCreators/TopCreators";
-import StoryData from "../../components/SingleStory/StoryData/StoryData";
-import StoryImage from "../../components/SingleStory/StoryImage/StoryImage";
+import StoryData from "../../components/SingleStory/Storydata/Storydata";
+import StoryImage from "../../components/SingleStory/Storyimage/StoryImage";
 import StoryInfo from "../../components/SingleStory/StoryInfo/Storyinfo";
 import SliderDiv from "../../components/SliderDiv/SliderDiv";
 import {
