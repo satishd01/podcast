@@ -75,20 +75,20 @@ const SingleCreator = () => {
               </div>
             </div>
             <div>
-              <LatestShows
+              {/* <LatestShows
                 text={"Recommended Creators"}
                 isTwoRows={true}
                 data={recommendedCreatorsList}
                 page="creator"
-              />
+              /> */}
             </div>
             <div>
-              <TopCreators
+              {/* <TopCreators
                 text={"Recommended Podcasts"}
                 isTwoRows={true}
                 data={recommendedPodcastsList}
                 page="podcast"
-              />
+              /> */}
             </div>
             <Footer />
           </div>

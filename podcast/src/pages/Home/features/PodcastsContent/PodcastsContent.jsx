@@ -51,8 +51,9 @@ const PodcastsContent = () => {
             text={"Top Creators"}
             data={topCreators}
             page="creator"
+            // contentType="podcast"
           />
-          <LatestShows text={"Latest Shows"} data={podcasts} page="podcast" />
+          <LatestShows text={"Latest Shows"} data={podcasts} page="podcast"  contentType="podcast" />
           <PodcastList text={"Podcasts"} data={podcasts} page="podcast" />
           {/* <div className="md:mt-44 mt-10">
             <TopCreators

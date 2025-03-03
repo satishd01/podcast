@@ -10,6 +10,7 @@ import ProtectedRoutes from "./components/ProtectedRoutes/ProtectedRoutes.jsx";
 import UploadContent from "./components/UploadContent/UploadContent.jsx";
 import { toggleAddContent } from "./app/slices/addContentSlice.js";
 import SingleStory from "./pages/SingleStory/SingleStory.jsx";
+import SingleAudiobook from "./pages/SingleAudiobook/SingleAudiobook.jsx";
 
 const Home = lazy(() => import("./pages/Home/Home"));
 const Search = lazy(() => import("./pages/Search/Search"));
@@ -110,6 +111,7 @@ const App = () => {
             <Route path="/subscription" element={<Subscription />} />
             <Route path="/podcast/:podId" element={<SinglePodcast />} />
             <Route path="/story/:storyId" element={<SingleStory />} />
+            <Route path="/audiobook/:audiobookId" element={<SingleAudiobook />} />
             <Route path="/creator/:creatorId" element={<SingleCreator />} />
           </Route>
         </Routes>

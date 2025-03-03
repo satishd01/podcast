@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchStories } from "../../../../apis/fetchStories";
-// import { fetchTopStoryCreators } from "../../../../apis/fetchTopStoryCreators";
+import { fetchLatestStoryShows } from "../../../../apis/Fetchlatestshows";
 import { fetchTopPodcastCreators } from "../../../../apis/fetchTopPodcastCreators";
 import { toggleSlider } from "../../../../app/slices/sliderSlice";
 import Footer from "../../../../components/Footer/Footer";
@@ -15,9 +14,10 @@ import {
   scrollToTop,
   userSliderHandler,
 } from "../../../../utils/constants";
+import { FetchTopStoryCreator } from "../../../../apis/FetchTopStoryCreator";
 
 const StoriesContent = () => {
-  const [stories, setStories] = useState([]);
+  const [latestStoryShows, setLatestStoryShows] = useState([]);
   const [topCreators, setTopCreators] = useState([]);
 
   const isUserViewOpen = useSelector((state) => state.slider.isSliderOpen);
@@ -25,9 +25,8 @@ const StoriesContent = () => {
 
   useEffect(() => {
     scrollToTop();
-    // fetchTopStoryCreators(setTopCreators);
-    fetchTopPodcastCreators(setTopCreators);
-    fetchStories(setStories);
+    FetchTopStoryCreator(setTopCreators);
+    fetchLatestStoryShows(setLatestStoryShows);
   }, []);
 
   useEffect(() => {
@@ -52,20 +51,19 @@ const StoriesContent = () => {
             text={"Top Creators"}
             data={topCreators}
             page="creator"
+            contentType="story"
           />
-          <LatestShows text={"Latest Shows"} data={stories} page="story" />
-          <StoryList text={"Stories"} data={stories} page="story" />
-          {/* <div className="md:mt-44 mt-10">
-            <TopCreators
-              text={"Top Creators"}
-              isTwoRows={true}
-              data={topCreators}
-              page="creator"
-            />
-          </div>
-          <div className="md:mb-72 mb-10">
-            <LatestShows text={"Latest Shows"} data={stories} page="story" />
-          </div> */}
+          <LatestShows
+            text={"Latest Story Shows"}
+            data={latestStoryShows}
+            page="story"
+            contentType="story"
+          />
+          <StoryList
+            text={"Stories"}
+            data={latestStoryShows}
+            page="story"
+          />
           <Footer />
         </div>
       </div>

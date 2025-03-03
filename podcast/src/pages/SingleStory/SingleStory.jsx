@@ -61,19 +61,21 @@ const SingleStory = () => {
                 <StoryData story={story} />
               </div>
             </div>
-            <div className="px-4">
+            {/* <div className="px-4">
               <TopCreators
                 text={"Recommended Stories"}
                 isTwoRows={true}
                 data={stories}
                 page="story"
+                contentType="story"
               />
-            </div>
-            <div>
+            </div> */}
+              <div>
               <LatestShows
-                text={"Latest Shows"}
+                text={"Recomanded Shows"}
                 data={stories}
                 page="story"
+                contentType="story"
               />
             </div>
             <Footer />

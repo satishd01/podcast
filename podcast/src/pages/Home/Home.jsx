@@ -41,9 +41,14 @@ const Home = () => {
 
   return (
     <div>
+
+      <div className="sticky top-0 z-20">
       <Navbar />
+
+      </div>
       <div className="grid grid-cols-12">
         <SliderDiv />
+
 
         <div
           className={`${
