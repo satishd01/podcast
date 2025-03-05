@@ -9,22 +9,33 @@ import {
   scrollToTop,
   userSliderHandler,
 } from "../../utils/constants";
-
 import { useNavigate } from "react-router-dom";
 import History from "../../components/ListeningHistory/History";
-import { BsSortDown, BsSortUpAlt } from "react-icons/bs";
+import { fetchListeningHistory } from "../../apis/fetchListeningHistory";
+import { BsSortUpAlt, BsSortDown } from 'react-icons/bs';
 
 const ListeningHistory = () => {
   const [toggleSort, setToggleSort] = useState(true);
-
-  useEffect(() => {
-    scrollToTop();
-  }, []);
+  const [historyData, setHistoryData] = useState(null);
+  const [selectedContentType, setSelectedContentType] = useState("podcasts");
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
   const isUserViewOpen = useSelector((state) => state.slider.isSliderOpen);
+
+  useEffect(() => {
+    scrollToTop();
+    const fetchHistory = async () => {
+      try {
+        const data = await fetchListeningHistory();
+        setHistoryData(data);
+      } catch (error) {
+        console.error("Failed to fetch listening history:", error);
+      }
+    };
+
+    fetchHistory();
+  }, []);
 
   useEffect(() => {
     resizeHandler(dispatch, toggleSlider);
@@ -48,15 +59,35 @@ const ListeningHistory = () => {
             <p className="text-2xl font-semibold mb-4">Listening history</p>
             <div className="flex items-center justify-between mb-10">
               <ul className="flex items-center gap-2 sm:gap-4 text-xs sm:text-sm">
-                <li className="rounded-lg border px-2 py-1">Podcasts</li>
-                <li className="rounded-lg border px-2 py-1 whitespace-nowrap">
+                <li
+                  className={`rounded-lg border px-2 py-1 cursor-pointer ${
+                    selectedContentType === "podcasts" ? "bg-white text-black" : ""
+                  }`}
+                  onClick={() => setSelectedContentType("podcasts")}
+                >
+                  Podcasts
+                </li>
+                <li
+                  className={`rounded-lg border px-2 py-1 whitespace-nowrap cursor-pointer ${
+                    selectedContentType === "audiobooks" ? "bg-white text-black" : ""
+                  }`}
+                  onClick={() => setSelectedContentType("audiobooks")}
+                >
                   Audio Books
                 </li>
-                <li className="rounded-lg border px-2 py-1">Stories</li>
+                <li
+                  className={`rounded-lg border px-2 py-1 cursor-pointer ${
+                    selectedContentType === "stories" ? "bg-white text-black" : ""
+                  }`}
+                  onClick={() => setSelectedContentType("stories")}
+                >
+                  Stories
+                </li>
               </ul>
               <div
                 className="flex items-center gap-2 text-xs sm:text-sm cursor-pointer"
-                onClick={() => setToggleSort((prev) => !prev)}>
+                onClick={() => setToggleSort((prev) => !prev)}
+              >
                 {toggleSort ? (
                   <BsSortUpAlt className="text-base sm:text-lg" />
                 ) : (
@@ -65,7 +96,7 @@ const ListeningHistory = () => {
                 <p className="whitespace-nowrap">Sort by</p>
               </div>
             </div>
-            <History />
+            {historyData && <History historyData={historyData[selectedContentType]} />}
           </div>
           <Footer />
         </div>

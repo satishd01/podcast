@@ -6,14 +6,18 @@ import { RiEdit2Fill } from "react-icons/ri";
 
 const LibraryCard = ({ item }) => {
   return (
-    <div className="grid grid-cols-12 gap-4  items-center mt-4 w-full cursor-pointer">
+    <div className="grid grid-cols-12 gap-4 items-center mt-4 w-full cursor-pointer">
       <div className="flex items-center gap-3 col-span-6">
         <div className="border border-white p-4 rounded-md">
-          <item.icon className="text-red-600 text-xl" />
+          <img
+            src={item.image}
+            alt={item.name}
+            className="w-12 h-12 object-cover rounded-full"
+          />
         </div>
         <div>
           <p className="md:text-base whitespace-nowrap text-[14px]">
-            {item.title}
+            {item.name}
           </p>
           <div className="flex items-center gap-2 whitespace-nowrap">
             <GoClockFill className="text-red-600" />

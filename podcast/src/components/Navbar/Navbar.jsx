@@ -46,7 +46,7 @@ const Navbar = () => {
     <nav className="grid grid-cols-12 text-white select-none">
       <div className="md:col-span-2 col-span-3 md:bg-[#131313] bg-[#100E0E] flex px-8 py-3 text-2xl items-center cursor-pointer">
         <p onClick={handleIsUserViewOpen} className="font-semibold ">
-          Logo
+          Audiobook
         </p>
       </div>
 

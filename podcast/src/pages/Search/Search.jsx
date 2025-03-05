@@ -40,14 +40,14 @@ const Search = () => {
           ) : (
             <Genres />
           )}
-          <div className="md:mt-10 mt-4 md:px-5 md:mb-44 mb-10">
+          {/* <div className="md:mt-10 mt-4 md:px-5 md:mb-44 mb-10">
             <TopCreators
               isTwoRows={true}
               text={"Recommended Podcasts"}
               noSeeAll={true}
             />
-          </div>
-          <OtherFooter />
+          </div> */}
+          {/* <OtherFooter /> */}
         </div>
       </div>
     </>

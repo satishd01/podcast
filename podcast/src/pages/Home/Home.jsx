@@ -61,16 +61,16 @@ const Home = () => {
           />
           <TopCreators text={"Top Stories Creators"} />
           <TopCreators text={"Top Audio Book Creators"} />
-          <LatestShows
+          {/* <LatestShows
             text={"Latest Podcasts"}
             data={podcasts}
             page="podcast"
-          />
-          <LatestShows text={"Latest Stories"} />
+          /> */}
+          {/* <LatestShows text={"Latest Stories"} />
           <LatestShows text={"Latest Audio Books"} />
           <PodcastList text={"Podcasts"} />
           <PodcastList text={"Stories"} />
-          <PodcastList text={"Audio Books"} />
+          <PodcastList text={"Audio Books"} /> */}
 
           <Footer />
         </div>

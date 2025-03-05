@@ -2,15 +2,13 @@ import React from "react";
 
 const GenreCard = ({ genre }) => {
   return (
-    <div className="relative rounded-lg  shadow-lg hover:shadow-xl transform hover:scale-90 transition duration-300 ease-in-out w-full ">
+    <div className="bg-white rounded-lg shadow-md p-4">
       <img
-        alt={genre.name}
-        src={genre.imageUrl}
-        className="w-full h-[200px] object-cover rounded-lg"
+        src={genre.image}
+        alt={genre.genre_name}
+        className="w-full h-48 object-cover rounded-t-lg"
       />
-      <div className="absolute bottom-3 left-5">
-        <p className="text-white text-lg font-semibold">{genre.genre}</p>
-      </div>
+      <p className="text-lg font-semibold mt-4">{genre.genre_name}</p>
     </div>
   );
 };

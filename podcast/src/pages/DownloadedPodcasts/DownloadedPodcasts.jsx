@@ -44,7 +44,7 @@ const DownloadedPodcasts = () => {
             </div>
             <div>
               <p className="text-2xl font-semibold">Your Downloads</p>
-              <p className="text-sm mt-2 text-gray-500">10 Downloads</p>
+              {/* <p className="text-sm mt-2 text-gray-500">10 Downloads</p> */}
             </div>
           </div>
 
