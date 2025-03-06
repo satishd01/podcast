@@ -1,10 +1,11 @@
 import React from "react";
-import { AiFillPlusCircle } from "react-icons/ai";
 import { GoClockFill } from "react-icons/go";
 import { IoMdShare } from "react-icons/io";
 import { IoArrowDownCircleSharp, IoPlay } from "react-icons/io5";
 import { useDispatch } from "react-redux";
 import { setActivePlayer } from "../../../app/slices/activePlayerSlice";
+import { downloadApi } from "../../../apis/downloadApi";
+import "./SuggestionCard.css"; // Import your CSS file if it's in a separate file
 
 const SuggestionCard = ({ data }) => {
   const dispatch = useDispatch();
@@ -18,6 +19,40 @@ const SuggestionCard = ({ data }) => {
   const playerHandler = () => {
     dispatch(setActivePlayer(data));
   };
+
+  const handleDownload = async () => {
+    try {
+      const blob = await downloadApi('audiobook', data.audiobook_id, data.id);
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `${data.title}.mp3`; // Set the desired file name
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      window.URL.revokeObjectURL(url);
+    } catch (error) {
+      console.error('Failed to download:', error);
+    }
+  };
+
+  const handleShare = () => {
+    const shareUrl = `https://your-app.com/audiobook/${data.audiobook_id}/episode/${data.id}`;
+    const shareData = {
+     title: data.title,
+     text: `Listen to this episode: ${data.title}`,
+     url: shareUrl,
+   };
+
+    if (navigator.share) {
+      navigator.share(shareData)
+        .then(() => console.log('Share was successful'))
+        .catch((error) => console.log('Share was not successful', error));
+    } else {
+      alert('Web Share API is not supported by this browser.');
+    }
+  };
+
   return (
     <div className="grid grid-cols-12 gap-4 items-center  rounded-lg mb-4">
       <div className="flex items-center gap-2 col-span-6">
@@ -41,9 +76,8 @@ const SuggestionCard = ({ data }) => {
       </div>
 
       <div className="col-span-3 flex gap-1 sm:gap-3 items-center justify-end text-white text-lg sm:text-xl">
-        <IoMdShare />
-        <IoArrowDownCircleSharp />
-        <AiFillPlusCircle />
+        <IoMdShare className="share-button" onClick={handleShare} />
+        <IoArrowDownCircleSharp className="download-button" onClick={handleDownload} />
       </div>
 
       <div className="flex justify-end col-span-3" onClick={playerHandler}>

@@ -20,10 +20,10 @@ const AudiobookInfo = ({ audiobook }) => {
         <button className="px-4 py-1 rounded-lg text-sm md:text-[15px] bg-white text-black font-semibold">
           Follow
         </button>
-        <FaBell className="text-lg" />
+        {/* <FaBell className="text-lg" /> */}
         <IoMdShare />
         <IoArrowDownCircleSharp />
-        <AiFillPlusCircle />
+        {/* <AiFillPlusCircle /> */}
       </div>
     </>
   );

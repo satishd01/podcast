@@ -8,10 +8,10 @@ const ProfileBody = () => {
       <div className="col-span-12 md:col-span-5">
         <ProfileCard />
       </div>
-      <div className="col-span-12 md:col-span-7">
+      {/* <div className="col-span-12 md:col-span-7">
         <p className="text-lg font-semibold mb-3">Your Liked Shows</p>
         <PlaylistPodcasts />
-      </div>
+      </div> */}
     </div>
   );
 };

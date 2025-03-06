@@ -15,8 +15,8 @@ const AudiobookData = ({ audiobook }) => {
     <div className="w-full">
       <div className="flex gap-3 md:gap-16 items-center text-white md:text-base text-sm md:mt-5 mt-3">
         <p>Episodes</p>
-        <p>Reviews</p>
-        <p>More like this</p>
+        {/* <p>Reviews</p>
+        <p>More like this</p> */}
       </div>
 
       <div className="my-5">

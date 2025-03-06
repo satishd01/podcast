@@ -37,7 +37,7 @@ const ProfileCard = () => {
           <p className="text-sm text-gray-400 mt-1">{`${following} Following`}</p>
         </div>
       </div>
-      <div className="flex items-center justify-between bg-[#2F2F2F] rounded-md mt-4 p-3">
+      {/* <div className="flex items-center justify-between bg-[#2F2F2F] rounded-md mt-4 p-3">
         <div className="flex items-center gap-3">
           <div className="bg-black p-3 rounded-md border border-white">
             <GiBookCover className="text-2xl text-red-600" />
@@ -48,7 +48,7 @@ const ProfileCard = () => {
           </div>
         </div>
         <MdOutlineKeyboardArrowRight className="text-xl text-gray-400" />
-      </div>
+      </div> */}
 
       {isEditOpen && (
         <div
