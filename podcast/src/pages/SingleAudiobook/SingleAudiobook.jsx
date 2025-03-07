@@ -6,7 +6,7 @@ import Footer from "../../components/Footer/Footer";
 import Navbar from "../../components/Navbar/Navbar";
 import LatestShows from "../../components/Podcasts/LatestShows/LatestShows";
 import TopCreators from "../../components/Podcasts/TopCreators/TopCreators";
-import AudiobookData from "../../components/SingleAudiobook/audiobookdata/Audiobookdata";
+import AudiobookData from "../../components/singleaudiobook/audiobookdata/Audiobookdata";
 import AudiobookImage from "../../components/SingleAudiobook/audiobookdata/Audiobookimgae/Audiobookimage";
 import AudiobookInfo from "../../components/SingleAudiobook/audiobookdata/Audiobookinfo/Audiobookinfo";
 import SliderDiv from "../../components/SliderDiv/SliderDiv";
